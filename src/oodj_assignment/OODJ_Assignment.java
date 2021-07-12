@@ -1,9 +1,10 @@
 
 package oodj_assignment;
+import java.io.File;
+import java.io.IOException;
 import java.util.Scanner;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 
 class User
@@ -33,7 +34,7 @@ class Admin extends User
         
         for (int i = 0; i < adminUserArrayList.size(); i++)
         {
-            if (username == adminUserArrayList.get(i)&& password == adminUserArrayList.get(i)) //loop 2 times
+            if (username == adminUserArrayList.get(i)&& password == adminUserArrayList.get(i)) //loop 2 times, password under username
             {
                 return true;
             }
