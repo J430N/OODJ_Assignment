@@ -53,6 +53,7 @@ class Admin extends User
         System.out.println("Enter password: ");
         password = sc.nextLine();
         String[] adminUserArray = {username, password};
+        //Testing 1234
         //put into text file
         //adminUserArrayList = Arrays.asList(adminUserArray);
         //adminUserArrayList.add(i);
