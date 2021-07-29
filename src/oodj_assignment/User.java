@@ -70,6 +70,8 @@ public class User
         String[][] multipleData = data.readTextFile(filePath).clone();
         int row = 0;
         int id = 0;
+        String newUsername = null;
+        String newPassword = null;
         boolean over = false;
         Integer[] idFromArray = new Integer[multipleData.length];
         while(over == false) //Problem only can run when have many data
@@ -110,26 +112,27 @@ public class User
             id++;
         }
         //Check user exist or not
-        System.out.println("Enter username: ");
-        username = sc.nextLine();
-        while(checkUserExist(filePath, role, username))
+        System.out.println("Enter new username: ");
+        newUsername = sc.nextLine();
+        while(checkUserExist(filePath, role, newUsername))
         {
             System.out.println("User found! Please try again");
-            System.out.println("Enter username: ");
-            username = sc.nextLine();
+            System.out.println("Enter new username: ");
+            newUsername = sc.nextLine();
         }
-        System.out.println("Enter password: ");
-        password = sc.nextLine();
+        System.out.println("Enter new password: ");
+        newPassword = sc.nextLine();
         //Write new user into textfile
-        data.writeTextFile(filePath, role, String.valueOf(id), username, password); 
+        data.writeTextFile(filePath, role, String.valueOf(id), newUsername, newPassword); 
         System.out.println("User successfully added!");
     }
     
     public boolean checkUserExist(String filePath, String role) throws IOException
     {
+        //Check for login only
         //Check using current username
         //return true when user exist
-        if (username.equals(searchUsername(filePath, role)[2]))
+        if (username.equals(searchUsername(filePath, role, username)[2]))
         {
             return true;
         }
@@ -141,9 +144,10 @@ public class User
     
     public boolean checkUserExist(String filePath, String role, String newUsername) throws IOException
     {
+        //Check for add, edit or delete user
         //Check using new username
         //return true when user exist
-        if (newUsername.equals(searchUsername(filePath, role)[2]))
+        if (newUsername.equals(searchUsername(filePath, role, newUsername)[2]))
         {
             return true;
         }
@@ -153,7 +157,7 @@ public class User
         }
     }
     
-    public String[] searchUsername(String filePath, String role) throws IOException
+    public String[] searchUsername(String filePath, String role, String newUsername) throws IOException
     {
         //Search user in the textfile
         //Return user details
@@ -168,7 +172,7 @@ public class User
         {
             if(multipleData[row][0]!=null)
             {
-                if (role.equals(multipleData[row][0]) && username.equals(multipleData[row][2]))
+                if (role.equals(multipleData[row][0]) && newUsername.equals(multipleData[row][2]))
                 {
                     for(int col =0; col<multipleData[0].length; col++)
                     {
@@ -194,20 +198,20 @@ public class User
         return result;
     }
     
-    public void deleteUser(String filePath, String role) throws IOException
+    public void deleteUser(String filePath, String role, String newUsername) throws IOException
     {   
         int row = 0;
         boolean over = false;
         RWTextFile data = new RWTextFile();
         String[][] multipleData = data.readTextFile(filePath).clone();
-        searchUser(filePath, role);
+        searchUser(filePath, role, newUsername);
         //Emtpy the file
         data.clearTextFile(filePath);
         while(!over)
         {
             if(multipleData[row][0]!=null)
             {
-                if (role.equals(multipleData[row][0]) && username.equals(multipleData[row][2]))
+                if (role.equals(multipleData[row][0]) && newUsername.equals(multipleData[row][2]))
                 {
                     //Ignore match line
                     System.out.println("User deleted");
@@ -234,18 +238,18 @@ public class User
         }
     }
 
-    public void editUser(String filePath, String role) throws IOException
+    public void editUser(String filePath, String role, String newUsername) throws IOException
     {   
         //Display user details before edit
         Scanner sc = new Scanner(System.in);
         RWTextFile data = new RWTextFile();
         String[][] multipleData = data.readTextFile(filePath).clone();
         System.out.println("Before edit:");
-        searchUser(filePath, role);
+        searchUser(filePath, role, newUsername);
         int row = 0;
         boolean over = false;
-        String newUsername=null;
-        String newPassword=null;
+        String editUsername=null;
+        String editPassword=null;
         System.out.println("Choose one\n1. Change username \n2. Change password\n3. Change username and password\nEnter your choice: ");
                     int choice = sc.nextInt();
                     sc.nextLine();
@@ -255,12 +259,12 @@ public class User
                         {
                             //Replace username
                             System.out.println("Enter new username: ");
-                            newUsername = sc.nextLine();
-                            while(checkUserExist(filePath, role, newUsername))
+                            editUsername = sc.nextLine();
+                            while(checkUserExist(filePath, role, editUsername))
                             {
                                 System.out.println("User found! Please try again");
                                 System.out.println("Enter new username: ");
-                                newUsername = sc.nextLine();
+                                editUsername = sc.nextLine();
                             }
                             break;
                         }
@@ -268,22 +272,22 @@ public class User
                         {
                             //Replace password
                             System.out.println("Enter new password: ");
-                            newPassword = sc.nextLine();
+                            editPassword = sc.nextLine();
                             break;
                         }
                         case 3:
                         {
                             System.out.println("Enter new username: ");
-                            newUsername = sc.nextLine();
+                            editUsername = sc.nextLine();
                             //Replace username and password
-                            while(checkUserExist(filePath, role, newUsername))
+                            while(checkUserExist(filePath, role, editUsername))
                             {
                                 System.out.println("User found! Please try again");
                                 System.out.println("Enter new username: ");
-                                newUsername = sc.nextLine();
+                                editUsername = sc.nextLine();
                             }
                             System.out.println("Enter new password: ");
-                            newPassword = sc.nextLine();
+                            editPassword = sc.nextLine();
                             break;
                         }
                         default:
@@ -297,21 +301,28 @@ public class User
         {
             if(multipleData[row][0]!=null)
             {
-                if (role.equals(multipleData[row][0]) && username.equals(multipleData[row][2]))
+                if (role.equals(multipleData[row][0]) && newUsername.equals(multipleData[row][2]))
                 {
-                    if(newPassword==null)
+                    if(editPassword==null)
                     {
                         //Write back the updated data
-                        data.writeTextFile(filePath, multipleData[row][0], multipleData[row][1], newUsername, multipleData[row][3]);
+                        data.writeTextFile(filePath, multipleData[row][0], multipleData[row][1], editUsername, multipleData[row][3]);
                         System.out.println("After edit:");
-                        System.out.println("Role: " + multipleData[row][0] + "\nID: " + multipleData[row][1] + "\nUsername: " + newUsername + "\nPassword: " + multipleData[row][3]);
+                        System.out.println("Role: " + multipleData[row][0] + "\nID: " + multipleData[row][1] + "\nUsername: " + editUsername + "\nPassword: " + multipleData[row][3]);
+                    }
+                    else if(editUsername==null)
+                    {
+                        //Write back the updated data
+                        data.writeTextFile(filePath, multipleData[row][0], multipleData[row][1], newUsername, editPassword);
+                        System.out.println("After edit:");
+                        System.out.println("Role: " + multipleData[row][0] + "\nID: " + multipleData[row][1] + "\nUsername: " + multipleData[row][2] + "\nPassword: " + editPassword);
                     }
                     else
                     {
                         //Write back the updated data
-                        data.writeTextFile(filePath, multipleData[row][0], multipleData[row][1], newUsername, newPassword);
+                        data.writeTextFile(filePath, multipleData[row][0], multipleData[row][1], newUsername, editPassword);
                         System.out.println("After edit:");
-                        System.out.println("Role: " + multipleData[row][0] + "\nID: " + multipleData[row][1] + "\nUsername: " + newUsername + "\nPassword: " + newPassword);
+                        System.out.println("Role: " + multipleData[row][0] + "\nID: " + multipleData[row][1] + "\nUsername: " + editUsername + "\nPassword: " + editPassword);
                     }
                 }
                 else
@@ -336,12 +347,19 @@ public class User
         }
     }
  
-    public void searchUser(String filePath, String role) throws IOException
+    public void searchUser(String filePath, String role, String newUsername) throws IOException
     {   
         //Search user using username
         Scanner sc = new Scanner(System.in);
         //Print user details
-        System.out.println("Role: " + searchUsername(filePath, role)[0] + "\nID: " + searchUsername(filePath, role)[1] + "\nUsername: " + searchUsername(filePath, role)[2] + "\nPassword: " + searchUsername(filePath, role)[3]);
+        if (searchUsername(filePath, role, newUsername)[2]==null)
+        {
+            System.out.println("User not Found!");
+        }
+        else
+        {
+            System.out.println("Role: " + searchUsername(filePath, role, newUsername)[0] + "\nID: " + searchUsername(filePath, role, newUsername)[1] + "\nUsername: " + searchUsername(filePath, role, newUsername)[2] + "\nPassword: " + searchUsername(filePath, role, newUsername)[3]);
+        }
     }
     
     public void viewUser(String filePath, String role) throws IOException

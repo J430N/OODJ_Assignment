@@ -37,10 +37,13 @@ public class OODJ_Assignment {
             {
                 //Admin login
                 System.out.println("Welcome " + username);
-                admin.addAdmin(); //Done
+                //admin.addAdmin(); //Done
                 //admin.deleteAdmin(); //Done
                 //admin.editAdmin(); //Done
+//<<<<<<< HEAD
                 //admin.checkUserExist("C:\\Users\\wongj\\OneDrive - Asia Pacific University\\Desktop\\Admin_User.txt", username);
+//=======
+//>>>>>>> origin/JasonTeo
                 //admin.searchAdmin(); //Done
                 //admin.viewAdmin(); //Done
 
