@@ -40,7 +40,7 @@ public class OODJ_Assignment {
                 admin.addAdmin(); //Done
                 //admin.deleteAdmin(); //Done
                 //admin.editAdmin(); //Done
-                //admin.checkUserExist("D:\\APU\\Degree Year 2 Sem 1\\OODJ\\Assignment\\Admin_User.txt", username);
+                //admin.checkUserExist("C:\\Users\\wongj\\OneDrive - Asia Pacific University\\Desktop\\Admin_User.txt", username);
                 //admin.searchAdmin(); //Done
                 //admin.viewAdmin(); //Done
 
