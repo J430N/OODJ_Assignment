@@ -1,21 +1,7 @@
 
 package oodj_assignment;
-import java.io.BufferedWriter;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.PrintWriter;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.File;
-import java.util.Collections;
-import java.io.FileNotFoundException; 
 import java.util.Scanner;
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.ArrayList;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.charset.StandardCharsets;
 
 public class OODJ_Assignment {
 
@@ -39,7 +25,7 @@ public class OODJ_Assignment {
                 System.out.println("Welcome " + username);
                 //admin.addAdmin(); //Done
                 //admin.deleteAdmin(); //Done
-                //admin.editAdmin(); //Done
+                admin.editAdmin(); //Done
                 //admin.searchAdmin(); //Done
                 //admin.viewAdmin(); //Done
 
