@@ -21,49 +21,55 @@ public class AdminUser extends User
     String role = "Admin"; //This role can change
     public boolean login(String username, String password) throws IOException
     {
-        User user = new User();
-        return user.verifyLogin(filePath, "Admin", username, password);
+        return verifyLogin(filePath, "Admin", username, password);
     }
     
     public void addAdmin() throws IOException
     {
-        User user = new User();
-        user.addUser(filePath, role);
+        addUser(filePath, role);
     }
     
     public void deleteAdmin() throws IOException
     {   
-        User user = new User();
-        user.deleteUser(filePath, role);   
+        String newUsername = null;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter username of the user to delete: ");
+        newUsername = sc.nextLine();
+        while(!checkUserExist(filePath, role, newUsername))
+        {
+            System.out.println("User not found! Please try again");
+            System.out.println("Enter username of the user to delete: ");
+            newUsername = sc.nextLine();
+        }
+        deleteUser(filePath, role, newUsername); 
     }
     
     public void editAdmin() throws IOException
     {   
-        User user = new User();
+        String newUsername = null;
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter username of the user to edit: ");
-        user.username = sc.nextLine();
-        while(!user.checkUserExist(filePath, username))
+        newUsername = sc.nextLine();
+        while(!checkUserExist(filePath, role, newUsername))
         {
             System.out.println("User not found! Please try again");
             System.out.println("Enter username of the user to edit: ");
-            user.username = sc.nextLine();
+            newUsername = sc.nextLine();
         }
-        user.editUser(filePath, role); 
+        editUser(filePath, role, newUsername); 
          
     }
     
     public void viewAdmin() throws IOException
     {   
-        User user = new User();
-        user.viewUser(filePath, role);   
+        viewUser(filePath, role);   
     }
     public void searchAdmin() throws IOException
     {   
-        User user = new User();
+        String newUsername = null;
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter username of the user: ");
-        user.username = sc.nextLine();
-        user.searchUser(filePath, role);      
+        newUsername = sc.nextLine();
+        searchUser(filePath, role, newUsername);      
     }
 }
