@@ -277,6 +277,18 @@ public class User
                         }
                         case 3:
                         {
+                            /*System.out.println("Enter new username: ");
+                            editUsername = sc.nextLine();
+                            //Replace username and password
+                            while(checkUserExist(filePath, role, editUsername))
+                            {
+                                System.out.println("User found! Please try again");
+                                System.out.println("Enter new username: ");
+                                editUsername = sc.nextLine();
+                            }
+                            System.out.println("Enter new password: ");
+                            editPassword = sc.nextLine();
+                            break;*/
                             System.out.println("Enter new username: ");
                             editUsername = sc.nextLine();
                             //Replace username and password
