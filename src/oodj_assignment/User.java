@@ -295,7 +295,7 @@ public class User
                             System.out.println("ERROR: Invalid Input\nPlease re-enter your choice\n");
                         }
                     }
-        //Emtpy the file
+        //Empty the file
         data.clearTextFile(filePath);
         while(!over)
         {

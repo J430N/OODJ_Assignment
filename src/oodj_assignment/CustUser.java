@@ -11,25 +11,22 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
-/**
- *
- * @author asus
- */
-public class AdminUser extends User
+
+public class CustUser extends User
 {
     String filePath = "C:\\Users\\wongj\\OneDrive - Asia Pacific University\\Desktop\\User.txt";
-    String role = "Admin"; //This role can change
+    String role = "Customer"; //This role can change
     public boolean login(String username, String password) throws IOException
     {
-        return verifyLogin(filePath, "Admin", username, password);
+        return verifyLogin(filePath, "Customer", username, password);
     }
     
-    public void addAdmin() throws IOException
+    public void addCust() throws IOException
     {
         addUser(filePath, role);
     }
     
-    public void deleteAdmin() throws IOException
+    public void deleteCust() throws IOException
     {   
         String newUsername = null;
         Scanner sc = new Scanner(System.in);
@@ -44,7 +41,7 @@ public class AdminUser extends User
         deleteUser(filePath, role, newUsername); 
     }
     
-    public void editAdmin() throws IOException
+    public void editCust() throws IOException
     {   
         String newUsername = null;
         Scanner sc = new Scanner(System.in);
@@ -60,11 +57,11 @@ public class AdminUser extends User
          
     }
     
-    public void viewAdmin() throws IOException
+    public void viewCust() throws IOException
     {   
         viewUser(filePath, role);   
     }
-    public void searchAdmin() throws IOException
+    public void searchCust() throws IOException
     {   
         String newUsername = null;
         Scanner sc = new Scanner(System.in);

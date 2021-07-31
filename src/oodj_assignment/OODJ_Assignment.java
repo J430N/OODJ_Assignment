@@ -22,7 +22,7 @@ public class OODJ_Assignment {
     public static void main(String[] args) throws IOException
     {
         Scanner sc = new Scanner(System.in);
-        AdminUser admin = new AdminUser();
+        CustUser customer = new CustUser();
 
         boolean match = false;
         while (!match)
@@ -32,20 +32,19 @@ public class OODJ_Assignment {
             String username = sc.nextLine();
             System.out.println("Enter password: ");
             String password = sc.nextLine();
-            match = admin.login(username, password);
+            match = customer.login(username, password);
             if (match)
             {
-                //Admin login
+                //Customer login
                 System.out.println("Welcome " + username);
-                //admin.addAdmin(); //Done
-                //admin.deleteAdmin(); //Done
-                //admin.editAdmin(); //Done
-//<<<<<<< HEAD
-                //admin.checkUserExist("C:\\Users\\wongj\\OneDrive - Asia Pacific University\\Desktop\\Admin_User.txt", username);
-//=======
-//>>>>>>> origin/JasonTeo
-                //admin.searchAdmin(); //Done
-                //admin.viewAdmin(); //Done
+                //customer.addCust(); //Done
+                //customer.deleteCust(); //Done
+                customer.editCust(); //Done
+
+                //customer.checkUserExist("C:\\Users\\wongj\\OneDrive - Asia Pacific University\\Desktop\\Admin_User.txt", username);
+
+                //customer.searchCust(); //Done
+                //customer.viewCust(); //Done
 
                 break;
             }
@@ -69,7 +68,7 @@ public class OODJ_Assignment {
             }
             case 3:
             {
-                performCustomerAction();
+                //A2.addCust();
                 break;
             }
             case 4:
