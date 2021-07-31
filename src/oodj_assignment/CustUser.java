@@ -43,6 +43,17 @@ public class CustUser extends User
     
     public void editCust() throws IOException
     {   
+        /*String newUsername = null;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter username of the user to edit: ");
+        newUsername = sc.nextLine();
+        while(!checkUserExist(filePath, role, newUsername))
+        {
+            System.out.println("User not found! Please try again");
+            System.out.println("Enter username of the user to edit: ");
+            newUsername = sc.nextLine();
+        }
+        editUser(filePath, role, newUsername);*/
         String newUsername = null;
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter username of the user to edit: ");
@@ -53,7 +64,7 @@ public class CustUser extends User
             System.out.println("Enter username of the user to edit: ");
             newUsername = sc.nextLine();
         }
-        editUser(filePath, role, newUsername); 
+        editUser(filePath, role, newUsername);
          
     }
     
