@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 public class CustUser extends User
 {
-    String filePath = "C:\\Users\\wongj\\OneDrive - Asia Pacific University\\Desktop\\User.txt";
+    String filePath = "C:\\Users\\wongj\\OneDrive - Asia Pacific University\\Desktop\\CustUser.txt";
     String role = "Customer"; //This role can change
     public boolean login(String username, String password) throws IOException
     {

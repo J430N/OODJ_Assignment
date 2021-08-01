@@ -39,7 +39,7 @@ public class OODJ_Assignment {
                 System.out.println("Welcome " + username);
                 //customer.addCust(); //Done
                 //customer.deleteCust(); //Done
-                customer.editCust(); //Done
+                //customer.editCust(); //Done
 
                 //customer.checkUserExist("C:\\Users\\wongj\\OneDrive - Asia Pacific University\\Desktop\\Admin_User.txt", username);
 
