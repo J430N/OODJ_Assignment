@@ -5,9 +5,6 @@
  */
 package oodj_assignment;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -17,7 +14,7 @@ import java.util.Scanner;
  */
 public class AdminUser extends User
 {
-    String filePath = "D:\\APU\\Degree Year 2 Sem 1\\OODJ\\Assignment\\User.txt";
+    String filePath = "D:\\APU\\Degree Year 2 Sem 1\\OODJ\\Assignment\\AdminUser.txt";
     String role = "Admin"; //This role can change
     public boolean login(String username, String password) throws IOException
     {
