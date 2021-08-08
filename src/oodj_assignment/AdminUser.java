@@ -17,11 +17,11 @@ import java.util.Scanner;
  */
 public class AdminUser extends User
 {
-    String filePath = "C:\\Users\\wongj\\OneDrive - Asia Pacific University\\Desktop\\AdminUser.txt";
+    String filePath = "C:\\Users\\wongj\\OneDrive - Asia Pacific University\\Desktop\\User.txt";
     String role = "Admin"; //This role can change
     public boolean login(String username, String password) throws IOException
     {
-        return verifyLogin(filePath, "Admin", username, password);
+        return verifyLogin(filePath, role, username, password);
     }
     
     public void addAdmin() throws IOException
