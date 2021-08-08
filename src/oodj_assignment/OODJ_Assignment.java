@@ -23,9 +23,9 @@ public class OODJ_Assignment {
             {
                 //Admin login
                 System.out.println("Welcome " + username);
-                //admin.addAdmin(); //Done
+                admin.addAdmin(); //Done
                 //admin.deleteAdmin(); //Done
-                admin.editAdmin(); //Done
+                //admin.editAdmin(); //Done
                 //admin.searchAdmin(); //Done
                 //admin.viewAdmin(); //Done
 

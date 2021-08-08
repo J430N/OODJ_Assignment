@@ -77,9 +77,9 @@ public class User
             {
                 for(int i =0; i<multipleData.length;i++)
                 {
-                    if (multipleData[row][1] != null)
+                    if (role.equals(multipleData[row][0]))
                     {
-                    idFromArray[i] = Integer.parseInt(multipleData[row][1]);// Parsing from string to int
+                        idFromArray[i] = Integer.parseInt(multipleData[row][1]);// Parsing from string to int
                     }
                     else
                     {
