@@ -5,10 +5,8 @@
  */
 package oodj_assignment;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
+
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.Scanner;
 
@@ -332,7 +330,7 @@ public class User
                     else
                     {
                         //Write back the updated data
-                        data.writeTextFile(filePath, multipleData[row][0], multipleData[row][1], newUsername, editPassword);
+                        data.writeTextFile(filePath, multipleData[row][0], multipleData[row][1], editUsername, editPassword);
                         System.out.println("After edit:");
                         System.out.println("Role: " + multipleData[row][0] + "\nID: " + multipleData[row][1] + "\nUsername: " + editUsername + "\nPassword: " + editPassword);
                     }

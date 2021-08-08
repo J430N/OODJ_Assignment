@@ -1,21 +1,9 @@
 
 package oodj_assignment;
-import java.io.BufferedWriter;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.PrintWriter;
-import java.io.FileWriter;
+
 import java.io.IOException;
-import java.io.File;
-import java.util.Collections;
-import java.io.FileNotFoundException; 
 import java.util.Scanner;
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.ArrayList;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.charset.StandardCharsets;
+
 
 public class OODJ_Assignment {
 
@@ -23,7 +11,8 @@ public class OODJ_Assignment {
     {
         Scanner sc = new Scanner(System.in);
         CustUser customer = new CustUser();
-
+        AdminUser admin = new AdminUser();
+        
         boolean match = false;
         while (!match)
         {
@@ -32,14 +21,14 @@ public class OODJ_Assignment {
             String username = sc.nextLine();
             System.out.println("Enter password: ");
             String password = sc.nextLine();
-            match = customer.login(username, password);
+            match = admin.login(username, password);
             if (match)
             {
                 //Customer login
                 System.out.println("Welcome " + username);
-                //customer.addCust(); //Done
+                //admin.addAdmin(); //Done
                 //customer.deleteCust(); //Done
-                //customer.editCust(); //Done
+                admin.editAdmin(); //Done
 
                 //customer.checkUserExist("C:\\Users\\wongj\\OneDrive - Asia Pacific University\\Desktop\\Admin_User.txt", username);
 
