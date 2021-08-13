@@ -15,8 +15,73 @@ import java.util.Scanner;
  */
 public class User 
 {
-    protected String username;
-    protected String password;
+    private String username;
+    private String password;
+    private String newUsername;
+    private String newPassword;
+    private String role;
+    private String ID;
+    
+    public String getUsername()
+    {
+        return username;
+    }
+    
+    public void setUsername(String username)
+    {
+        this.username = username;
+    }
+    
+    public String getPassword()
+    {
+        return password;
+    }
+    
+    public void setPassword(String password)
+    {
+        this.password = password;
+    }
+    
+    public String getNewUsername()
+    {
+        return newUsername;
+    }
+    
+    public void setNewUsername(String newUsername)
+    {
+        this.newUsername = newUsername;
+    }
+    
+    public String getNewPassword()
+    {
+        return newPassword;
+    }
+    
+    public void setNewPassword(String newPassword)
+    {
+        this.newPassword = newPassword;
+    }
+    
+    public String getRole()
+    {
+        return role;
+    }
+    
+    public void setRole(String role)
+    {
+        this.role = role;
+    }
+    
+    public String getID()
+    {
+        System.out.println(this.ID);
+        return ID;
+    }
+    
+    public void setID(String ID)
+    {
+        this.ID = ID;
+    }
     
     public boolean verifyLogin(String filePath, String role, String username, String password) throws UnsupportedEncodingException, IOException
     {
@@ -39,6 +104,10 @@ public class User
                     {
                         if(password.equals(multipleData[row][3]))
                         {
+                            setRole(multipleData[row][0]);
+                            setID(multipleData[row][1]);
+                            setUsername(multipleData[row][2]);
+                            setPassword(multipleData[row][3]);
                             match = true;
                             break;
                         }
@@ -59,16 +128,14 @@ public class User
         }    
         return match;
     }
-    
+
     public void addUser(String filePath, String role) throws IOException
     {   
-        Scanner sc = new Scanner(System.in);
+        //Scanner sc = new Scanner(System.in);
         RWTextFile data = new RWTextFile();
         String[][] multipleData = data.readTextFile(filePath).clone();
         int row = 0;
         int id = 0;
-        String newUsername = null;
-        String newPassword = null;
         boolean over = false;
         Integer[] idFromArray = new Integer[multipleData.length];
         while(over == false) //Problem only can run when have many data
@@ -108,20 +175,7 @@ public class User
             }
             id++;
         }
-        //Check user exist or not
-        System.out.println("Enter new username: ");
-        newUsername = sc.nextLine();
-        while(checkUserExist(filePath, role, newUsername))
-        {
-            System.out.println("User found! Please try again");
-            System.out.println("Enter new username: ");
-            newUsername = sc.nextLine();
-        }
-        System.out.println("Enter new password: ");
-        newPassword = sc.nextLine();
-        //Write new user into textfile
         data.writeTextFile(filePath, role, String.valueOf(id), newUsername, newPassword); 
-        System.out.println("User successfully added!");
     }
     
     public boolean checkUserExist(String filePath, String role) throws IOException
@@ -234,64 +288,13 @@ public class User
             row++;
         }
     }
-
-    public void editUser(String filePath, String role, String newUsername) throws IOException
-    {   
-        //Display user details before edit
-        Scanner sc = new Scanner(System.in);
-        RWTextFile data = new RWTextFile();
-        String[][] multipleData = data.readTextFile(filePath).clone();
-        System.out.println("Before edit:");
-        searchUser(filePath, role, newUsername);
+    
+    public void editUserDetails(String filePath, String role, String newUsername, String editUsername, String editPassword) throws IOException
+    {
         int row = 0;
         boolean over = false;
-        String editUsername=null;
-        String editPassword=null;
-        System.out.println("Choose one\n1. Change username \n2. Change password\n3. Change username and password\nEnter your choice: ");
-                    int choice = sc.nextInt();
-                    sc.nextLine();
-                    switch(choice)
-                    {
-                        case 1:
-                        {
-                            //Replace username
-                            System.out.println("Enter new username: ");
-                            editUsername = sc.nextLine();
-                            while(checkUserExist(filePath, role, editUsername))
-                            {
-                                System.out.println("User found! Please try again");
-                                System.out.println("Enter new username: ");
-                                editUsername = sc.nextLine();
-                            }
-                            break;
-                        }
-                        case 2:
-                        {
-                            //Replace password
-                            System.out.println("Enter new password: ");
-                            editPassword = sc.nextLine();
-                            break;
-                        }
-                        case 3:
-                        {
-                            System.out.println("Enter new username: ");
-                            editUsername = sc.nextLine();
-                            //Replace username and password
-                            while(checkUserExist(filePath, role, editUsername))
-                            {
-                                System.out.println("User found! Please try again");
-                                System.out.println("Enter new username: ");
-                                editUsername = sc.nextLine();
-                            }
-                            System.out.println("Enter new password: ");
-                            editPassword = sc.nextLine();
-                            break;
-                        }
-                        default:
-                        {
-                            System.out.println("ERROR: Invalid Input\nPlease re-enter your choice\n");
-                        }
-                    }
+        RWTextFile data = new RWTextFile();
+        String[][] multipleData = data.readTextFile(filePath).clone();
         //Emtpy the file
         data.clearTextFile(filePath);
         while(!over)
@@ -300,27 +303,10 @@ public class User
             {
                 if (role.equals(multipleData[row][0]) && newUsername.equals(multipleData[row][2]))
                 {
-                    if(editPassword==null)
-                    {
-                        //Write back the updated data
-                        data.writeTextFile(filePath, multipleData[row][0], multipleData[row][1], editUsername, multipleData[row][3]);
-                        System.out.println("After edit:");
-                        System.out.println("Role: " + multipleData[row][0] + "\nID: " + multipleData[row][1] + "\nUsername: " + editUsername + "\nPassword: " + multipleData[row][3]);
-                    }
-                    else if(editUsername==null)
-                    {
-                        //Write back the updated data
-                        data.writeTextFile(filePath, multipleData[row][0], multipleData[row][1], newUsername, editPassword);
-                        System.out.println("After edit:");
-                        System.out.println("Role: " + multipleData[row][0] + "\nID: " + multipleData[row][1] + "\nUsername: " + multipleData[row][2] + "\nPassword: " + editPassword);
-                    }
-                    else
-                    {
-                        //Write back the updated data
-                        data.writeTextFile(filePath, multipleData[row][0], multipleData[row][1], editUsername, editPassword);
-                        System.out.println("After edit:");
-                        System.out.println("Role: " + multipleData[row][0] + "\nID: " + multipleData[row][1] + "\nUsername: " + editUsername + "\nPassword: " + editPassword);
-                    }
+                    //Write back the updated data
+                    data.writeTextFile(filePath, multipleData[row][0], multipleData[row][1], editUsername, editPassword);
+                    System.out.println("After edit:");
+                    System.out.println("Role: " + multipleData[row][0] + "\nID: " + multipleData[row][1] + "\nUsername: " + editUsername + "\nPassword: " + editPassword);
                 }
                 else
                 {
@@ -343,23 +329,66 @@ public class User
             row++;
         }
     }
- 
-    public void searchUser(String filePath, String role, String newUsername) throws IOException
-    {   
-        //Search user using username
-        Scanner sc = new Scanner(System.in);
-        //Print user details
-        if (searchUsername(filePath, role, newUsername)[2]==null)
+    
+    public void editUserDetails(String filePath, String role, String newUsername, String editUsername) throws IOException
+    {
+        int row = 0;
+        boolean over = false;
+        RWTextFile data = new RWTextFile();
+        String[][] multipleData = data.readTextFile(filePath).clone();
+        //Emtpy the file
+        data.clearTextFile(filePath);
+        while(!over)
         {
-            System.out.println("User not Found!");
-        }
-        else
-        {
-            System.out.println("Role: " + searchUsername(filePath, role, newUsername)[0] + "\nID: " + searchUsername(filePath, role, newUsername)[1] + "\nUsername: " + searchUsername(filePath, role, newUsername)[2] + "\nPassword: " + searchUsername(filePath, role, newUsername)[3]);
+            if(multipleData[row][0]!=null)
+            {
+                if (role.equals(multipleData[row][0]) && newUsername.equals(multipleData[row][2]))
+                {
+                    //Write back the updated data
+                    data.writeTextFile(filePath, multipleData[row][0], multipleData[row][1], editUsername, multipleData[row][3]);
+                    System.out.println("After edit:");
+                    System.out.println("Role: " + multipleData[row][0] + "\nID: " + multipleData[row][1] + "\nUsername: " + editUsername + "\nPassword: " + multipleData[row][3]);
+                }
+                else
+                {
+                    //Write unaffected line back to the file
+                    if (multipleData[row][0] != null)
+                    {
+                        data.writeTextFile(filePath, multipleData[row][0], multipleData[row][1], multipleData[row][2], multipleData[row][3]);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                over = true;
+                break;
+            }
+            row++;
         }
     }
     
-    public void viewUser(String filePath, String role) throws IOException
+    public String searchUser(String filePath, String role, String newUsername) throws IOException
+    {   
+        //Search user using username
+        Scanner sc = new Scanner(System.in);
+        String searchResult = null;
+        //Print user details
+        if (searchUsername(filePath, role, newUsername)[2]==null)
+        {
+            searchResult = null;
+        }
+        else
+        {
+            searchResult = (searchUsername(filePath, role, newUsername)[0] + " : " + searchUsername(filePath, role, newUsername)[1] + " : " + searchUsername(filePath, role, newUsername)[2] + " : " + searchUsername(filePath, role, newUsername)[3]);
+        }
+        return searchResult;
+    }
+    
+    public String[] viewUser(String filePath, String role) throws IOException
     {
         //Search user in the textfile
         //Return user details
@@ -367,9 +396,8 @@ public class User
         boolean over = false;
         RWTextFile data = new RWTextFile();
         String[][] multipleData = data.readTextFile(filePath).clone();
-        String[][] result = new String[multipleData.length][multipleData[0].length];
-        System.out.println("Role\tID\tUsername\tPassword");
         //Check user exist or not
+        String[] result = new String[multipleData.length];
         while(!over)
         {
             if(multipleData[row][0]!=null)
@@ -378,8 +406,7 @@ public class User
                 {
                     if (multipleData[row] != null)
                         {
-                            //Print user details
-                            System.out.println(multipleData[row][0] + "\t" + multipleData[row][1] + "\t" + multipleData[row][2] + "\t\t" + multipleData[row][3]);
+                            result[row] = multipleData[row][0] + " : " + multipleData[row][1] + " : " + multipleData[row][2] + " : " + multipleData[row][3];
                         }
                         else
                         {
@@ -394,5 +421,6 @@ public class User
             }
             row++;
         }
+        return result;
     }
 }
