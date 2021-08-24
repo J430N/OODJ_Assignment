@@ -15,9 +15,8 @@ import javax.swing.DefaultListModel;
  */
 public class Admin_Product_Menu extends javax.swing.JFrame {
 
-    String role = null;
-    User user = new User();
-    String filePath = "D:\\APU\\Degree Year 2 Sem 1\\OODJ\\Assignment\\User.txt";
+    String type = null;
+    Product product = new Product();
             
     DefaultListModel lm = new DefaultListModel(); //Listbox model(contents)
     public Admin_Product_Menu() {
@@ -27,10 +26,9 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
         lm.removeAllElements();
 
         //Control set to false
-        btnUserMenu.setEnabled(false);
-        btnSignUp.setEnabled(false);
+        btnProductMenu.setEnabled(false);
+        btnAdd.setEnabled(false);
         btnView.setEnabled(false);
-        btnSearch.setEnabled(false);
         btnEdit.setEnabled(false);
         btnDelete.setEnabled(false);
         /*rboEditUsername.setEnabled(false);
@@ -59,46 +57,48 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
         lblUsername2 = new javax.swing.JLabel();
         lblPassword = new javax.swing.JLabel();
         lblPConfirmPassword = new javax.swing.JLabel();
-        lblRole = new javax.swing.JLabel();
-        txtAddUsername = new javax.swing.JTextField();
-        rdoFragile = new javax.swing.JRadioButton();
-        rdoNonFragile = new javax.swing.JRadioButton();
-        btnSignUp = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
         lblPConfirmPassword1 = new javax.swing.JLabel();
-        txtAddUsername1 = new javax.swing.JTextField();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        txtAddUsername2 = new javax.swing.JTextField();
-        lblUsername3 = new javax.swing.JLabel();
+        txtNewPrice = new javax.swing.JTextField();
+        cboNewCategory = new javax.swing.JComboBox<>();
+        lblPConfirmPassword3 = new javax.swing.JLabel();
+        txtNewQuantity = new javax.swing.JTextField();
+        lblRole = new javax.swing.JLabel();
+        rdoNewNonFragile = new javax.swing.JRadioButton();
+        rdoNewFragile = new javax.swing.JRadioButton();
+        btnAdd = new javax.swing.JButton();
+        lblUsername6 = new javax.swing.JLabel();
+        txtNewWeight = new javax.swing.JTextField();
+        btnNewAddCategory = new javax.swing.JButton();
+        txtNewCategory = new javax.swing.JTextField();
+        txtNewName = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         lstView = new javax.swing.JList<>();
         btnView = new javax.swing.JButton();
-        rdoViewCust = new javax.swing.JRadioButton();
-        rdoViewAdmin = new javax.swing.JRadioButton();
+        rdoViewNonFragile = new javax.swing.JRadioButton();
+        rdoViewFragile = new javax.swing.JRadioButton();
+        btnClearList = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         lblUsername1 = new javax.swing.JLabel();
-        txtSearchUsername = new javax.swing.JTextField();
+        txtSearchProduct = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
         btnEdit = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        lblPConfirmPassword2 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
         lblUsername8 = new javax.swing.JLabel();
-        txtAddUsername9 = new javax.swing.JTextField();
-        txtAddUsername10 = new javax.swing.JTextField();
+        txtEditName = new javax.swing.JTextField();
+        txtEditPrice = new javax.swing.JTextField();
         lblPassword3 = new javax.swing.JLabel();
-        lblPConfirmPassword7 = new javax.swing.JLabel();
-        jComboBox8 = new javax.swing.JComboBox<>();
-        txtAddUsername11 = new javax.swing.JTextField();
         lblPConfirmPassword8 = new javax.swing.JLabel();
-        jComboBox9 = new javax.swing.JComboBox<>();
         lblRole3 = new javax.swing.JLabel();
-        rdoFragile3 = new javax.swing.JRadioButton();
-        rdoNonFragile3 = new javax.swing.JRadioButton();
+        rdoEditFragile = new javax.swing.JRadioButton();
+        rdoEditNonFragile = new javax.swing.JRadioButton();
+        txtEditQuantity = new javax.swing.JTextField();
+        lblPConfirmPassword4 = new javax.swing.JLabel();
+        txtEditWeight = new javax.swing.JTextField();
+        lblUsername5 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         btnUserMenu = new javax.swing.JButton();
         btnProductMenu = new javax.swing.JButton();
@@ -122,57 +122,97 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
         lblUsername2.setText("Name:");
 
         lblPassword.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblPassword.setText("Price:");
+        lblPassword.setText("Price (RM):");
 
         lblPConfirmPassword.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblPConfirmPassword.setText("Quantity:");
 
-        lblRole.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblRole.setText("Types:");
-
-        txtAddUsername.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtAddUsername.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-
-        buttonGroup1.add(rdoFragile);
-        rdoFragile.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        rdoFragile.setText("Fragile");
-        rdoFragile.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rdoFragileActionPerformed(evt);
-            }
-        });
-
-        buttonGroup1.add(rdoNonFragile);
-        rdoNonFragile.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        rdoNonFragile.setText("Non-Fragile");
-        rdoNonFragile.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rdoNonFragileActionPerformed(evt);
-            }
-        });
-
-        btnSignUp.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnSignUp.setText("Add");
-        btnSignUp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSignUpActionPerformed(evt);
-            }
-        });
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         lblPConfirmPassword1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblPConfirmPassword1.setText("Category:");
 
-        txtAddUsername1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtAddUsername1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        txtNewPrice.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtNewPrice.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        txtNewPrice.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNewPriceKeyPressed(evt);
+            }
+        });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboNewCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seasoning", "Beverage", "Bread", "Stationary" }));
 
-        txtAddUsername2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtAddUsername2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        lblPConfirmPassword3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblPConfirmPassword3.setText("Weight:");
 
-        lblUsername3.setText("(Add New Category)");
+        txtNewQuantity.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtNewQuantity.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        txtNewQuantity.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNewQuantityKeyPressed(evt);
+            }
+        });
+
+        lblRole.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblRole.setText("Types:");
+
+        buttonGroup1.add(rdoNewNonFragile);
+        rdoNewNonFragile.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        rdoNewNonFragile.setText("Non-Fragile");
+        rdoNewNonFragile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdoNewNonFragileActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(rdoNewFragile);
+        rdoNewFragile.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        rdoNewFragile.setText("Fragile");
+        rdoNewFragile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdoNewFragileActionPerformed(evt);
+            }
+        });
+
+        btnAdd.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnAdd.setText("Add");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
+
+        lblUsername6.setText("(KG each)");
+
+        txtNewWeight.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtNewWeight.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        txtNewWeight.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNewWeightKeyPressed(evt);
+            }
+        });
+
+        btnNewAddCategory.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnNewAddCategory.setText("+");
+        btnNewAddCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNewAddCategoryActionPerformed(evt);
+            }
+        });
+
+        txtNewCategory.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtNewCategory.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        txtNewCategory.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNewCategoryKeyPressed(evt);
+            }
+        });
+
+        txtNewName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtNewName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        txtNewName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNewNameKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -182,107 +222,120 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(lblPConfirmPassword1)
+                                .addGap(18, 18, 18)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblRole)
-                                    .addComponent(lblPConfirmPassword)
+                                    .addComponent(cboNewCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(rdoNewFragile))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(rdoNewNonFragile)
+                                    .addComponent(txtNewCategory, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(lblPConfirmPassword)
+                                .addGap(21, 21, 21)
+                                .addComponent(txtNewQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblPConfirmPassword3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtNewWeight, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblUsername6)
+                                .addGap(6, 6, 6)))
+                        .addGap(0, 6, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnNewAddCategory)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblPassword)
                                     .addComponent(lblUsername2))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(rdoFragile)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(rdoNonFragile))
-                                    .addComponent(txtAddUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtAddUsername1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(lblPConfirmPassword1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtAddUsername2)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnSignUp, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(lblUsername3)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addContainerGap())
+                                    .addComponent(txtNewPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtNewName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblRole))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(lblUsername2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblPassword)
-                        .addGap(9, 9, 9)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblPConfirmPassword1)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblUsername2)
+                            .addComponent(txtNewName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblPConfirmPassword)))
+                        .addComponent(lblPassword))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(txtAddUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtAddUsername1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtAddUsername2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblUsername3))))
+                        .addGap(28, 28, 28)
+                        .addComponent(txtNewPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rdoFragile)
-                    .addComponent(rdoNonFragile)
                     .addComponent(lblRole)
-                    .addComponent(btnSignUp))
-                .addGap(18, 18, 18))
+                    .addComponent(rdoNewFragile)
+                    .addComponent(rdoNewNonFragile))
+                .addGap(7, 7, 7)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblPConfirmPassword1)
+                            .addComponent(cboNewCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNewCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblPConfirmPassword)
+                            .addComponent(lblPConfirmPassword3)
+                            .addComponent(txtNewQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblUsername6)
+                            .addComponent(txtNewWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAdd)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(btnNewAddCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(29, 29, 29))
         );
 
-        lstView.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(lstView);
 
         btnView.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnView.setText("View All Users");
+        btnView.setText("View All Product");
         btnView.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewActionPerformed(evt);
             }
         });
 
-        buttonGroup2.add(rdoViewCust);
-        rdoViewCust.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        rdoViewCust.setText("Customer");
-        rdoViewCust.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup2.add(rdoViewNonFragile);
+        rdoViewNonFragile.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        rdoViewNonFragile.setText("Non Fragile");
+        rdoViewNonFragile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rdoViewCustActionPerformed(evt);
+                rdoViewNonFragileActionPerformed(evt);
             }
         });
 
-        buttonGroup2.add(rdoViewAdmin);
-        rdoViewAdmin.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        rdoViewAdmin.setText("Admin");
-        rdoViewAdmin.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup2.add(rdoViewFragile);
+        rdoViewFragile.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        rdoViewFragile.setText("Fragile");
+        rdoViewFragile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rdoViewAdminActionPerformed(evt);
+                rdoViewFragileActionPerformed(evt);
+            }
+        });
+
+        btnClearList.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnClearList.setText("Clear");
+        btnClearList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearListActionPerformed(evt);
             }
         });
 
@@ -291,21 +344,21 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(btnView, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(rdoViewAdmin)
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rdoViewFragile, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnView, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(18, 18, 18)
-                        .addComponent(rdoViewCust)))
-                .addGap(118, 118, 118))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rdoViewNonFragile)
+                            .addComponent(btnClearList, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(79, 79, 79))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -314,18 +367,25 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rdoViewAdmin)
-                    .addComponent(rdoViewCust))
+                    .addComponent(rdoViewFragile)
+                    .addComponent(rdoViewNonFragile))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnView)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnView)
+                    .addComponent(btnClearList))
                 .addGap(12, 12, 12))
         );
 
         lblUsername1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblUsername1.setText("Name:");
 
-        txtSearchUsername.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtSearchUsername.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        txtSearchProduct.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtSearchProduct.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        txtSearchProduct.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSearchProductKeyPressed(evt);
+            }
+        });
 
         btnSearch.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSearch.setText("Search");
@@ -363,56 +423,72 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setText("Delete");
 
-        lblPConfirmPassword2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblPConfirmPassword2.setText("Category:");
-
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         lblUsername8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblUsername8.setText("Name:");
 
-        txtAddUsername9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtAddUsername9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        txtEditName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtEditName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        txtEditName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtEditNameKeyPressed(evt);
+            }
+        });
 
-        txtAddUsername10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtAddUsername10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        txtEditPrice.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtEditPrice.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        txtEditPrice.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtEditPriceKeyPressed(evt);
+            }
+        });
 
         lblPassword3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblPassword3.setText("Price:");
 
-        lblPConfirmPassword7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblPConfirmPassword7.setText("Category:");
-
-        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        txtAddUsername11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtAddUsername11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-
         lblPConfirmPassword8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblPConfirmPassword8.setText("Quantity:");
-
-        jComboBox9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         lblRole3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblRole3.setText("Types:");
 
-        buttonGroup3.add(rdoFragile3);
-        rdoFragile3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        rdoFragile3.setText("Fragile");
-        rdoFragile3.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup3.add(rdoEditFragile);
+        rdoEditFragile.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        rdoEditFragile.setText("Fragile");
+        rdoEditFragile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rdoFragile3ActionPerformed(evt);
+                rdoEditFragileActionPerformed(evt);
             }
         });
 
-        buttonGroup3.add(rdoNonFragile3);
-        rdoNonFragile3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        rdoNonFragile3.setText("Non-Fragile");
-        rdoNonFragile3.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup3.add(rdoEditNonFragile);
+        rdoEditNonFragile.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        rdoEditNonFragile.setText("Non-Fragile");
+        rdoEditNonFragile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rdoNonFragile3ActionPerformed(evt);
+                rdoEditNonFragileActionPerformed(evt);
             }
         });
+
+        txtEditQuantity.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtEditQuantity.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        txtEditQuantity.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtEditQuantityKeyPressed(evt);
+            }
+        });
+
+        lblPConfirmPassword4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblPConfirmPassword4.setText("Weight:");
+
+        txtEditWeight.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtEditWeight.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        txtEditWeight.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtEditWeightKeyPressed(evt);
+            }
+        });
+
+        lblUsername5.setText("(KG)");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -423,72 +499,69 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblPConfirmPassword2)
-                            .addComponent(lblUsername1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(txtSearchUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblPConfirmPassword8)
-                                    .addComponent(lblRole3))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(rdoFragile3)
-                                    .addComponent(jComboBox9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel2)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblPassword3)
                                     .addComponent(lblUsername8))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(29, 29, 29)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtAddUsername9, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtAddUsername10, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jLabel2)
+                                    .addComponent(txtEditPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtEditName, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
-                                .addGap(18, 18, 18)
-                                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(lblPConfirmPassword7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtAddUsername11, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(rdoNonFragile3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(10, 10, 10)))
-                .addGap(0, 6, Short.MAX_VALUE))
+                                        .addComponent(lblUsername1)
+                                        .addGap(28, 28, 28)
+                                        .addComponent(txtSearchProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addComponent(lblRole3)
+                                        .addGap(29, 29, 29)
+                                        .addComponent(rdoEditFragile)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(rdoEditNonFragile)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblPConfirmPassword4)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(lblPConfirmPassword8)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addGap(12, 12, 12)
+                                        .addComponent(txtEditWeight, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtEditQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblUsername5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUsername1)
-                    .addComponent(txtSearchUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSearchProduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSearch))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPConfirmPassword2)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(btnDelete))
+                    .addComponent(btnDelete)
+                    .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -496,29 +569,32 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(lblUsername8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblPassword3)
-                        .addGap(9, 9, 9)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblPConfirmPassword7)
-                            .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblPassword3))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(txtAddUsername9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtEditName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtAddUsername10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtAddUsername11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(5, 5, 5)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblPConfirmPassword8))))
+                        .addComponent(txtEditPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblRole3)
+                    .addComponent(rdoEditFragile)
+                    .addComponent(rdoEditNonFragile))
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblRole3)
-                        .addComponent(rdoFragile3)
-                        .addComponent(rdoNonFragile3))
-                    .addComponent(btnEdit))
-                .addGap(17, 17, 17))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblPConfirmPassword8)
+                            .addComponent(txtEditQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblPConfirmPassword4)
+                            .addComponent(txtEditWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblUsername5))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnEdit)
+                        .addGap(15, 15, 15))))
         );
 
         btnUserMenu.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -582,13 +658,12 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnUserMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnProductMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnOrderItemMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnOrderMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnProductMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnOrderItemMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnOrderMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnUserMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -601,28 +676,26 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 536, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(7, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -636,40 +709,30 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 593, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 593, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
-        /*if (!txtAddUsername.getText().isBlank() && !txtAddPassword.getText().isBlank())
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        if (!txtNewName.getText().isBlank() && !txtNewPrice.getText().isBlank() && !txtNewQuantity.getText().isBlank())
         {
             try {
-                if (user.checkUserExist(filePath, role, txtAddUsername.getText()))
+                if (product.checkProductExist(txtNewName.getText()))
                 {
-                    JOptionPane.showMessageDialog(this, "User exist! Please try again");
+                    JOptionPane.showMessageDialog(this, "Product exist! Please try again");
                 }
                 else
                 {
-                    user.setNewUsername(txtAddUsername.getText());
-                    if (txtAddPassword.getText().equals(txtConfirmPassword.getText()))
-                    {
-                        user.setNewPassword(txtAddPassword.getText());
-                        user.addUser(filePath, role);
-                        JOptionPane.showMessageDialog(this, "User successfully added!");
-                        txtAddUsername.setText(null);
-                        txtAddPassword.setText(null);
-                        txtConfirmPassword.setText(null);
-                    }
-                    else
-                    {
-                        JOptionPane.showMessageDialog(this, "Two password are not match!");
-                    }
-
+                    product.setProName(txtNewName.getText());
+                    product.addProduct(cboNewCategory.getSelectedItem().toString(), txtNewName.getText(), type, txtNewPrice.getText(), txtNewQuantity.getText(), txtNewWeight.getText());
+                    JOptionPane.showMessageDialog(this, "Product successfully added!");
+                    txtNewName.setText(null);
+                    txtNewPrice.setText(null);
+                    txtNewQuantity.setText(null);
+                    txtNewWeight.setText(null);
                 }
             } catch (IOException ex) {
                 Logger.getLogger(Admin_Product_Menu.class.getName()).log(Level.SEVERE, null, ex);
@@ -678,64 +741,228 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
         else
         {
             JOptionPane.showMessageDialog(this, "Invalid input! Please try again");
-        }*/
-    }//GEN-LAST:event_btnSignUpActionPerformed
+        }
+    }//GEN-LAST:event_btnAddActionPerformed
 
-    private void rdoNonFragileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoNonFragileActionPerformed
-        role = "Customer";
-        btnSignUp.setEnabled(true);
-    }//GEN-LAST:event_rdoNonFragileActionPerformed
-
-    private void rdoFragileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoFragileActionPerformed
-        role = "Admin";
-        btnSignUp.setEnabled(true);
-    }//GEN-LAST:event_rdoFragileActionPerformed
-
-    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        String searchResult = null;
-        lm.removeAllElements();
-        /*
+    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
+        lm.addElement(type);
+        String[] title = {"Category", "ID", "Product Name", "Type", "Price", "Quantity", "Weight"};
+        String[][] productList = null;
         try {
-            searchResult = user.searchUser(filePath, role, txtSearchUsername.getText());
+            productList = product.viewProduct(type);
         } catch (IOException ex) {
             Logger.getLogger(Admin_Product_Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if (searchResult==null)
+        for (int i = 0; i < productList.length; i++)
         {
-            lm.addElement("User not Found!");
-            rboEditUsername.setEnabled(false);
-            rboEditPassword.setEnabled(false);
-            btnDelete.setEnabled(false);
+            if (productList[i]!=null)
+            {
+                for (int j = 0; j < productList[i].length; j++)
+                {
+                    if (productList[i][j]!=null)
+                    {
+                        lm.addElement(title[j] + ": " + productList[i][j]);
+                    }
+                }   
+            }
+        }
+        lm.addElement("\n");
+    }//GEN-LAST:event_btnViewActionPerformed
+
+    private void btnUserMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserMenuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnUserMenuActionPerformed
+
+    private void btnProductMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductMenuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnProductMenuActionPerformed
+
+    private void btnOrderItemMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderItemMenuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnOrderItemMenuActionPerformed
+
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        this.dispose();
+        Login login = new Login();
+        login.setVisible(true);
+    }//GEN-LAST:event_btnLogoutActionPerformed
+
+    private void btnOrderMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderMenuActionPerformed
+        
+    }//GEN-LAST:event_btnOrderMenuActionPerformed
+
+    private void rdoViewNonFragileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoViewNonFragileActionPerformed
+        type = "NonFragile";
+        btnView.setEnabled(true);
+    }//GEN-LAST:event_rdoViewNonFragileActionPerformed
+
+    private void rdoViewFragileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoViewFragileActionPerformed
+        type = "Fragile";
+        btnView.setEnabled(true);
+    }//GEN-LAST:event_rdoViewFragileActionPerformed
+
+    private void btnClearListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearListActionPerformed
+        lm.removeAllElements();
+    }//GEN-LAST:event_btnClearListActionPerformed
+
+    private void rdoNewFragileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoNewFragileActionPerformed
+        type = "Fragile";
+        btnAdd.setEnabled(true);
+    }//GEN-LAST:event_rdoNewFragileActionPerformed
+
+    private void rdoNewNonFragileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoNewNonFragileActionPerformed
+        type = "NonFragile";
+        btnAdd.setEnabled(true);
+    }//GEN-LAST:event_rdoNewNonFragileActionPerformed
+
+    private void txtNewPriceKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNewPriceKeyPressed
+        char c = evt.getKeyChar();
+        
+        
+        if (Character.isDigit(c) || Character.isISOControl(c) || c==46)
+        {
+            txtNewPrice.setEditable(true);
         }
         else
         {
-            lm.addElement("Search Result:");
-            lm.addElement("Role : ID : Username : Password");
-            lm.addElement(searchResult);
-            rboEditUsername.setEnabled(true);
-            rboEditPassword.setEnabled(true);
-            btnDelete.setEnabled(true);
-        }*/
-    }//GEN-LAST:event_btnSearchActionPerformed
+            txtNewPrice.setEditable(false);
+        }
+        
+        
+    }//GEN-LAST:event_txtNewPriceKeyPressed
 
-    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
-        lm.addElement(role);
-        lm.addElement("Role : ID : Username : Password");
-        String[] userList = null;
+    private void txtNewQuantityKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNewQuantityKeyPressed
+        char c = evt.getKeyChar();
+        
+        if (Character.isDigit(c) || Character.isISOControl(c))
+        {
+            txtNewQuantity.setEditable(true);
+        }
+        else
+        {
+            txtNewQuantity.setEditable(false);
+        }
+    }//GEN-LAST:event_txtNewQuantityKeyPressed
+
+    private void btnNewAddCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewAddCategoryActionPerformed
+        if (!txtNewCategory.getText().isBlank())
+        {
+            cboNewCategory.addItem(txtNewCategory.getText());
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "Invalid input! Please try again!");
+        }
+    }//GEN-LAST:event_btnNewAddCategoryActionPerformed
+
+    private void txtNewNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNewNameKeyPressed
+        char c = evt.getKeyChar();
+        
+        if (Character.isLetter(c) || Character.isDigit(c) || Character.isISOControl(c) || c==95)
+        {
+            txtNewName.setEditable(true);
+        }
+        else
+        {
+            txtNewName.setEditable(false);
+        }
+    }//GEN-LAST:event_txtNewNameKeyPressed
+
+    private void txtNewCategoryKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNewCategoryKeyPressed
+        char c = evt.getKeyChar();
+        
+        if (Character.isLetter(c) || Character.isDigit(c) || Character.isISOControl(c) || c==95)
+        {
+            txtNewCategory.setEditable(true);
+        }
+        else
+        {
+            txtNewCategory.setEditable(false);
+        }
+    }//GEN-LAST:event_txtNewCategoryKeyPressed
+
+    private void txtNewWeightKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNewWeightKeyPressed
+        char c = evt.getKeyChar();
+        
+        if (Character.isDigit(c) || Character.isISOControl(c) || c==46)
+        {
+            txtNewWeight.setEditable(true);
+        }
+        else
+        {
+            txtNewWeight.setEditable(false);
+        }
+    }//GEN-LAST:event_txtNewWeightKeyPressed
+
+    private void txtEditWeightKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEditWeightKeyPressed
+        char c = evt.getKeyChar();
+
+        if (Character.isDigit(c) || Character.isISOControl(c) || c==46)
+        {
+            txtEditWeight.setEditable(true);
+        }
+        else
+        {
+            txtEditWeight.setEditable(false);
+        }
+    }//GEN-LAST:event_txtEditWeightKeyPressed
+
+    private void txtEditQuantityKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEditQuantityKeyPressed
+        char c = evt.getKeyChar();
+
+        if (Character.isDigit(c) || Character.isISOControl(c))
+        {
+            txtEditQuantity.setEditable(true);
+        }
+        else
+        {
+            txtEditQuantity.setEditable(false);
+        }
+    }//GEN-LAST:event_txtEditQuantityKeyPressed
+
+    private void rdoEditNonFragileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoEditNonFragileActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rdoEditNonFragileActionPerformed
+
+    private void rdoEditFragileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoEditFragileActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rdoEditFragileActionPerformed
+
+    private void txtEditPriceKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEditPriceKeyPressed
+        char c = evt.getKeyChar();
+
+        if (Character.isDigit(c) || Character.isISOControl(c) || c==46)
+        {
+            txtEditPrice.setEditable(true);
+        }
+        else
+        {
+            txtEditPrice.setEditable(false);
+        }
+    }//GEN-LAST:event_txtEditPriceKeyPressed
+
+    private void txtEditNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEditNameKeyPressed
+        char c = evt.getKeyChar();
+
+        if (Character.isLetter(c) || Character.isDigit(c) || Character.isISOControl(c) || c==95)
+        {
+            txtEditName.setEditable(true);
+        }
+        else
+        {
+            txtEditName.setEditable(false);
+        }
+    }//GEN-LAST:event_txtEditNameKeyPressed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         try {
-            userList = user.viewUser(filePath, role);
+            product.deleteProduct(txtSearchProduct.getText());
         } catch (IOException ex) {
             Logger.getLogger(Admin_Product_Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
-        for (int i = 0; i < userList.length; i++)
-        {
-            if (userList[i]!=null)
-            {
-                lm.addElement(userList[i]);
-            }
-        }
-        lm.addElement("");
-    }//GEN-LAST:event_btnViewActionPerformed
+        JOptionPane.showMessageDialog(this, "Product successfully deleted!");
+        txtSearchProduct.setText(null);
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         /*if (!txtEditUsername.getText().isBlank() && !txtEditPassword.getText().isBlank() && rboEditUsername.isSelected() && rboEditPassword.isSelected())
@@ -800,55 +1027,45 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
         txtEditPassword.setText(null);*/
     }//GEN-LAST:event_btnEditActionPerformed
 
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        try { 
-            user.deleteUser(filePath, role, txtSearchUsername.getText());
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        String searchResult[] = null;
+        lm.removeAllElements();
+        String[] title = {"Category", "ID", "Product Name", "Type", "Price", "Quantity", "Weight"};
+        
+        
+        try {
+            searchResult = product.searchProName(txtSearchProduct.getText());
         } catch (IOException ex) {
             Logger.getLogger(Admin_Product_Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
-        JOptionPane.showMessageDialog(this, "User successfully deleted!");
-        txtSearchUsername.setText(null);
-    }//GEN-LAST:event_btnDeleteActionPerformed
+        if (searchResult[2]!=txtSearchProduct.getText())
+        {
+            lm.addElement("Product Not Found!");
+            btnDelete.setEnabled(false);
+        }
+        else
+        {
+            lm.addElement("Search Result:");
+            for (int i=0; i<title.length;i++)
+            {
+                lm.addElement(title[i] + ": " + searchResult[i]);
+            }
+            btnDelete.setEnabled(true);
+        }
+    }//GEN-LAST:event_btnSearchActionPerformed
 
-    private void btnUserMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserMenuActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnUserMenuActionPerformed
+    private void txtSearchProductKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchProductKeyPressed
+        char c = evt.getKeyChar();
 
-    private void btnProductMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductMenuActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnProductMenuActionPerformed
-
-    private void btnOrderItemMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderItemMenuActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnOrderItemMenuActionPerformed
-
-    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
-        this.dispose();
-        Login login = new Login();
-        login.setVisible(true);
-    }//GEN-LAST:event_btnLogoutActionPerformed
-
-    private void btnOrderMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderMenuActionPerformed
-        
-    }//GEN-LAST:event_btnOrderMenuActionPerformed
-
-    private void rdoViewCustActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoViewCustActionPerformed
-        role = "Customer";
-        btnView.setEnabled(true);
-    }//GEN-LAST:event_rdoViewCustActionPerformed
-
-    private void rdoViewAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoViewAdminActionPerformed
-        role = "Admin";
-        btnView.setEnabled(true);
-    }//GEN-LAST:event_rdoViewAdminActionPerformed
-
-    private void rdoFragile3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoFragile3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rdoFragile3ActionPerformed
-
-    private void rdoNonFragile3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoNonFragile3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rdoNonFragile3ActionPerformed
+        if (Character.isLetter(c) || Character.isDigit(c) || Character.isISOControl(c) || c==95)
+        {
+            txtSearchProduct.setEditable(true);
+        }
+        else
+        {
+            txtSearchProduct.setEditable(false);
+        }
+    }//GEN-LAST:event_txtSearchProductKeyPressed
 
     /**
      * @param args the command line arguments
@@ -893,92 +1110,62 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnClearList;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnLogout;
+    private javax.swing.JButton btnNewAddCategory;
     private javax.swing.JButton btnOrderItemMenu;
     private javax.swing.JButton btnOrderMenu;
     private javax.swing.JButton btnProductMenu;
     private javax.swing.JButton btnSearch;
-    private javax.swing.JButton btnSignUp;
-    private javax.swing.JButton btnSignUp1;
-    private javax.swing.JButton btnSignUp2;
     private javax.swing.JButton btnUserMenu;
     private javax.swing.JButton btnView;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JComboBox<String> jComboBox5;
-    private javax.swing.JComboBox<String> jComboBox6;
-    private javax.swing.JComboBox<String> jComboBox7;
-    private javax.swing.JComboBox<String> jComboBox8;
-    private javax.swing.JComboBox<String> jComboBox9;
+    private javax.swing.JComboBox<String> cboNewCategory;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblPConfirmPassword;
     private javax.swing.JLabel lblPConfirmPassword1;
-    private javax.swing.JLabel lblPConfirmPassword2;
     private javax.swing.JLabel lblPConfirmPassword3;
     private javax.swing.JLabel lblPConfirmPassword4;
-    private javax.swing.JLabel lblPConfirmPassword5;
-    private javax.swing.JLabel lblPConfirmPassword6;
-    private javax.swing.JLabel lblPConfirmPassword7;
     private javax.swing.JLabel lblPConfirmPassword8;
     private javax.swing.JLabel lblPassword;
-    private javax.swing.JLabel lblPassword1;
-    private javax.swing.JLabel lblPassword2;
     private javax.swing.JLabel lblPassword3;
     private javax.swing.JLabel lblRole;
-    private javax.swing.JLabel lblRole1;
-    private javax.swing.JLabel lblRole2;
     private javax.swing.JLabel lblRole3;
     private javax.swing.JLabel lblUsername1;
     private javax.swing.JLabel lblUsername2;
-    private javax.swing.JLabel lblUsername3;
-    private javax.swing.JLabel lblUsername4;
     private javax.swing.JLabel lblUsername5;
     private javax.swing.JLabel lblUsername6;
-    private javax.swing.JLabel lblUsername7;
     private javax.swing.JLabel lblUsername8;
     private javax.swing.JList<String> lstView;
-    private javax.swing.JRadioButton rdoFragile;
-    private javax.swing.JRadioButton rdoFragile1;
-    private javax.swing.JRadioButton rdoFragile2;
-    private javax.swing.JRadioButton rdoFragile3;
-    private javax.swing.JRadioButton rdoNonFragile;
-    private javax.swing.JRadioButton rdoNonFragile1;
-    private javax.swing.JRadioButton rdoNonFragile2;
-    private javax.swing.JRadioButton rdoNonFragile3;
-    private javax.swing.JRadioButton rdoViewAdmin;
-    private javax.swing.JRadioButton rdoViewCust;
-    private javax.swing.JTextField txtAddUsername;
-    private javax.swing.JTextField txtAddUsername1;
-    private javax.swing.JTextField txtAddUsername10;
-    private javax.swing.JTextField txtAddUsername11;
-    private javax.swing.JTextField txtAddUsername2;
-    private javax.swing.JTextField txtAddUsername3;
-    private javax.swing.JTextField txtAddUsername4;
-    private javax.swing.JTextField txtAddUsername5;
-    private javax.swing.JTextField txtAddUsername6;
-    private javax.swing.JTextField txtAddUsername7;
-    private javax.swing.JTextField txtAddUsername8;
-    private javax.swing.JTextField txtAddUsername9;
-    private javax.swing.JTextField txtSearchUsername;
+    private javax.swing.JRadioButton rdoEditFragile;
+    private javax.swing.JRadioButton rdoEditNonFragile;
+    private javax.swing.JRadioButton rdoNewFragile;
+    private javax.swing.JRadioButton rdoNewNonFragile;
+    private javax.swing.JRadioButton rdoViewFragile;
+    private javax.swing.JRadioButton rdoViewNonFragile;
+    private javax.swing.JTextField txtEditName;
+    private javax.swing.JTextField txtEditPrice;
+    private javax.swing.JTextField txtEditQuantity;
+    private javax.swing.JTextField txtEditWeight;
+    private javax.swing.JTextField txtNewCategory;
+    private javax.swing.JTextField txtNewName;
+    private javax.swing.JTextField txtNewPrice;
+    private javax.swing.JTextField txtNewQuantity;
+    private javax.swing.JTextField txtNewWeight;
+    private javax.swing.JTextField txtSearchProduct;
     // End of variables declaration//GEN-END:variables
 }

@@ -23,7 +23,7 @@ public class RWTextFile
     public String[][] readTextFile(String filePath) throws FileNotFoundException, IOException
     {
         //Import file
-        String data[][] = new String[100][4]; //100 Row 3 Column (table)
+        String data[][] = new String[50][7]; //100 Row 3 Column (table)
         //Put the whole file into memory
         InputStreamReader reader = new InputStreamReader(new FileInputStream(filePath), "UTF-8");
         //Read line by line from file in memory
@@ -52,6 +52,7 @@ public class RWTextFile
 
     }
     
+    //User
     public void writeTextFile(String filePath, String role, String id, String username, String password)
     {
         try 
@@ -66,7 +67,27 @@ public class RWTextFile
         } 
         catch (IOException e) 
         {
-            System.out.println("An error occurred.");
+            System.out.println("Cannot write data into the file");
+            e.printStackTrace();
+        }
+    }
+    
+    //Product
+    public void writeTextFile(String filePath, String cat, String id, String proName, String type, String proPrice, String quantity, String weight)
+    {
+        try 
+        {
+            //To avoid empty space in textfile, make sure there is only 1 new line in the textfile
+            //Check the blank line after delete the data
+            FileWriter writer = new FileWriter(filePath, true); // Write user details into the file 
+            BufferedWriter bwr = new BufferedWriter(writer);
+            PrintWriter pwr = new PrintWriter(bwr); //Write user into text file and auto print new line
+            pwr.println(cat + ":" + id + ":" + proName + ":" + type + ":" + proPrice + ":" + quantity + ":" + weight);
+            bwr.close();
+        } 
+        catch (IOException e) 
+        {
+            System.out.println("Cannot write data into the file");
             e.printStackTrace();
         }
     }

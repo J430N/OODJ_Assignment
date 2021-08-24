@@ -4,77 +4,34 @@
  * and open the template in the editor.
  */
 package oodj_assignment;
-
 import java.io.IOException;
 
-public class User 
+/**
+ *
+ * @author asus
+ */
+public class Product 
 {
-    private String username;
-    private String password;
-    
-    public String getUsername()
+    enum type
     {
-        return username;
+        Fragile,
+        NonFragile
     }
     
-    public void setUsername(String username)
+    private String filePath = "Product.txt";
+    private String proName;
+    
+    public String getProName()
     {
-        this.username = username;
+        return proName;
     }
     
-    public String getPassword()
+    public void setProName(String proName)
     {
-        return password;
-    }
-    
-    public void setPassword(String password)
-    {
-        this.password = password;
+        this.proName = proName;
     }
 
-    public boolean verifyLogin(String filePath, String role, String username, String password) throws IOException
-    {
-        boolean match = false;
-        RWTextFile data = new RWTextFile();
-        if(data.readTextFile(filePath)!= null)
-        {
-            String[][] multipleData = data.readTextFile(filePath).clone();
-            int row = 0;
-            boolean over = false;
-            
-            //as long as no username is match, keep looking else end
-            //as long as array is not null, keep looking else end
-            //if username is match, check password , else end
-            while(match!=true || over != true)
-            {
-                if(multipleData[row][0]!=null)
-                {
-                    if(role.equals(multipleData[row][0]) && username.equals(multipleData[row][2]))
-                    {
-                        if(password.equals(multipleData[row][3]))
-                        {
-                            match = true;
-                            break;
-                        }
-                        else
-                        {
-                            over = true;
-                            break;
-                        }
-                    }
-                }
-                else
-                {
-                    over = true;
-                    break;
-                }
-                row++;
-            }
-        }    
-        return match;
-    }
-
-    public void addUser(String filePath, String role, String newUsername, String newPassword) throws IOException
+    public void addProduct(String cat, String proName, String type, String proPrice, String quantity, String weight) throws IOException
     {   
         //Scanner sc = new Scanner(System.in);
         RWTextFile data = new RWTextFile();
@@ -87,7 +44,7 @@ public class User
         {
             for(int i=0; i <multipleData.length; i++)
             {
-                if (role.equals(multipleData[i][0]))
+                if (cat.equals(multipleData[i][0]))
                 {
                     //Take all same category product to compare the id
                     idFromArray[i] = Integer.parseInt(multipleData[i][1]);// Parsing from string to int
@@ -102,8 +59,8 @@ public class User
         //Create next id value
         for(int i =0; i<idFromArray.length;i++)
         {
+            while (idFromArray[i] != null)
             {
-                System.out.println(idFromArray[i]);
                 if (idFromArray[i] > id) //find the biggest id
                 {
                     id = idFromArray[i];
@@ -116,15 +73,15 @@ public class User
             
         }
         id++;
-        data.writeTextFile(filePath, role, String.valueOf(id), newUsername, newPassword); 
+        data.writeTextFile(filePath, cat, String.valueOf(id), proName, type, proPrice, quantity, weight); 
     }
     
-    public boolean checkUserExist(String filePath, String role) throws IOException
+    public boolean checkProductExist(String newProName) throws IOException
     {
-        //Check for login only
-        //Check using current username
-        //return true when user exist
-        if (username.equals(searchUsername(filePath, role, username)[2]))
+        //Check for add, edit or delete product
+        //Check using newProName
+        //return true when product exist
+        if (newProName.equals(searchProName(newProName)[2]))
         {
             return true;
         }
@@ -134,43 +91,28 @@ public class User
         }
     }
     
-    public boolean checkUserExist(String filePath, String role, String newUsername) throws IOException
+    public String[] searchProName(String newProName) throws IOException
     {
-        //Check for add, edit or delete user
-        //Check using new username
-        //return true when user exist
-        if (newUsername.equals(searchUsername(filePath, role, newUsername)[2]))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-    
-    public String[] searchUsername(String filePath, String role, String newUsername) throws IOException
-    {
-        //Search user in the textfile
-        //Return user details
+        //Search product in the textfile
+        //Return product details
         int row = 0;
         boolean over = false;
         RWTextFile data = new RWTextFile();
         String[][] multipleData = data.readTextFile(filePath).clone();
         String[] result = new String[multipleData.length];
         
-        //Check user exist or not
+        //Check product exist or not
         while(!over)
         {
             if(multipleData[row][0]!=null)
             {
-                if (role.equals(multipleData[row][0]) && newUsername.equals(multipleData[row][2]))
+                if (newProName.equals(multipleData[row][2]))
                 {
                     for(int col =0; col<multipleData[0].length; col++)
                     {
                         if (multipleData[row][col] != null)
                         {
-                            //Write all user details into result array
+                            //Write all product details into result array
                             result[col] = multipleData[row][col];
                         }
                         else
@@ -190,7 +132,7 @@ public class User
         return result;
     }
     
-    public void deleteUser(String filePath, String role, String newUsername) throws IOException
+    public void deleteProduct(String newProName) throws IOException
     {   
         int row = 0;
         boolean over = false;
@@ -202,12 +144,12 @@ public class User
         {
             if(multipleData[row][0]!=null)
             {
-                if (role.equals(multipleData[row][0]) && newUsername.equals(multipleData[row][2]))
+                if (!newProName.equals(multipleData[row][2]))
                 {
                     //Write unaffected line back to the file
                     if (multipleData[row][0] != null)
                     {
-                        data.writeTextFile(filePath, multipleData[row][0], multipleData[row][1], multipleData[row][2], multipleData[row][3]);
+                        data.writeTextFile(filePath, multipleData[row][0], multipleData[row][1], multipleData[row][2], multipleData[row][3], multipleData[row][4],multipleData[row][5], multipleData[row][6]);
                     }
                     else
                     {
@@ -224,7 +166,7 @@ public class User
         }
     }
     
-    public void editUserDetails(String filePath, String role, String newUsername, String editUsername, String editPassword) throws IOException
+    public void editProductDetails(String role, String newUsername, String editUsername, String editPassword) throws IOException
     {
         int row = 0;
         boolean over = false;
@@ -263,7 +205,7 @@ public class User
         }
     }
     
-    public void editUserDetails(String filePath, String role, String newUsername, String editUsername) throws IOException
+    public void editProductDetails(String role, String newUsername, String editUsername) throws IOException
     {
         int row = 0;
         boolean over = false;
@@ -301,11 +243,11 @@ public class User
             row++;
         }
     }
-    
-    public String[][] viewUser(String filePath, String role) throws IOException
+ 
+    public String[][] viewProduct(String type) throws IOException
     {
-        //Search user in the textfile
-        //Return user details
+        //Search product in the textfile
+        //Return product details
         int row = 0;
         boolean over = false;
         RWTextFile data = new RWTextFile();
@@ -316,12 +258,16 @@ public class User
         {
             if(multipleData[row][0]!=null)
             {
-                if (role.equals(multipleData[row][0]))
+                if (type.equals(multipleData[row][3]))
                 {
                     if (multipleData[row] != null)
-                    {
-                        result[row] = multipleData[row];
-                    }
+                        {
+                            result[row] = multipleData[row];
+                        }
+                        else
+                        {
+                            break;
+                        } 
                 }
             }
             else

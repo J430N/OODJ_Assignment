@@ -14,60 +14,58 @@ import java.util.Scanner;
  */
 public class AdminUser extends User
 {
-    String filePath = "D:\\APU\\Degree Year 2 Sem 1\\OODJ\\Assignment\\User.txt"; //The file path also can change
-    String role = "Admin"; //This role can change
-    
-    public boolean login(String username, String password) throws IOException
+    private String filePath = "User.txt"; //Make a static file in user class
+    private String newUsername;
+    private String newPassword;
+
+    public String getNewUsername()
     {
-        return verifyLogin(filePath, role, username, password);
+        return newUsername;
     }
     
-    public void addAdmin() throws IOException
+    public void setNewUsername(String newUsername)
     {
-        addUser(filePath, role);
+        this.newUsername = newUsername;
     }
     
-    public void deleteAdmin() throws IOException
-    {   
-        String newUsername = null;
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter username of the user to delete: ");
-        newUsername = sc.nextLine();
-        while(!checkUserExist(filePath, role, newUsername))
-        {
-            System.out.println("User not found! Please try again");
-            System.out.println("Enter username of the user to delete: ");
-            newUsername = sc.nextLine();
-        }
-        deleteUser(filePath, role, newUsername); 
+    public String getNewPassword()
+    {
+        return newPassword;
     }
     
-    public void editAdmin() throws IOException
-    {   
-        String newUsername = null;
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter username of the user to edit: ");
-        newUsername = sc.nextLine();
-        while(!checkUserExist(filePath, role, newUsername))
-        {
-            System.out.println("User not found! Please try again");
-            System.out.println("Enter username of the user to edit: ");
-            newUsername = sc.nextLine();
-        }
-        //editUser(filePath, role, newUsername); 
-         
+    public void setNewPassword(String newPassword)
+    {
+        this.newPassword = newPassword;
     }
     
-    public void viewAdmin() throws IOException
-    {   
-        viewUser(filePath, role);   
+    //Each method for each function
+    public void addNewUser(String role) throws IOException
+    {
+        addUser(filePath, role, newUsername, newPassword);
     }
-    public void searchAdmin() throws IOException
+    
+    public void deleteOneUser(String role, String targetUsername) throws IOException
     {   
-        String newUsername = null;
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter username of the user: ");
-        newUsername = sc.nextLine();
-        searchUser(filePath, role, newUsername);      
+        deleteUser(filePath, role, targetUsername); 
+    }
+    
+    public void editOneUser(String role, String targetUsername, String editUsername, String editPassword) throws IOException
+    {   
+        editUserDetails(filePath, role, targetUsername, editUsername, editPassword); 
+    }
+    
+    public void editOneUser(String role, String targetUsername, String editUsername) throws IOException
+    {   
+        editUserDetails(filePath, role, targetUsername, editUsername); 
+    }
+    
+    public String[][] viewAllUser(String role) throws IOException
+    {   
+        return viewUser(filePath, role);   
+    }
+    
+    public String[] searchOneUser(String role, String targetUsername) throws IOException
+    {   
+        return searchUsername(filePath, role, targetUsername);      
     }
 }

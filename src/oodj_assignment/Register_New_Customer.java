@@ -65,9 +65,19 @@ public class Register_New_Customer extends javax.swing.JFrame {
 
         txtPassword.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtPassword.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPasswordKeyPressed(evt);
+            }
+        });
 
         txtUsername.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtUsername.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        txtUsername.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtUsernameKeyPressed(evt);
+            }
+        });
 
         btnSignUp.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSignUp.setText("Sign Up");
@@ -82,6 +92,11 @@ public class Register_New_Customer extends javax.swing.JFrame {
 
         txtConfirmPassword.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtConfirmPassword.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        txtConfirmPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtConfirmPasswordKeyPressed(evt);
+            }
+        });
 
         lblPConfirmPassword.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblPConfirmPassword.setText("Confirm Password:");
@@ -176,20 +191,20 @@ public class Register_New_Customer extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
-        User user = new User();
-        String filePath = "D:\\APU\\Degree Year 2 Sem 1\\OODJ\\Assignment\\User.txt";
+        CustomerUser cust = new CustomerUser();
+        String filePath = "User.txt";
         try {
-            if (user.checkUserExist(filePath, role, txtUsername.getText()))
+            if (cust.checkUserExist(filePath, role, txtUsername.getText()))
             {
                 JOptionPane.showMessageDialog(this, "User found! Please try again");
             }
             else
             {
-                user.setUsername(txtUsername.getText());
+                cust.setNewUsername(txtUsername.getText());
                 if (txtPassword.getText().equals(txtConfirmPassword.getText()))
                 {
-                    user.setPassword(txtPassword.getText());
-                    user.addUser(filePath, role);
+                    cust.setNewPassword(txtPassword.getText());
+                    cust.addNewCustomer(role);
                     JOptionPane.showMessageDialog(this, "User successfully added!");
                 }
                 else
@@ -219,6 +234,45 @@ public class Register_New_Customer extends javax.swing.JFrame {
         login.setVisible(true);
         
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void txtUsernameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsernameKeyPressed
+        char c = evt.getKeyChar();
+        
+        if (Character.isLetter(c) || Character.isDigit(c) || Character.isISOControl(c) || c==95)
+        {
+            txtUsername.setEditable(true);
+        }
+        else
+        {
+            txtUsername.setEditable(false);
+        }
+    }//GEN-LAST:event_txtUsernameKeyPressed
+
+    private void txtPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyPressed
+       char c = evt.getKeyChar();
+        
+        if (Character.isSpaceChar(c))
+        {
+            txtPassword.setEditable(false);
+        }
+        else
+        {
+            txtPassword.setEditable(true);
+        }
+    }//GEN-LAST:event_txtPasswordKeyPressed
+
+    private void txtConfirmPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtConfirmPasswordKeyPressed
+        char c = evt.getKeyChar();
+        
+        if (Character.isSpaceChar(c))
+        {
+            txtConfirmPassword.setEditable(false);
+        }
+        else
+        {
+            txtConfirmPassword.setEditable(true);
+        }
+    }//GEN-LAST:event_txtConfirmPasswordKeyPressed
 
     /**
      * @param args the command line arguments
