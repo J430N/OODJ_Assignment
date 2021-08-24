@@ -15,7 +15,9 @@ import javax.swing.DefaultListModel;
  */
 public class Admin_Product_Menu extends javax.swing.JFrame {
 
-    String type = null;
+    String newType = null;
+    String editType = null;
+    String viewType = null;
     Product product = new Product();
             
     DefaultListModel lm = new DefaultListModel(); //Listbox model(contents)
@@ -31,14 +33,14 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
         btnView.setEnabled(false);
         btnEdit.setEnabled(false);
         btnDelete.setEnabled(false);
-        /*rboEditUsername.setEnabled(false);
-        rboEditPassword.setEnabled(false);
-        txtEditUsername.setEnabled(false);
-        txtEditPassword.setEnabled(false);
-        */
+        txtEditName.setEnabled(false);
+        txtEditPrice.setEnabled(false);
+        rdoEditFragile.setEnabled(false);
+        rdoEditNonFragile.setEnabled(false);
+        txtEditQuantity.setEnabled(false);
+        txtEditWeight.setEnabled(false);
         lstView.setModel(lm); //Attached to the listbox
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -77,7 +79,6 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
         btnView = new javax.swing.JButton();
         rdoViewNonFragile = new javax.swing.JRadioButton();
         rdoViewFragile = new javax.swing.JRadioButton();
-        btnClearList = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         lblUsername1 = new javax.swing.JLabel();
         txtSearchProduct = new javax.swing.JTextField();
@@ -87,18 +88,18 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        lblUsername8 = new javax.swing.JLabel();
         txtEditName = new javax.swing.JTextField();
         txtEditPrice = new javax.swing.JTextField();
-        lblPassword3 = new javax.swing.JLabel();
-        lblPConfirmPassword8 = new javax.swing.JLabel();
-        lblRole3 = new javax.swing.JLabel();
         rdoEditFragile = new javax.swing.JRadioButton();
         rdoEditNonFragile = new javax.swing.JRadioButton();
         txtEditQuantity = new javax.swing.JTextField();
-        lblPConfirmPassword4 = new javax.swing.JLabel();
         txtEditWeight = new javax.swing.JTextField();
         lblUsername5 = new javax.swing.JLabel();
+        rdoEditPrice = new javax.swing.JRadioButton();
+        rdoEditName = new javax.swing.JRadioButton();
+        rdoEditType = new javax.swing.JRadioButton();
+        rdoEditQuantity = new javax.swing.JRadioButton();
+        rdoEditWeight = new javax.swing.JRadioButton();
         jPanel5 = new javax.swing.JPanel();
         btnUserMenu = new javax.swing.JButton();
         btnProductMenu = new javax.swing.JButton();
@@ -219,10 +220,10 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(lblPConfirmPassword1)
                                 .addGap(18, 18, 18)
@@ -230,37 +231,34 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
                                     .addComponent(cboNewCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(rdoNewFragile))
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(rdoNewNonFragile)
-                                    .addComponent(txtNewCategory, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(txtNewCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnNewAddCategory))))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(lblPConfirmPassword)
                                 .addGap(21, 21, 21)
-                                .addComponent(txtNewQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtNewQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lblPConfirmPassword3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtNewWeight, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+                                .addComponent(txtNewWeight, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblUsername6)
-                                .addGap(6, 6, 6)))
-                        .addGap(0, 6, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnNewAddCategory)))
+                                .addComponent(lblUsername6)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblPassword)
-                                    .addComponent(lblUsername2))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtNewPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtNewName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(lblRole))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(lblPassword)
+                            .addComponent(lblUsername2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNewPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNewName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(lblRole)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -282,24 +280,20 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
                     .addComponent(lblRole)
                     .addComponent(rdoNewFragile)
                     .addComponent(rdoNewNonFragile))
-                .addGap(7, 7, 7)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblPConfirmPassword1)
-                            .addComponent(cboNewCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNewCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblPConfirmPassword)
-                            .addComponent(lblPConfirmPassword3)
-                            .addComponent(txtNewQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblUsername6)
-                            .addComponent(txtNewWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAdd)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(btnNewAddCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(6, 6, 6)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPConfirmPassword1)
+                    .addComponent(cboNewCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNewCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnNewAddCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPConfirmPassword)
+                    .addComponent(lblPConfirmPassword3)
+                    .addComponent(txtNewQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblUsername6)
+                    .addComponent(txtNewWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAdd))
                 .addGap(29, 29, 29))
         );
 
@@ -331,14 +325,6 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
             }
         });
 
-        btnClearList.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnClearList.setText("Clear");
-        btnClearList.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnClearListActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -352,13 +338,14 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(rdoViewFragile, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnView, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(rdoViewNonFragile)
-                            .addComponent(btnClearList, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(79, 79, 79))))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addComponent(btnView))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(rdoViewFragile)
+                                .addGap(18, 18, 18)
+                                .addComponent(rdoViewNonFragile)))
+                        .addGap(104, 104, 104))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -370,9 +357,7 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
                     .addComponent(rdoViewFragile)
                     .addComponent(rdoViewNonFragile))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnView)
-                    .addComponent(btnClearList))
+                .addComponent(btnView)
                 .addGap(12, 12, 12))
         );
 
@@ -423,9 +408,6 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setText("Delete");
 
-        lblUsername8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblUsername8.setText("Name:");
-
         txtEditName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtEditName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         txtEditName.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -441,15 +423,6 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
                 txtEditPriceKeyPressed(evt);
             }
         });
-
-        lblPassword3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblPassword3.setText("Price:");
-
-        lblPConfirmPassword8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblPConfirmPassword8.setText("Quantity:");
-
-        lblRole3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblRole3.setText("Types:");
 
         buttonGroup3.add(rdoEditFragile);
         rdoEditFragile.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -477,9 +450,6 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
             }
         });
 
-        lblPConfirmPassword4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblPConfirmPassword4.setText("Weight:");
-
         txtEditWeight.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtEditWeight.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         txtEditWeight.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -490,6 +460,46 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
 
         lblUsername5.setText("(KG)");
 
+        rdoEditPrice.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        rdoEditPrice.setText("Price (RM):");
+        rdoEditPrice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdoEditPriceActionPerformed(evt);
+            }
+        });
+
+        rdoEditName.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        rdoEditName.setText("Name:");
+        rdoEditName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdoEditNameActionPerformed(evt);
+            }
+        });
+
+        rdoEditType.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        rdoEditType.setText("Type:");
+        rdoEditType.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdoEditTypeActionPerformed(evt);
+            }
+        });
+
+        rdoEditQuantity.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        rdoEditQuantity.setText("Quantity:");
+        rdoEditQuantity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdoEditQuantityActionPerformed(evt);
+            }
+        });
+
+        rdoEditWeight.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        rdoEditWeight.setText("Weight:");
+        rdoEditWeight.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdoEditWeightActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -499,54 +509,46 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addGap(18, 18, 18)
-                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblPassword3)
-                                    .addComponent(lblUsername8))
-                                .addGap(29, 29, 29)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtEditPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtEditName, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(lblUsername1)
-                                        .addGap(28, 28, 28)
-                                        .addComponent(txtSearchProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(lblRole3)
-                                        .addGap(29, 29, 29)
-                                        .addComponent(rdoEditFragile)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(rdoEditNonFragile)))
+                                .addComponent(lblUsername1)
+                                .addGap(28, 28, 28)
+                                .addComponent(txtSearchProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblPConfirmPassword4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(rdoEditName)
+                            .addComponent(rdoEditPrice)
+                            .addComponent(rdoEditType)
+                            .addComponent(rdoEditQuantity)
+                            .addComponent(rdoEditWeight))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(lblPConfirmPassword8)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addGap(12, 12, 12)
-                                        .addComponent(txtEditWeight, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addComponent(rdoEditFragile)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtEditQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblUsername5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35))))
+                                        .addComponent(rdoEditNonFragile))
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addGap(1, 1, 1)
+                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(txtEditWeight, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(txtEditQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(lblUsername5))
+                                            .addComponent(txtEditPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtEditName, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -565,31 +567,29 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(lblUsername8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblPassword3))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(txtEditName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtEditPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtEditName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rdoEditName))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblRole3)
+                    .addComponent(txtEditPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rdoEditPrice))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rdoEditFragile)
-                    .addComponent(rdoEditNonFragile))
+                    .addComponent(rdoEditNonFragile)
+                    .addComponent(rdoEditType))
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblPConfirmPassword8)
-                            .addComponent(txtEditQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtEditQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rdoEditQuantity))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblPConfirmPassword4)
                             .addComponent(txtEditWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblUsername5))
+                            .addComponent(lblUsername5)
+                            .addComponent(rdoEditWeight))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -680,8 +680,10 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
                             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -692,10 +694,10 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 536, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(7, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -727,12 +729,15 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
                 else
                 {
                     product.setProName(txtNewName.getText());
-                    product.addProduct(cboNewCategory.getSelectedItem().toString(), txtNewName.getText(), type, txtNewPrice.getText(), txtNewQuantity.getText(), txtNewWeight.getText());
+                    product.addProduct(cboNewCategory.getSelectedItem().toString(), txtNewName.getText(), newType, txtNewPrice.getText(), txtNewQuantity.getText(), txtNewWeight.getText());
                     JOptionPane.showMessageDialog(this, "Product successfully added!");
                     txtNewName.setText(null);
                     txtNewPrice.setText(null);
                     txtNewQuantity.setText(null);
                     txtNewWeight.setText(null);
+                    txtNewCategory.setText(null);
+                    buttonGroup1.clearSelection();
+                    btnAdd.setEnabled(false);
                 }
             } catch (IOException ex) {
                 Logger.getLogger(Admin_Product_Menu.class.getName()).log(Level.SEVERE, null, ex);
@@ -745,11 +750,12 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
-        lm.addElement(type);
+        lm.removeAllElements();
+        lm.addElement(viewType);
         String[] title = {"Category", "ID", "Product Name", "Type", "Price", "Quantity", "Weight"};
         String[][] productList = null;
         try {
-            productList = product.viewProduct(type);
+            productList = product.viewProduct(viewType);
         } catch (IOException ex) {
             Logger.getLogger(Admin_Product_Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -767,10 +773,13 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
             }
         }
         lm.addElement("\n");
+        buttonGroup2.clearSelection();
     }//GEN-LAST:event_btnViewActionPerformed
 
     private void btnUserMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserMenuActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+        Admin_User_Menu userMenu = new Admin_User_Menu();
+        userMenu.setVisible(true);
     }//GEN-LAST:event_btnUserMenuActionPerformed
 
     private void btnProductMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductMenuActionPerformed
@@ -792,26 +801,22 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnOrderMenuActionPerformed
 
     private void rdoViewNonFragileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoViewNonFragileActionPerformed
-        type = "NonFragile";
+        viewType = "NonFragile";
         btnView.setEnabled(true);
     }//GEN-LAST:event_rdoViewNonFragileActionPerformed
 
     private void rdoViewFragileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoViewFragileActionPerformed
-        type = "Fragile";
+        viewType = "Fragile";
         btnView.setEnabled(true);
     }//GEN-LAST:event_rdoViewFragileActionPerformed
 
-    private void btnClearListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearListActionPerformed
-        lm.removeAllElements();
-    }//GEN-LAST:event_btnClearListActionPerformed
-
     private void rdoNewFragileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoNewFragileActionPerformed
-        type = "Fragile";
+        newType = "Fragile";
         btnAdd.setEnabled(true);
     }//GEN-LAST:event_rdoNewFragileActionPerformed
 
     private void rdoNewNonFragileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoNewNonFragileActionPerformed
-        type = "NonFragile";
+        newType = "NonFragile";
         btnAdd.setEnabled(true);
     }//GEN-LAST:event_rdoNewNonFragileActionPerformed
 
@@ -921,11 +926,11 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_txtEditQuantityKeyPressed
 
     private void rdoEditNonFragileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoEditNonFragileActionPerformed
-        // TODO add your handling code here:
+        editType = "NonFragile";
     }//GEN-LAST:event_rdoEditNonFragileActionPerformed
 
     private void rdoEditFragileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoEditFragileActionPerformed
-        // TODO add your handling code here:
+        editType = "Fragile";
     }//GEN-LAST:event_rdoEditFragileActionPerformed
 
     private void txtEditPriceKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEditPriceKeyPressed
@@ -965,83 +970,140 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        /*if (!txtEditUsername.getText().isBlank() && !txtEditPassword.getText().isBlank() && rboEditUsername.isSelected() && rboEditPassword.isSelected())
+        String editName = null; 
+        String editPrice = null;
+        String editProType = null; 
+        String editQuantity = null;
+        String editWeight = null; 
+        String[] searchResult = null;
+        String[] title = {"Category", "ID", "Product Name", "Type", "Price", "Quantity", "Weight"};
+        try {
+            searchResult = product.searchProName(txtSearchProduct.getText());
+        } catch (IOException ex) {
+            Logger.getLogger(Admin_Product_Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //Edit name
+        if (rdoEditName.isSelected() && !txtEditName.getText().isBlank())
         {
             try {
-                if (user.checkUserExist(filePath, role, txtEditUsername.getText()))
+                if (product.checkProductExist(txtEditName.getText()))
                 {
-                    JOptionPane.showMessageDialog(this, "User exist! Please try again");
+                    JOptionPane.showMessageDialog(this, "Product exist! Please try again");
                 }
                 else
                 {
-                    try {
-                        user.editUserDetails(filePath, role, txtSearchUsername.getText(), txtEditUsername.getText(), txtEditPassword.getText());
-                    } catch (IOException ex) {
-                        Logger.getLogger(Admin_Product_Menu.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    editName=txtEditName.getText();
                 }
-            } catch (IOException ex) {
-                Logger.getLogger(Admin_Product_Menu.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        else if (!txtEditUsername.getText().isBlank() && !rboEditPassword.isSelected())
-        {
-            try {
-                if (user.checkUserExist(filePath, role, txtEditUsername.getText()))
-                {
-                    JOptionPane.showMessageDialog(this, "User exist! Please try again");
-                }
-                else
-                {
-                    try {
-                        user.editUserDetails(filePath, role, txtSearchUsername.getText(), txtEditUsername.getText());
-                    } catch (IOException ex) {
-                        Logger.getLogger(Admin_Product_Menu.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            } catch (IOException ex) {
-                Logger.getLogger(Admin_Product_Menu.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        else if (!txtEditPassword.getText().isBlank() && !rboEditUsername.isSelected())
-        {
-            try {
-                user.editUserDetails(filePath, role, txtSearchUsername.getText(), txtSearchUsername.getText(), txtEditPassword.getText());
             } catch (IOException ex) {
                 Logger.getLogger(Admin_Product_Menu.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         else
         {
-            JOptionPane.showMessageDialog(this, "Invalid input! Please try again!");
+            editName=searchResult[2];
         }
-        lm.addElement("\n");
-        lm.addElement("After Edit:");
-        lm.addElement("Role : ID : Username : Password");
+        //Edit Type
+        if (rdoEditType.isSelected()  && (rdoEditFragile.isSelected() || rdoEditNonFragile.isSelected()))
+        {
+            editProType=editType;
+        }
+        else
+        {
+            editProType=searchResult[3];
+        }
+        //Edit price
+        if (rdoEditPrice.isSelected() && !txtEditPrice.getText().isBlank())
+        {
+            editPrice=txtEditPrice.getText();
+        }
+        else
+        {
+            editPrice=searchResult[4];
+        }
+        //Edit Quantity
+        if (rdoEditQuantity.isSelected() && !txtEditQuantity.getText().isBlank())
+        {
+            editName=txtEditQuantity.getText();
+        }
+        else
+        {
+            editQuantity=searchResult[5];
+        }
+        //Edit Weight
+        if (rdoEditWeight.isSelected() && !txtEditWeight.getText().isBlank())
+        {
+            editWeight=txtEditWeight.getText();
+        }
+        else
+        {
+            editWeight=searchResult[6];
+        }
         try {
-            lm.addElement(user.searchUser(filePath, role, txtEditUsername.getText()));
+            product.editProductDetails(txtSearchProduct.getText(), editName, editProType, editPrice, editQuantity ,editWeight);
         } catch (IOException ex) {
             Logger.getLogger(Admin_Product_Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
-        txtEditUsername.setText(null);
-        txtEditPassword.setText(null);*/
+        lm.addElement("\n");
+        lm.addElement("After Edit:");
+        if (!rdoEditName.isSelected())
+        {
+            try {
+                searchResult = product.searchProName(txtSearchProduct.getText());
+            } catch (IOException ex) {
+                Logger.getLogger(Admin_Product_Menu.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            for (int i=0; i<title.length;i++)
+            {
+                lm.addElement(title[i] + ": " + searchResult[i]);
+            }
+        }
+        else
+        {
+            try {
+                searchResult = product.searchProName(txtEditName.getText());
+            } catch (IOException ex) {
+                Logger.getLogger(Admin_Product_Menu.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            for (int i=0; i<title.length;i++)
+            {
+                lm.addElement(title[i] + ": " + searchResult[i]);
+            }
+        }
+        txtEditName.setText(null);
+        txtEditName.setEnabled(false);
+        txtEditPrice.setText(null);
+        txtEditPrice.setEnabled(false);
+        buttonGroup3.clearSelection();
+        rdoEditFragile.setEnabled(false);
+        rdoEditNonFragile.setEnabled(false);
+        txtEditQuantity.setText(null);
+        txtEditQuantity.setEnabled(false);
+        txtEditWeight.setText(null);
+        txtEditWeight.setEnabled(false);
+        rdoEditName.setSelected(false);
+        rdoEditPrice.setSelected(false);
+        rdoEditType.setSelected(false);
+        rdoEditQuantity.setSelected(false);
+        rdoEditWeight.setSelected(false);
+        btnEdit.setEnabled(false);
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         String searchResult[] = null;
         lm.removeAllElements();
         String[] title = {"Category", "ID", "Product Name", "Type", "Price", "Quantity", "Weight"};
-        
-        
+
         try {
             searchResult = product.searchProName(txtSearchProduct.getText());
         } catch (IOException ex) {
             Logger.getLogger(Admin_Product_Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if (searchResult[2]!=txtSearchProduct.getText())
+        if (searchResult[2]==null)
         {
             lm.addElement("Product Not Found!");
             btnDelete.setEnabled(false);
+            txtSearchProduct.setText(null);
         }
         else
         {
@@ -1066,6 +1128,73 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
             txtSearchProduct.setEditable(false);
         }
     }//GEN-LAST:event_txtSearchProductKeyPressed
+
+    private void rdoEditNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoEditNameActionPerformed
+        if (rdoEditName.isSelected())
+        {
+            txtEditName.setEnabled(true);
+            btnEdit.setEnabled(true);
+        }
+        else
+        {
+            txtEditName.setEnabled(false);
+            btnEdit.setEnabled(false);
+        }
+    }//GEN-LAST:event_rdoEditNameActionPerformed
+
+    private void rdoEditPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoEditPriceActionPerformed
+        if (rdoEditPrice.isSelected())
+        {
+            txtEditPrice.setEnabled(true);
+            btnEdit.setEnabled(true);
+        }
+        else
+        {
+            txtEditPrice.setEnabled(false);
+            btnEdit.setEnabled(false);
+        }
+    }//GEN-LAST:event_rdoEditPriceActionPerformed
+
+    private void rdoEditTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoEditTypeActionPerformed
+       if (rdoEditType.isSelected())
+        {
+            rdoEditFragile.setEnabled(true);
+            rdoEditNonFragile.setEnabled(true);
+            btnEdit.setEnabled(true);
+        }
+        else
+        {
+            rdoEditFragile.setEnabled(false);
+            rdoEditNonFragile.setEnabled(false);
+            btnEdit.setEnabled(false);
+        }
+    }//GEN-LAST:event_rdoEditTypeActionPerformed
+
+    private void rdoEditQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoEditQuantityActionPerformed
+        if (rdoEditQuantity.isSelected())
+        {
+            txtEditQuantity.setEnabled(true);
+            btnEdit.setEnabled(true);
+        }
+        else
+        {
+            txtEditQuantity.setEnabled(false);
+            btnEdit.setEnabled(false);
+        }
+    }//GEN-LAST:event_rdoEditQuantityActionPerformed
+
+    private void rdoEditWeightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoEditWeightActionPerformed
+        if (rdoEditWeight.isSelected())
+        {
+            txtEditWeight.setEnabled(true);
+            btnEdit.setEnabled(true);
+        }
+        else
+        {
+            txtEditWeight.setEnabled(false);
+            btnEdit.setEnabled(false);
+        }
+    }//GEN-LAST:event_rdoEditWeightActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1111,7 +1240,6 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
-    private javax.swing.JButton btnClearList;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnLogout;
@@ -1139,20 +1267,20 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
     private javax.swing.JLabel lblPConfirmPassword;
     private javax.swing.JLabel lblPConfirmPassword1;
     private javax.swing.JLabel lblPConfirmPassword3;
-    private javax.swing.JLabel lblPConfirmPassword4;
-    private javax.swing.JLabel lblPConfirmPassword8;
     private javax.swing.JLabel lblPassword;
-    private javax.swing.JLabel lblPassword3;
     private javax.swing.JLabel lblRole;
-    private javax.swing.JLabel lblRole3;
     private javax.swing.JLabel lblUsername1;
     private javax.swing.JLabel lblUsername2;
     private javax.swing.JLabel lblUsername5;
     private javax.swing.JLabel lblUsername6;
-    private javax.swing.JLabel lblUsername8;
     private javax.swing.JList<String> lstView;
     private javax.swing.JRadioButton rdoEditFragile;
+    private javax.swing.JRadioButton rdoEditName;
     private javax.swing.JRadioButton rdoEditNonFragile;
+    private javax.swing.JRadioButton rdoEditPrice;
+    private javax.swing.JRadioButton rdoEditQuantity;
+    private javax.swing.JRadioButton rdoEditType;
+    private javax.swing.JRadioButton rdoEditWeight;
     private javax.swing.JRadioButton rdoNewFragile;
     private javax.swing.JRadioButton rdoNewNonFragile;
     private javax.swing.JRadioButton rdoViewFragile;

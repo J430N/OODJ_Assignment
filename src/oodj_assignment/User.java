@@ -204,6 +204,11 @@ public class User
             {
                 if (role.equals(multipleData[row][0]) && newUsername.equals(multipleData[row][2]))
                 {
+                    //Remove selected user
+                    System.out.println(multipleData[row][2]  + "is deleted!");
+                }
+                else
+                {
                     //Write unaffected line back to the file
                     if (multipleData[row][0] != null)
                     {
@@ -213,7 +218,7 @@ public class User
                     {
                         break;
                     }
-                } 
+                }
             }
             else
             {

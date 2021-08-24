@@ -144,44 +144,10 @@ public class Product
         {
             if(multipleData[row][0]!=null)
             {
-                if (!newProName.equals(multipleData[row][2]))
+                if (newProName.equals(multipleData[row][2]))
                 {
-                    //Write unaffected line back to the file
-                    if (multipleData[row][0] != null)
-                    {
-                        data.writeTextFile(filePath, multipleData[row][0], multipleData[row][1], multipleData[row][2], multipleData[row][3], multipleData[row][4],multipleData[row][5], multipleData[row][6]);
-                    }
-                    else
-                    {
-                        break;
-                    }
-                } 
-            }
-            else
-            {
-                over = true;
-                break;
-            }
-            row++;
-        }
-    }
-    
-    public void editProductDetails(String role, String newUsername, String editUsername, String editPassword) throws IOException
-    {
-        int row = 0;
-        boolean over = false;
-        RWTextFile data = new RWTextFile();
-        String[][] multipleData = data.readTextFile(filePath).clone();
-        //Emtpy the file
-        data.clearTextFile(filePath);
-        while(!over)
-        {
-            if(multipleData[row][0]!=null)
-            {
-                if (role.equals(multipleData[row][0]) && newUsername.equals(multipleData[row][2]))
-                {
-                    //Write back the updated data
-                    data.writeTextFile(filePath, multipleData[row][0], multipleData[row][1], editUsername, editPassword);
+                    //Remove selected product
+                    System.out.println(multipleData[row][2]  + "is deleted!");
                 }
                 else
                 {
@@ -205,7 +171,7 @@ public class Product
         }
     }
     
-    public void editProductDetails(String role, String newUsername, String editUsername) throws IOException
+    public void editProductDetails(String newProName, String editProName, String editType, String editPrice, String editQuantity ,String editWeight) throws IOException
     {
         int row = 0;
         boolean over = false;
@@ -217,17 +183,18 @@ public class Product
         {
             if(multipleData[row][0]!=null)
             {
-                if (role.equals(multipleData[row][0]) && newUsername.equals(multipleData[row][2]))
+                if (newProName.equals(multipleData[row][2]))
                 {
+                    
                     //Write back the updated data
-                    data.writeTextFile(filePath, multipleData[row][0], multipleData[row][1], editUsername, multipleData[row][3]);
+                    data.writeTextFile(filePath, multipleData[row][0], multipleData[row][1], editProName, editType, editPrice, editQuantity ,editWeight);
                 }
                 else
                 {
                     //Write unaffected line back to the file
                     if (multipleData[row][0] != null)
                     {
-                        data.writeTextFile(filePath, multipleData[row][0], multipleData[row][1], multipleData[row][2], multipleData[row][3]);
+                        data.writeTextFile(filePath, multipleData[row][0], multipleData[row][1], multipleData[row][2], multipleData[row][3], multipleData[row][4], multipleData[row][5], multipleData[row][6]);
                     }
                     else
                     {

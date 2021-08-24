@@ -15,7 +15,9 @@ import javax.swing.DefaultListModel;
  */
 public class Admin_User_Menu extends javax.swing.JFrame {
 
-    String role = null;
+    String addRole = null;
+    String searchRole = null;
+    String viewRole = null;
     AdminUser admin = new AdminUser();
     String filePath = "User.txt";
             
@@ -33,8 +35,8 @@ public class Admin_User_Menu extends javax.swing.JFrame {
         btnSearch.setEnabled(false);
         btnEdit.setEnabled(false);
         btnDelete.setEnabled(false);
-        rboEditUsername.setEnabled(false);
-        rboEditPassword.setEnabled(false);
+        rdoEditUsername.setEnabled(false);
+        rdoEditPassword.setEnabled(false);
         txtEditUsername.setEnabled(false);
         txtEditPassword.setEnabled(false);
         
@@ -72,7 +74,6 @@ public class Admin_User_Menu extends javax.swing.JFrame {
         btnView = new javax.swing.JButton();
         rdoViewCust = new javax.swing.JRadioButton();
         rdoViewAdmin = new javax.swing.JRadioButton();
-        btnClearList = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         lblUsername1 = new javax.swing.JLabel();
         txtSearchUsername = new javax.swing.JTextField();
@@ -83,8 +84,8 @@ public class Admin_User_Menu extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        rboEditUsername = new javax.swing.JRadioButton();
-        rboEditPassword = new javax.swing.JRadioButton();
+        rdoEditUsername = new javax.swing.JRadioButton();
+        rdoEditPassword = new javax.swing.JRadioButton();
         rdoSearchAdmin = new javax.swing.JRadioButton();
         rdoSearchCust = new javax.swing.JRadioButton();
         txtEditPassword = new javax.swing.JTextField();
@@ -255,14 +256,6 @@ public class Admin_User_Menu extends javax.swing.JFrame {
             }
         });
 
-        btnClearList.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnClearList.setText("Clear");
-        btnClearList.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnClearListActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -272,15 +265,16 @@ public class Admin_User_Menu extends javax.swing.JFrame {
                 .addComponent(jScrollPane1)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(67, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnView, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rdoViewAdmin))
-                .addGap(18, 18, 18)
+                .addContainerGap(136, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rdoViewCust)
-                    .addComponent(btnClearList, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(69, 69, 69))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(btnView, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(rdoViewAdmin)
+                        .addGap(18, 18, 18)
+                        .addComponent(rdoViewCust)))
+                .addGap(118, 118, 118))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -292,9 +286,7 @@ public class Admin_User_Menu extends javax.swing.JFrame {
                     .addComponent(rdoViewAdmin)
                     .addComponent(rdoViewCust))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnView)
-                    .addComponent(btnClearList))
+                .addComponent(btnView)
                 .addGap(12, 12, 12))
         );
 
@@ -353,19 +345,19 @@ public class Admin_User_Menu extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setText("Delete");
 
-        rboEditUsername.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        rboEditUsername.setText("Username:");
-        rboEditUsername.addActionListener(new java.awt.event.ActionListener() {
+        rdoEditUsername.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        rdoEditUsername.setText("Username:");
+        rdoEditUsername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rboEditUsernameActionPerformed(evt);
+                rdoEditUsernameActionPerformed(evt);
             }
         });
 
-        rboEditPassword.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        rboEditPassword.setText("Password:");
-        rboEditPassword.addActionListener(new java.awt.event.ActionListener() {
+        rdoEditPassword.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        rdoEditPassword.setText("Password:");
+        rdoEditPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rboEditPasswordActionPerformed(evt);
+                rdoEditPasswordActionPerformed(evt);
             }
         });
 
@@ -406,8 +398,8 @@ public class Admin_User_Menu extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(rboEditUsername)
-                            .addComponent(rboEditPassword))
+                            .addComponent(rdoEditUsername)
+                            .addComponent(rdoEditPassword))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtEditUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
@@ -453,10 +445,10 @@ public class Admin_User_Menu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtEditUsername, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rboEditUsername))
+                    .addComponent(rdoEditUsername))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rboEditPassword)
+                    .addComponent(rdoEditPassword)
                     .addComponent(txtEditPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEdit)
@@ -587,48 +579,49 @@ public class Admin_User_Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
-    if (!txtAddUsername.getText().isBlank() && !txtAddPassword.getText().isBlank())
-    {
-        try {
-            if (admin.checkUserExist(filePath, role, txtAddUsername.getText()))
-            {
-                JOptionPane.showMessageDialog(this, "User exist! Please try again");
-            }
-            else
-            {
-                admin.setNewUsername(txtAddUsername.getText());
-                if (txtAddPassword.getText().equals(txtConfirmPassword.getText()))
+        if (!txtAddUsername.getText().isBlank() && !txtAddPassword.getText().isBlank())
+        {
+            try {
+                if (admin.checkUserExist(filePath, addRole, txtAddUsername.getText()))
                 {
-                    admin.setNewPassword(txtAddPassword.getText());
-                    admin.addNewUser(role);
-                    JOptionPane.showMessageDialog(this, "User successfully added!");
-                    txtAddUsername.setText(null);
-                    txtAddPassword.setText(null);
-                    txtConfirmPassword.setText(null);
+                    JOptionPane.showMessageDialog(this, "User exist! Please try again");
                 }
                 else
                 {
-                    JOptionPane.showMessageDialog(this, "Two password are not match!");
-                }
+                    admin.setNewUsername(txtAddUsername.getText());
+                    if (txtAddPassword.getText().equals(txtConfirmPassword.getText()))
+                    {
+                        admin.setNewPassword(txtAddPassword.getText());
+                        admin.addNewUser(addRole);
+                        JOptionPane.showMessageDialog(this, "User successfully added!");
+                        txtAddUsername.setText(null);
+                        txtAddPassword.setText(null);
+                        txtConfirmPassword.setText(null);
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(this, "Two password are not match!");
+                    }
 
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(Admin_User_Menu.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (IOException ex) {
-            Logger.getLogger(Admin_User_Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-    else
-    {
-        JOptionPane.showMessageDialog(this, "Invalid input! Please try again");
-    }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "Invalid input! Please try again");
+        }
+        buttonGroup1.clearSelection();
     }//GEN-LAST:event_btnSignUpActionPerformed
 
     private void rdoCustActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoCustActionPerformed
-        role = "Customer";
+        addRole = "Customer";
         btnSignUp.setEnabled(true);
     }//GEN-LAST:event_rdoCustActionPerformed
 
     private void rdoAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoAdminActionPerformed
-        role = "Admin";
+        addRole = "Admin";
         btnSignUp.setEnabled(true);
     }//GEN-LAST:event_rdoAdminActionPerformed
 
@@ -638,16 +631,17 @@ public class Admin_User_Menu extends javax.swing.JFrame {
         lm.removeAllElements();
         
         try {
-            searchResult = admin.searchOneUser(role, txtSearchUsername.getText());
+            searchResult = admin.searchOneUser(searchRole, txtSearchUsername.getText());
         } catch (IOException ex) {
             Logger.getLogger(Admin_User_Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if (searchResult[2]!=txtSearchUsername.getText())
+        if (searchResult[2]==null)
         {
             lm.addElement("User Not Found!");
-            rboEditUsername.setEnabled(false);
-            rboEditPassword.setEnabled(false);
+            rdoEditUsername.setEnabled(false);
+            rdoEditPassword.setEnabled(false);
             btnDelete.setEnabled(false);
+            txtSearchUsername.setText(null);
         }
         else
         {
@@ -656,18 +650,20 @@ public class Admin_User_Menu extends javax.swing.JFrame {
             {
                 lm.addElement(title[i] + ": " + searchResult[i]);
             }
-            rboEditUsername.setEnabled(true);
-            rboEditPassword.setEnabled(true);
+            rdoEditUsername.setEnabled(true);
+            rdoEditPassword.setEnabled(true);
             btnDelete.setEnabled(true);
+            buttonGroup3.clearSelection();
         }
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
-        lm.addElement(role);
+        lm.removeAllElements();
+        lm.addElement(viewRole);
         String[] title = {"Role", "ID", "Username", "Password"};
         String[][] userList = null;
         try {
-            userList = admin.viewAllUser(role);
+            userList = admin.viewAllUser(viewRole);
         } catch (IOException ex) {
             Logger.getLogger(Admin_User_Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -685,22 +681,26 @@ public class Admin_User_Menu extends javax.swing.JFrame {
             }
         }
         lm.addElement("\n");
+        buttonGroup2.clearSelection();
     }//GEN-LAST:event_btnViewActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         User user = new User();
-        if (!txtEditUsername.getText().isBlank() && !txtEditPassword.getText().isBlank() && rboEditUsername.isSelected() && rboEditPassword.isSelected())
+        String[] title = {"Role", "ID", "Username", "Password"};
+        String[] searchResult = null;
+        
+        if (!txtEditUsername.getText().isBlank() && !txtEditPassword.getText().isBlank() && rdoEditUsername.isSelected() && rdoEditPassword.isSelected())
         {
             //Both change
             try {
-                if (user.checkUserExist(filePath, role, txtEditUsername.getText()))
+                if (user.checkUserExist(filePath, searchRole, txtEditUsername.getText()))
                 {
                     JOptionPane.showMessageDialog(this, "User exist! Please try again");
                 }
                 else
                 {
                     try {
-                        admin.editOneUser(role, txtSearchUsername.getText(), txtEditUsername.getText(), txtEditPassword.getText());
+                        admin.editOneUser(searchRole, txtSearchUsername.getText(), txtEditUsername.getText(), txtEditPassword.getText());
                     } catch (IOException ex) {
                         Logger.getLogger(Admin_User_Menu.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -709,18 +709,18 @@ public class Admin_User_Menu extends javax.swing.JFrame {
                 Logger.getLogger(Admin_User_Menu.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        else if (!txtEditUsername.getText().isBlank() && !rboEditPassword.isSelected())
+        else if (!txtEditUsername.getText().isBlank() && !rdoEditPassword.isSelected())
         {
             //Change username
             try {
-                if (user.checkUserExist(filePath, role, txtEditUsername.getText()))
+                if (user.checkUserExist(filePath, searchRole, txtEditUsername.getText()))
                 {
                     JOptionPane.showMessageDialog(this, "User exist! Please try again");
                 }
                 else
                 {
                     try {
-                        admin.editOneUser(role, txtSearchUsername.getText(), txtEditUsername.getText());
+                        admin.editOneUser(searchRole, txtSearchUsername.getText(), txtEditUsername.getText());
                     } catch (IOException ex) {
                         Logger.getLogger(Admin_User_Menu.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -729,11 +729,11 @@ public class Admin_User_Menu extends javax.swing.JFrame {
                 Logger.getLogger(Admin_User_Menu.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        else if (!txtEditPassword.getText().isBlank() && !rboEditUsername.isSelected())
+        else if (!txtEditPassword.getText().isBlank() && !rdoEditUsername.isSelected())
         {
             //Change password
             try {
-                admin.editOneUser(role, txtSearchUsername.getText(), txtSearchUsername.getText(), txtEditPassword.getText());
+                admin.editOneUser(searchRole, txtSearchUsername.getText(), txtSearchUsername.getText(), txtEditPassword.getText());
             } catch (IOException ex) {
                 Logger.getLogger(Admin_User_Menu.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -744,31 +744,43 @@ public class Admin_User_Menu extends javax.swing.JFrame {
         }
         lm.addElement("\n");
         lm.addElement("After Edit:");
-        lm.addElement("Role : ID : Username : Password");
-        if (!rboEditUsername.isSelected())
+        if (!rdoEditUsername.isSelected())
         {
             try {
-                lm.addElement(admin.searchOneUser(role, txtSearchUsername.getText()));
+                searchResult = admin.searchOneUser(searchRole, txtSearchUsername.getText());
             } catch (IOException ex) {
                 Logger.getLogger(Admin_User_Menu.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            for (int i=0; i<title.length;i++)
+            {
+                lm.addElement(title[i] + ": " + searchResult[i]);
             }
         }
         else
         {
             try {
-                lm.addElement(admin.searchOneUser(role, txtEditUsername.getText()));
+                searchResult = admin.searchOneUser(searchRole, txtEditUsername.getText());
             } catch (IOException ex) {
                 Logger.getLogger(Admin_User_Menu.class.getName()).log(Level.SEVERE, null, ex);
             }
+            for (int i=0; i<title.length;i++)
+            {
+                lm.addElement(title[i] + ": " + searchResult[i]);
+            }
         }
-        
         txtEditUsername.setText(null);
+        txtEditUsername.setEnabled(false);
         txtEditPassword.setText(null);
+        txtEditPassword.setEnabled(false);
+        txtSearchUsername.setText(null);
+        rdoEditUsername.setSelected(false);
+        rdoEditPassword.setSelected(false);
+        btnEdit.setEnabled(false);
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         try { 
-            admin.deleteOneUser(role, txtSearchUsername.getText());
+            admin.deleteOneUser(searchRole, txtSearchUsername.getText());
         } catch (IOException ex) {
             Logger.getLogger(Admin_User_Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -781,7 +793,9 @@ public class Admin_User_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUserMenuActionPerformed
 
     private void btnProductMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductMenuActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+        Admin_Product_Menu productMenu = new Admin_Product_Menu();
+        productMenu.setVisible(true);
     }//GEN-LAST:event_btnProductMenuActionPerformed
 
     private void btnOrderItemMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderItemMenuActionPerformed
@@ -799,42 +813,29 @@ public class Admin_User_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnOrderMenuActionPerformed
 
     private void rdoViewCustActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoViewCustActionPerformed
-        role = "Customer";
+        viewRole = "Customer";
         btnView.setEnabled(true);
     }//GEN-LAST:event_rdoViewCustActionPerformed
 
     private void rdoViewAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoViewAdminActionPerformed
-        role = "Admin";
+        viewRole = "Admin";
         btnView.setEnabled(true);
     }//GEN-LAST:event_rdoViewAdminActionPerformed
 
     private void rdoSearchAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoSearchAdminActionPerformed
-        role = "Admin";
+        searchRole = "Admin";
         btnSearch.setEnabled(true);
     }//GEN-LAST:event_rdoSearchAdminActionPerformed
 
     private void rdoSearchCustActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoSearchCustActionPerformed
-        role = "Customer";
+        searchRole = "Customer";
         btnSearch.setEnabled(true);
     }//GEN-LAST:event_rdoSearchCustActionPerformed
 
-    private void rboEditUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rboEditUsernameActionPerformed
-        if (rboEditUsername.isSelected() && rboEditPassword.isSelected())
+    private void rdoEditUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoEditUsernameActionPerformed
+        if (rdoEditUsername.isSelected())
         {
             txtEditUsername.setEnabled(true);
-            txtEditPassword.setEnabled(true);
-            btnEdit.setEnabled(true);
-        }
-        else if (rboEditUsername.isSelected() && !rboEditPassword.isSelected())
-        {
-            txtEditUsername.setEnabled(true);
-            txtEditPassword.setEnabled(false);
-            btnEdit.setEnabled(true);
-        }
-        else if (!rboEditUsername.isSelected() && rboEditPassword.isSelected())
-        {
-            txtEditUsername.setEnabled(false);
-            txtEditPassword.setEnabled(true);
             btnEdit.setEnabled(true);
         }
         else
@@ -843,38 +844,21 @@ public class Admin_User_Menu extends javax.swing.JFrame {
             btnEdit.setEnabled(false);
         }
         
-    }//GEN-LAST:event_rboEditUsernameActionPerformed
+    }//GEN-LAST:event_rdoEditUsernameActionPerformed
 
-    private void rboEditPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rboEditPasswordActionPerformed
-        if (rboEditUsername.isSelected() && rboEditPassword.isSelected())
+    private void rdoEditPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoEditPasswordActionPerformed
+        if (rdoEditPassword.isSelected())
         {
-            txtEditUsername.setEnabled(true);
-            txtEditPassword.setEnabled(true);
-            btnEdit.setEnabled(true);
-        }
-        else if (rboEditUsername.isSelected() && !rboEditPassword.isSelected())
-        {
-            txtEditUsername.setEnabled(true);
-            txtEditPassword.setEnabled(false);
-            btnEdit.setEnabled(true);
-        }
-        else if (!rboEditUsername.isSelected() && rboEditPassword.isSelected())
-        {
-            txtEditUsername.setEnabled(false);
             txtEditPassword.setEnabled(true);
             btnEdit.setEnabled(true);
         }
         else
         {
-            txtEditUsername.setEnabled(false);
+            txtEditPassword.setEnabled(false);
             btnEdit.setEnabled(false);
         }
         
-    }//GEN-LAST:event_rboEditPasswordActionPerformed
-
-    private void btnClearListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearListActionPerformed
-        lm.removeAllElements();
-    }//GEN-LAST:event_btnClearListActionPerformed
+    }//GEN-LAST:event_rdoEditPasswordActionPerformed
 
     private void txtAddUsernameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAddUsernameKeyPressed
         char c = evt.getKeyChar();
@@ -993,7 +977,6 @@ public class Admin_User_Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnClearList;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnLogout;
@@ -1023,10 +1006,10 @@ public class Admin_User_Menu extends javax.swing.JFrame {
     private javax.swing.JLabel lblUsername1;
     private javax.swing.JLabel lblUsername2;
     private javax.swing.JList<String> lstView;
-    private javax.swing.JRadioButton rboEditPassword;
-    private javax.swing.JRadioButton rboEditUsername;
     private javax.swing.JRadioButton rdoAdmin;
     private javax.swing.JRadioButton rdoCust;
+    private javax.swing.JRadioButton rdoEditPassword;
+    private javax.swing.JRadioButton rdoEditUsername;
     private javax.swing.JRadioButton rdoSearchAdmin;
     private javax.swing.JRadioButton rdoSearchCust;
     private javax.swing.JRadioButton rdoViewAdmin;
