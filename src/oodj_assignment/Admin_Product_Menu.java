@@ -20,10 +20,10 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
     String viewType = null;
     Product product = new Product();
     
-    enum type
+    enum Type
     {
         Fragile,
-        NonFragile,
+        NonFragile
     }
      
     DefaultListModel lm = new DefaultListModel(); //Listbox model(contents)
@@ -787,13 +787,17 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
         {
             if (productList[i]!=null)
             {
-                for (int j = 0; j < productList[i].length; j++)
+                if (productList[i][0]!=null)
                 {
-                    if (productList[i][j]!=null)
-                    {
-                        lm.addElement(title[j] + ": " + productList[i][j]);
-                    }
-                }   
+                    lm.addElement(title[0] + ": " + productList[i][0]);
+                    lm.addElement(title[1] + ": " + productList[i][1]);
+                    lm.addElement(title[2] + ": " + productList[i][2]);
+                    lm.addElement(title[3] + ": " + productList[i][3]);
+                    lm.addElement(title[4] + ": " + productList[i][4]);
+                    lm.addElement(title[5] + ": " + productList[i][5]);
+                    lm.addElement(title[6] + ": " + productList[i][6]);
+                    lm.addElement("\n");
+                }
             }
         }
         lm.addElement("\n");
@@ -825,22 +829,26 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnOrderMenuActionPerformed
 
     private void rdoViewNonFragileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoViewNonFragileActionPerformed
-        viewType = "NonFragile";
+        Type type = Type.NonFragile;
+        viewType = type.toString();
         btnView.setEnabled(true);
     }//GEN-LAST:event_rdoViewNonFragileActionPerformed
 
     private void rdoViewFragileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoViewFragileActionPerformed
-        viewType = "Fragile";
+        Type type = Type.Fragile;
+        viewType = type.toString();
         btnView.setEnabled(true);
     }//GEN-LAST:event_rdoViewFragileActionPerformed
 
     private void rdoNewFragileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoNewFragileActionPerformed
-        newType = "Fragile";
+        Type type = Type.Fragile;
+        newType = type.toString();
         btnAdd.setEnabled(true);
     }//GEN-LAST:event_rdoNewFragileActionPerformed
 
     private void rdoNewNonFragileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoNewNonFragileActionPerformed
-        newType = "NonFragile";
+        Type type = Type.NonFragile;
+        newType = type.toString();
         btnAdd.setEnabled(true);
     }//GEN-LAST:event_rdoNewNonFragileActionPerformed
 
@@ -950,11 +958,13 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_txtEditQuantityKeyPressed
 
     private void rdoEditNonFragileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoEditNonFragileActionPerformed
-        editType = "NonFragile";
+        Type type = Type.NonFragile;
+        editType = type.toString();
     }//GEN-LAST:event_rdoEditNonFragileActionPerformed
 
     private void rdoEditFragileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoEditFragileActionPerformed
-        editType = "Fragile";
+        Type type = Type.Fragile;
+        editType = type.toString();
     }//GEN-LAST:event_rdoEditFragileActionPerformed
 
     private void txtEditPriceKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEditPriceKeyPressed

@@ -20,6 +20,12 @@ public class Admin_User_Menu extends javax.swing.JFrame {
     String viewRole = null;
     AdminUser admin = new AdminUser();
     String filePath = "User.txt";
+    
+    enum Role
+    {
+        Admin,
+        Customer
+    }
             
     DefaultListModel lm = new DefaultListModel(); //Listbox model(contents)
     public Admin_User_Menu() {
@@ -74,6 +80,7 @@ public class Admin_User_Menu extends javax.swing.JFrame {
         btnView = new javax.swing.JButton();
         rdoViewCust = new javax.swing.JRadioButton();
         rdoViewAdmin = new javax.swing.JRadioButton();
+        btnLogfile = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         lblUsername1 = new javax.swing.JLabel();
         txtSearchUsername = new javax.swing.JTextField();
@@ -256,6 +263,14 @@ public class Admin_User_Menu extends javax.swing.JFrame {
             }
         });
 
+        btnLogfile.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnLogfile.setText("View Logfile");
+        btnLogfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogfileActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -266,15 +281,16 @@ public class Admin_User_Menu extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(136, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(btnView, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(rdoViewAdmin)
-                        .addGap(18, 18, 18)
-                        .addComponent(rdoViewCust)))
+                .addComponent(rdoViewAdmin)
+                .addGap(18, 18, 18)
+                .addComponent(rdoViewCust)
                 .addGap(118, 118, 118))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(79, 79, 79)
+                .addComponent(btnView, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnLogfile, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -286,7 +302,9 @@ public class Admin_User_Menu extends javax.swing.JFrame {
                     .addComponent(rdoViewAdmin)
                     .addComponent(rdoViewCust))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnView)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnView)
+                    .addComponent(btnLogfile))
                 .addGap(12, 12, 12))
         );
 
@@ -631,12 +649,14 @@ public class Admin_User_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSignUpActionPerformed
 
     private void rdoCustActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoCustActionPerformed
-        addRole = "Customer";
+        Role role = Role.Customer;
+        addRole = role.toString();
         btnSignUp.setEnabled(true);
     }//GEN-LAST:event_rdoCustActionPerformed
 
     private void rdoAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoAdminActionPerformed
-        addRole = "Admin";
+        Role role = Role.Admin;
+        addRole = role.toString();
         btnSignUp.setEnabled(true);
     }//GEN-LAST:event_rdoAdminActionPerformed
 
@@ -689,12 +709,13 @@ public class Admin_User_Menu extends javax.swing.JFrame {
         {
             if (userList[i]!=null)
             {
-                for (int j = 0; j < userList[i].length; j++)
+                if (userList[i][0]!=null)
                 {
-                    if (userList[i][j]!=null)
-                    {
-                        lm.addElement(title[j] + ": " + userList[i][j]);
-                    }
+                    lm.addElement(title[0] + ": " + userList[i][0]);
+                    lm.addElement(title[1] + ": " + userList[i][1]);
+                    lm.addElement(title[2] + ": " + userList[i][2]);
+                    lm.addElement(title[3] + ": " + userList[i][3]);
+                    lm.addElement("\n");
                 }
             }
         }
@@ -846,22 +867,26 @@ public class Admin_User_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnOrderMenuActionPerformed
 
     private void rdoViewCustActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoViewCustActionPerformed
-        viewRole = "Customer";
+        Role role = Role.Customer;
+        viewRole = role.toString();
         btnView.setEnabled(true);
     }//GEN-LAST:event_rdoViewCustActionPerformed
 
     private void rdoViewAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoViewAdminActionPerformed
-        viewRole = "Admin";
+        Role role = Role.Admin;
+        viewRole = role.toString();
         btnView.setEnabled(true);
     }//GEN-LAST:event_rdoViewAdminActionPerformed
 
     private void rdoSearchAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoSearchAdminActionPerformed
-        searchRole = "Admin";
+        Role role = Role.Admin;
+        searchRole = role.toString();
         btnSearch.setEnabled(true);
     }//GEN-LAST:event_rdoSearchAdminActionPerformed
 
     private void rdoSearchCustActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoSearchCustActionPerformed
-        searchRole = "Customer";
+        Role role = Role.Customer;
+        searchRole = role.toString();
         btnSearch.setEnabled(true);
     }//GEN-LAST:event_rdoSearchCustActionPerformed
 
@@ -971,6 +996,25 @@ public class Admin_User_Menu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtEditPasswordKeyPressed
 
+    private void btnLogfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogfileActionPerformed
+        lm.removeAllElements();
+        lm.addElement("User Login Logfile:");
+        Logfile logfile = new Logfile();
+        String[][] userLog = null;
+        try {
+            userLog = logfile.viewLogfile();
+        } catch (IOException ex) {
+            Logger.getLogger(Admin_User_Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        for (int i = 0; i < userLog.length; i++)
+        {
+            if (userLog[i][0]!=null)
+            {
+                 lm.addElement(userLog[i][0] + " : " + userLog[i][1] + " : " + userLog[i][2] + " : " + userLog[i][3] + " : " + userLog[i][4]);
+            }
+        }
+    }//GEN-LAST:event_btnLogfileActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1012,6 +1056,7 @@ public class Admin_User_Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnEdit;
+    private javax.swing.JButton btnLogfile;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnOrderItemMenu;
     private javax.swing.JButton btnOrderMenu;
