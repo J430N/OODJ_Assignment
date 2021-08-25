@@ -579,6 +579,9 @@ public class Admin_User_Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
+        lm.removeAllElements();
+        String searchResult[] = null;
+        String[] title = {"Role", "ID", "Username", "Password"};
         if (!txtAddUsername.getText().isBlank() && !txtAddPassword.getText().isBlank())
         {
             try {
@@ -593,10 +596,17 @@ public class Admin_User_Menu extends javax.swing.JFrame {
                     {
                         admin.setNewPassword(txtAddPassword.getText());
                         admin.addNewUser(addRole);
+                        try {
+                            searchResult = admin.searchOneUser(addRole, txtAddUsername.getText());
+                        } catch (IOException ex) {
+                            Logger.getLogger(Admin_User_Menu.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        lm.addElement("New User:");
+                        for (int i=0; i<title.length;i++)
+                        {
+                            lm.addElement(title[i] + ": " + searchResult[i]);
+                        }
                         JOptionPane.showMessageDialog(this, "User successfully added!");
-                        txtAddUsername.setText(null);
-                        txtAddPassword.setText(null);
-                        txtConfirmPassword.setText(null);
                     }
                     else
                     {
@@ -611,8 +621,13 @@ public class Admin_User_Menu extends javax.swing.JFrame {
         else
         {
             JOptionPane.showMessageDialog(this, "Invalid input! Please try again");
+            
         }
         buttonGroup1.clearSelection();
+        btnSignUp.setEnabled(false);
+        txtAddUsername.setText(null);
+        txtAddPassword.setText(null);
+        txtConfirmPassword.setText(null);
     }//GEN-LAST:event_btnSignUpActionPerformed
 
     private void rdoCustActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoCustActionPerformed
@@ -642,6 +657,8 @@ public class Admin_User_Menu extends javax.swing.JFrame {
             rdoEditPassword.setEnabled(false);
             btnDelete.setEnabled(false);
             txtSearchUsername.setText(null);
+            btnSearch.setEnabled(false);
+            buttonGroup3.clearSelection();
         }
         else
         {
@@ -654,6 +671,7 @@ public class Admin_User_Menu extends javax.swing.JFrame {
             rdoEditPassword.setEnabled(true);
             btnDelete.setEnabled(true);
             buttonGroup3.clearSelection();
+            btnSearch.setEnabled(false);
         }
     }//GEN-LAST:event_btnSearchActionPerformed
 
@@ -688,7 +706,7 @@ public class Admin_User_Menu extends javax.swing.JFrame {
         User user = new User();
         String[] title = {"Role", "ID", "Username", "Password"};
         String[] searchResult = null;
-        
+        boolean print = false;
         if (!txtEditUsername.getText().isBlank() && !txtEditPassword.getText().isBlank() && rdoEditUsername.isSelected() && rdoEditPassword.isSelected())
         {
             //Both change
@@ -704,6 +722,7 @@ public class Admin_User_Menu extends javax.swing.JFrame {
                     } catch (IOException ex) {
                         Logger.getLogger(Admin_User_Menu.class.getName()).log(Level.SEVERE, null, ex);
                     }
+                    print = true;
                 }
             } catch (IOException ex) {
                 Logger.getLogger(Admin_User_Menu.class.getName()).log(Level.SEVERE, null, ex);
@@ -724,6 +743,7 @@ public class Admin_User_Menu extends javax.swing.JFrame {
                     } catch (IOException ex) {
                         Logger.getLogger(Admin_User_Menu.class.getName()).log(Level.SEVERE, null, ex);
                     }
+                    print = true;
                 }
             } catch (IOException ex) {
                 Logger.getLogger(Admin_User_Menu.class.getName()).log(Level.SEVERE, null, ex);
@@ -737,35 +757,41 @@ public class Admin_User_Menu extends javax.swing.JFrame {
             } catch (IOException ex) {
                 Logger.getLogger(Admin_User_Menu.class.getName()).log(Level.SEVERE, null, ex);
             }
+            print = true;
         }
         else
         {
             JOptionPane.showMessageDialog(this, "Invalid input! Please try again!");
         }
-        lm.addElement("\n");
-        lm.addElement("After Edit:");
-        if (!rdoEditUsername.isSelected())
+        
+        if (print == true)
         {
-            try {
-                searchResult = admin.searchOneUser(searchRole, txtSearchUsername.getText());
-            } catch (IOException ex) {
-                Logger.getLogger(Admin_User_Menu.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            for (int i=0; i<title.length;i++)
+            lm.addElement("\n");
+            lm.addElement("After Edit:");
+            if (!rdoEditUsername.isSelected())
             {
-                lm.addElement(title[i] + ": " + searchResult[i]);
+
+                try {
+                    searchResult = admin.searchOneUser(searchRole, txtSearchUsername.getText());
+                } catch (IOException ex) {
+                    Logger.getLogger(Admin_User_Menu.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                for (int i=0; i<title.length;i++)
+                {
+                    lm.addElement(title[i] + ": " + searchResult[i]);
+                }
             }
-        }
-        else
-        {
-            try {
-                searchResult = admin.searchOneUser(searchRole, txtEditUsername.getText());
-            } catch (IOException ex) {
-                Logger.getLogger(Admin_User_Menu.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            for (int i=0; i<title.length;i++)
+            else
             {
-                lm.addElement(title[i] + ": " + searchResult[i]);
+                try {
+                    searchResult = admin.searchOneUser(searchRole, txtEditUsername.getText());
+                } catch (IOException ex) {
+                    Logger.getLogger(Admin_User_Menu.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                for (int i=0; i<title.length;i++)
+                {
+                    lm.addElement(title[i] + ": " + searchResult[i]);
+                }
             }
         }
         txtEditUsername.setText(null);
@@ -775,7 +801,10 @@ public class Admin_User_Menu extends javax.swing.JFrame {
         txtSearchUsername.setText(null);
         rdoEditUsername.setSelected(false);
         rdoEditPassword.setSelected(false);
+        rdoEditUsername.setEnabled(false);
+        rdoEditPassword.setEnabled(false);
         btnEdit.setEnabled(false);
+        btnDelete.setEnabled(false);
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -786,6 +815,10 @@ public class Admin_User_Menu extends javax.swing.JFrame {
         }
         JOptionPane.showMessageDialog(this, "User successfully deleted!");
         txtSearchUsername.setText(null);
+        buttonGroup3.clearSelection();
+        rdoEditUsername.setEnabled(false);
+        rdoEditPassword.setEnabled(false);
+        btnDelete.setEnabled(false);
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnUserMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserMenuActionPerformed

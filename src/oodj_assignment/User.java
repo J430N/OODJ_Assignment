@@ -76,10 +76,8 @@ public class User
 
     public void addUser(String filePath, String role, String newUsername, String newPassword) throws IOException
     {   
-        //Scanner sc = new Scanner(System.in);
         RWTextFile data = new RWTextFile();
         String[][] multipleData = data.readTextFile(filePath).clone();
-        int row = 0;
         int id = 0;
         boolean over = false;
         Integer[] idFromArray = new Integer[multipleData.length];
@@ -89,21 +87,17 @@ public class User
             {
                 if (role.equals(multipleData[i][0]))
                 {
-                    //Take all same category product to compare the id
+                    //Take all same role user to compare the id
                     idFromArray[i] = Integer.parseInt(multipleData[i][1]);// Parsing from string to int
                 }
-                else
-                {
-                    over = true;
-                    break;
-                }
             }
+            over = true;
         }
         //Create next id value
         for(int i =0; i<idFromArray.length;i++)
         {
+            while (idFromArray[i] != null)
             {
-                System.out.println(idFromArray[i]);
                 if (idFromArray[i] > id) //find the biggest id
                 {
                     id = idFromArray[i];

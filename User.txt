@@ -2,5 +2,6 @@ Admin:1:John:456
 Admin:2:Jason:123
 Customer:1:John:123
 Customer:2:Jason:123
-Admin:3:James:456
 Customer:3:Jane:456
+Admin:5:345:354
+Admin:6:Sheng:123

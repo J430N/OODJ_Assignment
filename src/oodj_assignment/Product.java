@@ -12,12 +12,6 @@ import java.io.IOException;
  */
 public class Product 
 {
-    enum type
-    {
-        Fragile,
-        NonFragile
-    }
-    
     private String filePath = "Product.txt";
     private String proName;
     
@@ -36,7 +30,6 @@ public class Product
         //Scanner sc = new Scanner(System.in);
         RWTextFile data = new RWTextFile();
         String[][] multipleData = data.readTextFile(filePath).clone();
-        int row = 0;
         int id = 0;
         boolean over = false;
         Integer[] idFromArray = new Integer[multipleData.length];
@@ -49,12 +42,8 @@ public class Product
                     //Take all same category product to compare the id
                     idFromArray[i] = Integer.parseInt(multipleData[i][1]);// Parsing from string to int
                 }
-                else
-                {
-                    over = true;
-                    break;
-                }
             }
+            over = true;
         }
         //Create next id value
         for(int i =0; i<idFromArray.length;i++)
@@ -185,7 +174,6 @@ public class Product
             {
                 if (newProName.equals(multipleData[row][2]))
                 {
-                    
                     //Write back the updated data
                     data.writeTextFile(filePath, multipleData[row][0], multipleData[row][1], editProName, editType, editPrice, editQuantity ,editWeight);
                 }

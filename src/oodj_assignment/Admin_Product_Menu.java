@@ -19,7 +19,13 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
     String editType = null;
     String viewType = null;
     Product product = new Product();
-            
+    
+    enum type
+    {
+        Fragile,
+        NonFragile,
+    }
+     
     DefaultListModel lm = new DefaultListModel(); //Listbox model(contents)
     public Admin_Product_Menu() {
         initComponents();
@@ -39,6 +45,11 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
         rdoEditNonFragile.setEnabled(false);
         txtEditQuantity.setEnabled(false);
         txtEditWeight.setEnabled(false);
+        rdoEditName.setEnabled(false);
+        rdoEditPrice.setEnabled(false);
+        rdoEditType.setEnabled(false);
+        rdoEditQuantity.setEnabled(false);
+        rdoEditWeight.setEnabled(false);
         lstView.setModel(lm); //Attached to the listbox
     }
     /**
@@ -719,6 +730,9 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        String searchResult[] = null;
+        lm.removeAllElements();
+        String[] title = {"Category", "ID", "Product Name", "Type", "Price", "Quantity", "Weight"};
         if (!txtNewName.getText().isBlank() && !txtNewPrice.getText().isBlank() && !txtNewQuantity.getText().isBlank())
         {
             try {
@@ -730,14 +744,17 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
                 {
                     product.setProName(txtNewName.getText());
                     product.addProduct(cboNewCategory.getSelectedItem().toString(), txtNewName.getText(), newType, txtNewPrice.getText(), txtNewQuantity.getText(), txtNewWeight.getText());
+                    try {
+                        searchResult = product.searchProName(txtNewName.getText());
+                    } catch (IOException ex) {
+                        Logger.getLogger(Admin_Product_Menu.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    lm.addElement("New Product:");
+                    for (int i=0; i<title.length;i++)
+                    {
+                        lm.addElement(title[i] + ": " + searchResult[i]);
+                    }
                     JOptionPane.showMessageDialog(this, "Product successfully added!");
-                    txtNewName.setText(null);
-                    txtNewPrice.setText(null);
-                    txtNewQuantity.setText(null);
-                    txtNewWeight.setText(null);
-                    txtNewCategory.setText(null);
-                    buttonGroup1.clearSelection();
-                    btnAdd.setEnabled(false);
                 }
             } catch (IOException ex) {
                 Logger.getLogger(Admin_Product_Menu.class.getName()).log(Level.SEVERE, null, ex);
@@ -747,6 +764,13 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
         {
             JOptionPane.showMessageDialog(this, "Invalid input! Please try again");
         }
+        txtNewName.setText(null);
+        txtNewPrice.setText(null);
+        txtNewQuantity.setText(null);
+        txtNewWeight.setText(null);
+        txtNewCategory.setText(null);
+        buttonGroup1.clearSelection();
+        btnAdd.setEnabled(false);
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
@@ -967,6 +991,19 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
         }
         JOptionPane.showMessageDialog(this, "Product successfully deleted!");
         txtSearchProduct.setText(null);
+        btnDelete.setEnabled(false);
+        rdoEditName.setEnabled(false);
+        rdoEditName.setSelected(false);
+        rdoEditPrice.setEnabled(false);
+        rdoEditPrice.setSelected(false);
+        rdoEditType.setEnabled(false);
+        rdoEditType.setSelected(false);
+        rdoEditQuantity.setEnabled(false);
+        rdoEditQuantity.setSelected(false);
+        rdoEditWeight.setEnabled(false);
+        rdoEditWeight.setSelected(false);
+        
+        
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
@@ -975,6 +1012,7 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
         String editProType = null; 
         String editQuantity = null;
         String editWeight = null; 
+        boolean print = true;
         String[] searchResult = null;
         String[] title = {"Category", "ID", "Product Name", "Type", "Price", "Quantity", "Weight"};
         try {
@@ -990,6 +1028,7 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
                 if (product.checkProductExist(txtEditName.getText()))
                 {
                     JOptionPane.showMessageDialog(this, "Product exist! Please try again");
+                    print = false;
                 }
                 else
                 {
@@ -1024,7 +1063,7 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
         //Edit Quantity
         if (rdoEditQuantity.isSelected() && !txtEditQuantity.getText().isBlank())
         {
-            editName=txtEditQuantity.getText();
+            editQuantity=txtEditQuantity.getText();
         }
         else
         {
@@ -1039,37 +1078,41 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
         {
             editWeight=searchResult[6];
         }
-        try {
-            product.editProductDetails(txtSearchProduct.getText(), editName, editProType, editPrice, editQuantity ,editWeight);
-        } catch (IOException ex) {
-            Logger.getLogger(Admin_Product_Menu.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        lm.addElement("\n");
-        lm.addElement("After Edit:");
-        if (!rdoEditName.isSelected())
+        if (print == true)
         {
             try {
-                searchResult = product.searchProName(txtSearchProduct.getText());
+                product.editProductDetails(txtSearchProduct.getText(), editName, editProType, editPrice, editQuantity ,editWeight);
             } catch (IOException ex) {
                 Logger.getLogger(Admin_Product_Menu.class.getName()).log(Level.SEVERE, null, ex);
             }
-            for (int i=0; i<title.length;i++)
+            lm.addElement("\n");
+            lm.addElement("After Edit:");
+            if (!rdoEditName.isSelected())
             {
-                lm.addElement(title[i] + ": " + searchResult[i]);
+                try {
+                    searchResult = product.searchProName(txtSearchProduct.getText());
+                } catch (IOException ex) {
+                    Logger.getLogger(Admin_Product_Menu.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                for (int i=0; i<title.length;i++)
+                {
+                    lm.addElement(title[i] + ": " + searchResult[i]);
+                }
+            }
+            else
+            {
+                try {
+                    searchResult = product.searchProName(txtEditName.getText());
+                } catch (IOException ex) {
+                    Logger.getLogger(Admin_Product_Menu.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                for (int i=0; i<title.length;i++)
+                {
+                    lm.addElement(title[i] + ": " + searchResult[i]);
+                }
             }
         }
-        else
-        {
-            try {
-                searchResult = product.searchProName(txtEditName.getText());
-            } catch (IOException ex) {
-                Logger.getLogger(Admin_Product_Menu.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            for (int i=0; i<title.length;i++)
-            {
-                lm.addElement(title[i] + ": " + searchResult[i]);
-            }
-        }
+        txtSearchProduct.setText(null);
         txtEditName.setText(null);
         txtEditName.setEnabled(false);
         txtEditPrice.setText(null);
@@ -1081,11 +1124,17 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
         txtEditQuantity.setEnabled(false);
         txtEditWeight.setText(null);
         txtEditWeight.setEnabled(false);
+        rdoEditName.setEnabled(false);
         rdoEditName.setSelected(false);
+        rdoEditPrice.setEnabled(false);
         rdoEditPrice.setSelected(false);
+        rdoEditType.setEnabled(false);
         rdoEditType.setSelected(false);
+        rdoEditQuantity.setEnabled(false);
         rdoEditQuantity.setSelected(false);
+        rdoEditWeight.setEnabled(false);
         rdoEditWeight.setSelected(false);
+        btnDelete.setEnabled(false);
         btnEdit.setEnabled(false);
     }//GEN-LAST:event_btnEditActionPerformed
 
@@ -1113,6 +1162,11 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
                 lm.addElement(title[i] + ": " + searchResult[i]);
             }
             btnDelete.setEnabled(true);
+            rdoEditName.setEnabled(true);
+            rdoEditPrice.setEnabled(true);
+            rdoEditType.setEnabled(true);
+            rdoEditQuantity.setEnabled(true);
+            rdoEditWeight.setEnabled(true);
         }
     }//GEN-LAST:event_btnSearchActionPerformed
 
