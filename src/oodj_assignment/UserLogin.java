@@ -13,15 +13,57 @@ import java.time.format.DateTimeFormatter;
  *
  * @author asus
  */
-public class Logfile{
+public class UserLogin{
 
-    public String role;
-    public String id;
-    public String username;
-    public String password;
-    public String dateTime;
+    private String role;
+    private String id;
+    private String username;
+    private String password;
+    private String dateTime;
     
     RWTextFile wrtie = new RWTextFile();
+    
+    public boolean verifyLogin(String filePath, String role, String username, String password) throws IOException
+    {
+        boolean match = false;
+        RWTextFile data = new RWTextFile();
+        if(data.readTextFile(filePath)!= null)
+        {
+            String[][] multipleData = data.readTextFile(filePath).clone();
+            int row = 0;
+            boolean over = false;
+            
+            //as long as no username is match, keep looking else end
+            //as long as array is not null, keep looking else end
+            //if username is match, check password , else end
+            while(match!=true || over != true)
+            {
+                if(multipleData[row][0]!=null)
+                {
+                    if(role.equals(multipleData[row][0]) && username.equals(multipleData[row][2]))
+                    {
+                        if(password.equals(multipleData[row][3]))
+                        {
+                            match = true;
+                            break;
+                        }
+                        else
+                        {
+                            over = true;
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    over = true;
+                    break;
+                }
+                row++;
+            }
+        }    
+        return match;
+    }
     
     public void getAndWriteLogfile(String role, String id, String username, String password)
     {
@@ -53,7 +95,7 @@ public class Logfile{
         }
     }
     
-    public String[][] viewLogfile() throws IOException
+    public String[][] viewLogfile() throws IOException 
     {
         //Search user in the textfile
         //Return user details
@@ -79,7 +121,5 @@ public class Logfile{
         }
         System.out.println(result);
         return result;
-        
-    }
-    
+    } 
 }

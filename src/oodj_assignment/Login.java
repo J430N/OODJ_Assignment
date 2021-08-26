@@ -187,15 +187,15 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        UserLogin login = new UserLogin();
         String filePath = "User.txt";
         try {
             //Check user is exist or not
-            if (user.verifyLogin(filePath, role, txtUsername.getText(), txtPassword.getText()))
+            if (login.verifyLogin(filePath, role, txtUsername.getText(), txtPassword.getText()))
             {
                 //Serialization into logfile
                 String[] searchResult = user.searchUsername(filePath, role, txtUsername.getText());
-                Logfile logfile = new Logfile();
-                logfile.getAndWriteLogfile(role, searchResult[1], txtUsername.getText(), txtPassword.getText());
+                login.getAndWriteLogfile(role, searchResult[1], txtUsername.getText(), txtPassword.getText());
                 //Login different user menu
                 if (role.equals("Admin"))
                 {

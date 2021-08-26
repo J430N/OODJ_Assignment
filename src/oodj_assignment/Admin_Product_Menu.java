@@ -9,16 +9,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.DefaultListModel;
-/**
- *
- * @author asus
- */
+
 public class Admin_Product_Menu extends javax.swing.JFrame {
 
     String newType = null;
     String editType = null;
     String viewType = null;
     Product product = new Product();
+    int count = 0;
+    int noc = 0;
     
     enum Type
     {
@@ -144,9 +143,17 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
 
         txtNewPrice.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtNewPrice.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        txtNewPrice.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNewPriceFocusLost(evt);
+            }
+        });
         txtNewPrice.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtNewPriceKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNewPriceKeyTyped(evt);
             }
         });
 
@@ -1259,6 +1266,33 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
             btnEdit.setEnabled(false);
         }
     }//GEN-LAST:event_rdoEditWeightActionPerformed
+
+    private void txtNewPriceKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNewPriceKeyTyped
+        try{
+            Double.parseDouble(txtNewPrice.getText()+evt.getKeyChar());
+            if (evt.getKeyChar()=='.')
+            {
+                count=1;
+            }
+            if (count==1)
+            {
+                noc++;
+                if (noc >3)
+                {
+                    evt.consume();
+                }
+            } 
+        }
+        catch (NumberFormatException ex)
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNewPriceKeyTyped
+
+    private void txtNewPriceFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNewPriceFocusLost
+        count = 0;
+        noc = 0;
+    }//GEN-LAST:event_txtNewPriceFocusLost
 
     /**
      * @param args the command line arguments

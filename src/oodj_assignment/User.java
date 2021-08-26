@@ -32,48 +32,6 @@ public class User
         this.password = password;
     }
 
-    public boolean verifyLogin(String filePath, String role, String username, String password) throws IOException
-    {
-        boolean match = false;
-        RWTextFile data = new RWTextFile();
-        if(data.readTextFile(filePath)!= null)
-        {
-            String[][] multipleData = data.readTextFile(filePath).clone();
-            int row = 0;
-            boolean over = false;
-            
-            //as long as no username is match, keep looking else end
-            //as long as array is not null, keep looking else end
-            //if username is match, check password , else end
-            while(match!=true || over != true)
-            {
-                if(multipleData[row][0]!=null)
-                {
-                    if(role.equals(multipleData[row][0]) && username.equals(multipleData[row][2]))
-                    {
-                        if(password.equals(multipleData[row][3]))
-                        {
-                            match = true;
-                            break;
-                        }
-                        else
-                        {
-                            over = true;
-                            break;
-                        }
-                    }
-                }
-                else
-                {
-                    over = true;
-                    break;
-                }
-                row++;
-            }
-        }    
-        return match;
-    }
-
     public void addUser(String filePath, String role, String newUsername, String newPassword) throws IOException
     {   
         RWTextFile data = new RWTextFile();

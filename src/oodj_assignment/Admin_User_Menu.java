@@ -999,10 +999,10 @@ public class Admin_User_Menu extends javax.swing.JFrame {
     private void btnLogfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogfileActionPerformed
         lm.removeAllElements();
         lm.addElement("User Login Logfile:");
-        Logfile logfile = new Logfile();
+        UserLogin login = new UserLogin();
         String[][] userLog = null;
         try {
-            userLog = logfile.viewLogfile();
+            userLog = login.viewLogfile();
         } catch (IOException ex) {
             Logger.getLogger(Admin_User_Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
