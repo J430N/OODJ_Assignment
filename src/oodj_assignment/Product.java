@@ -27,7 +27,6 @@ public class Product
 
     public void addProduct(String cat, String proName, String type, String proPrice, String quantity, String weight) throws IOException
     {   
-        //Scanner sc = new Scanner(System.in);
         RWTextFile data = new RWTextFile();
         String[][] multipleData = data.readTextFile(filePath).clone();
         int id = 0;
@@ -136,14 +135,13 @@ public class Product
                 if (newProName.equals(multipleData[row][2]))
                 {
                     //Remove selected product
-                    System.out.println(multipleData[row][2]  + "is deleted!");
                 }
                 else
                 {
                     //Write unaffected line back to the file
                     if (multipleData[row][0] != null)
                     {
-                        data.writeTextFile(filePath, multipleData[row][0], multipleData[row][1], multipleData[row][2], multipleData[row][3]);
+                        data.writeTextFile(filePath, multipleData[row][0], multipleData[row][1], multipleData[row][2], multipleData[row][3], multipleData[row][4], multipleData[row][5], multipleData[row][6]);
                     }
                     else
                     {

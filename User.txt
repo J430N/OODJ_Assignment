@@ -1,9 +1,9 @@
 Admin:1:John:456
 Admin:2:Jason:123
-Customer:1:John:123
+Customer:1:John:Kong
 Customer:2:Jason:123
 Customer:3:Jane:456
-Admin:5:345:354
+Admin:5:Jack:354
 Admin:6:Sheng:123
 Customer:4:Jack:133
 Customer:5:Alan:Alan

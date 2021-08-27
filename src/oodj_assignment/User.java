@@ -43,7 +43,6 @@ public class User
         {
             for(int i=0; i <multipleData.length; i++)
             {
-                System.out.println(multipleData[i][0]);
                 if (role.equals(multipleData[i][0]))
                 {
                     //Take all same role user to compare the id
@@ -158,7 +157,6 @@ public class User
                 if (role.equals(multipleData[row][0]) && newUsername.equals(multipleData[row][2]))
                 {
                     //Remove selected user
-                    System.out.println(multipleData[row][2]  + "is deleted!");
                 }
                 else
                 {

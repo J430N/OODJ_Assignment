@@ -1,8 +1,5 @@
 Seasoning:1:Soy_Sauce:Fragile:10.00:10:0.5
 Seasoning:2:Vineger:Fragile:8.00:10:0.5
-Seasoning:3:Salt:NonFragile:12.50:10:0.5
-Beverage:1:Cola:NonFragile:4.10:10:1
+Beverage:1:Pepsi:NonFragile:4.10:10:1
 Beverage:2:100_Plus:NonFragile:3.10:10:1
-Beverage:3:Coke:NonFragile:50:15:20
-Seasoning:4:Sugar:Fragile:12:2:0.5
-Beverage:4:Water:Fragile:5:10:100.0
+Beverage:3:Coca_Cola:Fragile:10:10:12.50

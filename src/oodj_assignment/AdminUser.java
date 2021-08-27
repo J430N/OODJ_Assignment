@@ -6,7 +6,6 @@
 package oodj_assignment;
 
 import java.io.IOException;
-import java.util.Scanner;
 
 /**
  *

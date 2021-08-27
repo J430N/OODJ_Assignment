@@ -950,31 +950,62 @@ public class Admin_User_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_rdoSearchCustActionPerformed
 
     private void rdoEditUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoEditUsernameActionPerformed
-        if (rdoEditUsername.isSelected())
+        if (rdoEditUsername.isSelected() || rdoEditPassword.isSelected())
         {
-            txtEditUsername.setEnabled(true);
             btnEdit.setEnabled(true);
         }
         else
         {
-            txtEditUsername.setEnabled(false);
             btnEdit.setEnabled(false);
+        }
+        
+        if (rdoEditUsername.isSelected())
+        {
+            txtEditUsername.setEnabled(true);
+        }
+        else
+        {
+            txtEditUsername.setEnabled(false);
+        }
+        
+        if (rdoEditPassword.isSelected())
+        {
+            txtEditPassword.setEnabled(true);
+        }
+        else
+        {
+            txtEditPassword.setEnabled(false);
         }
         
     }//GEN-LAST:event_rdoEditUsernameActionPerformed
 
     private void rdoEditPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoEditPasswordActionPerformed
-        if (rdoEditPassword.isSelected())
+        if (rdoEditUsername.isSelected() || rdoEditPassword.isSelected())
         {
-            txtEditPassword.setEnabled(true);
             btnEdit.setEnabled(true);
         }
         else
         {
-            txtEditPassword.setEnabled(false);
             btnEdit.setEnabled(false);
         }
         
+        if (rdoEditUsername.isSelected())
+        {
+            txtEditUsername.setEnabled(true);
+        }
+        else
+        {
+            txtEditUsername.setEnabled(false);
+        }
+        
+        if (rdoEditPassword.isSelected())
+        {
+            txtEditPassword.setEnabled(true);
+        }
+        else
+        {
+            txtEditPassword.setEnabled(false);
+        }
     }//GEN-LAST:event_rdoEditPasswordActionPerformed
 
     private void txtAddUsernameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAddUsernameKeyPressed

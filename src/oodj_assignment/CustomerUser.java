@@ -61,7 +61,6 @@ public class CustomerUser extends User
         //Create next id value
         for(int i =0; i<idFromArray.length;i++)
         {
-            System.out.println(idFromArray[i]);
             while (idFromArray[i] != null)
             {
                 if (idFromArray[i] > id) //find the biggest id

@@ -1630,9 +1630,9 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
             if (newWeightCount==1)
             {
                 newWeightDp++;
-                if (newWeightDp>2) //Adjust this to change the decimal places
+                if (newWeightDp>3) //Adjust this to change the decimal places
                 {
-                    newWeightDp=2;
+                    newWeightDp=3;
                     evt.consume();
                 }
             } 
@@ -1732,9 +1732,9 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
             if (editWeightCount==1)
             {
                 editWeightDp++;
-                if (editWeightDp>2) //Adjust this to change the decimal places
+                if (editWeightDp>3) //Adjust this to change the decimal places
                 {
-                    editWeightDp=2;
+                    editWeightDp=3;
                     evt.consume();
                 }
             } 
