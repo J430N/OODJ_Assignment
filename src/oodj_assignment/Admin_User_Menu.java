@@ -20,6 +20,10 @@ public class Admin_User_Menu extends javax.swing.JFrame {
     String viewRole = null;
     AdminUser admin = new AdminUser();
     String filePath = "User.txt";
+
+    private Admin_User_Menu() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     enum Role
     {
@@ -27,11 +31,18 @@ public class Admin_User_Menu extends javax.swing.JFrame {
         Customer
     }
             
+    UserLogin loginUser = new UserLogin();
+    
     DefaultListModel lm = new DefaultListModel(); //Listbox model(contents)
-    public Admin_User_Menu() {
+    public Admin_User_Menu(UserLogin login) {
         initComponents();
         setSize(950, 650);//Width and Height
         setResizable(false);
+        lblRole.setText(login.getRole());
+        lblId.setText(login.getId());
+        lblUsername.setText(login.getUsername());
+        loginUser=login;
+
         lm.removeAllElements();
 
         //Control set to false
@@ -67,7 +78,7 @@ public class Admin_User_Menu extends javax.swing.JFrame {
         lblUsername2 = new javax.swing.JLabel();
         lblPassword = new javax.swing.JLabel();
         lblPConfirmPassword = new javax.swing.JLabel();
-        lblRole = new javax.swing.JLabel();
+        lblrole = new javax.swing.JLabel();
         txtAddUsername = new javax.swing.JTextField();
         txtAddPassword = new javax.swing.JTextField();
         txtConfirmPassword = new javax.swing.JTextField();
@@ -81,6 +92,12 @@ public class Admin_User_Menu extends javax.swing.JFrame {
         rdoViewCust = new javax.swing.JRadioButton();
         rdoViewAdmin = new javax.swing.JRadioButton();
         btnLogfile = new javax.swing.JButton();
+        lblUsername3 = new javax.swing.JLabel();
+        lblRole = new javax.swing.JLabel();
+        lblRole1 = new javax.swing.JLabel();
+        lblId = new javax.swing.JLabel();
+        lblID1 = new javax.swing.JLabel();
+        lblUsername = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         lblUsername1 = new javax.swing.JLabel();
         txtSearchUsername = new javax.swing.JTextField();
@@ -125,8 +142,8 @@ public class Admin_User_Menu extends javax.swing.JFrame {
         lblPConfirmPassword.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblPConfirmPassword.setText("Confirm Password:");
 
-        lblRole.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblRole.setText("Role:");
+        lblrole.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblrole.setText("Role:");
 
         txtAddUsername.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtAddUsername.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
@@ -188,7 +205,7 @@ public class Admin_User_Menu extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblRole)
+                            .addComponent(lblrole)
                             .addComponent(lblPConfirmPassword)
                             .addComponent(lblPassword)
                             .addComponent(lblUsername2))
@@ -219,7 +236,7 @@ public class Admin_User_Menu extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblPConfirmPassword)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblRole))
+                        .addComponent(lblrole))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(txtAddUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -235,6 +252,7 @@ public class Admin_User_Menu extends javax.swing.JFrame {
                 .addGap(12, 12, 12))
         );
 
+        lstView.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jScrollPane1.setViewportView(lstView);
 
         btnView.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -271,6 +289,24 @@ public class Admin_User_Menu extends javax.swing.JFrame {
             }
         });
 
+        lblUsername3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblUsername3.setText("Role:");
+
+        lblRole.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblRole.setText("Role");
+
+        lblRole1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblRole1.setText("ID:");
+
+        lblId.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblId.setText("ID");
+
+        lblID1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblID1.setText("Username:");
+
+        lblUsername.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblUsername.setText("Username");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -286,17 +322,40 @@ public class Admin_User_Menu extends javax.swing.JFrame {
                 .addComponent(rdoViewCust)
                 .addGap(118, 118, 118))
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(79, 79, 79)
-                .addComponent(btnView, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnLogfile, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(79, 79, 79)
+                        .addComponent(btnView, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnLogfile, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblUsername3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblRole)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblRole1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblId)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblID1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblUsername)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblUsername3)
+                    .addComponent(lblRole)
+                    .addComponent(lblRole1)
+                    .addComponent(lblId)
+                    .addComponent(lblID1)
+                    .addComponent(lblUsername))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rdoViewAdmin)
@@ -619,7 +678,7 @@ public class Admin_User_Menu extends javax.swing.JFrame {
                         } catch (IOException ex) {
                             Logger.getLogger(Admin_User_Menu.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                        lm.addElement("New User:");
+                        lm.addElement("<html><b>New User:<html><b>");
                         for (int i=0; i<title.length;i++)
                         {
                             lm.addElement(title[i] + ": " + searchResult[i]);
@@ -672,7 +731,7 @@ public class Admin_User_Menu extends javax.swing.JFrame {
         }
         if (searchResult[2]==null)
         {
-            lm.addElement("User Not Found!");
+            lm.addElement("<html><b>User Not Found!<html><b>");
             rdoEditUsername.setEnabled(false);
             rdoEditPassword.setEnabled(false);
             btnDelete.setEnabled(false);
@@ -682,7 +741,7 @@ public class Admin_User_Menu extends javax.swing.JFrame {
         }
         else
         {
-            lm.addElement("Search Result:");
+            lm.addElement("<html><b>Search Result:<html><b>");
             for (int i=0; i<title.length;i++)
             {
                 lm.addElement(title[i] + ": " + searchResult[i]);
@@ -697,7 +756,7 @@ public class Admin_User_Menu extends javax.swing.JFrame {
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
         lm.removeAllElements();
-        lm.addElement(viewRole);
+        lm.addElement("<html><b>"+viewRole+"<html><b>");
         String[] title = {"Role", "ID", "Username", "Password"};
         String[][] userList = null;
         try {
@@ -788,7 +847,7 @@ public class Admin_User_Menu extends javax.swing.JFrame {
         if (print == true)
         {
             lm.addElement("\n");
-            lm.addElement("After Edit:");
+            lm.addElement("<html><b>After Edit:<html><b>");
             if (!rdoEditUsername.isSelected())
             {
 
@@ -848,7 +907,7 @@ public class Admin_User_Menu extends javax.swing.JFrame {
 
     private void btnProductMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductMenuActionPerformed
         this.dispose();
-        Admin_Product_Menu productMenu = new Admin_Product_Menu();
+        Admin_Product_Menu productMenu = new Admin_Product_Menu(loginUser);
         productMenu.setVisible(true);
     }//GEN-LAST:event_btnProductMenuActionPerformed
 
@@ -998,7 +1057,7 @@ public class Admin_User_Menu extends javax.swing.JFrame {
 
     private void btnLogfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogfileActionPerformed
         lm.removeAllElements();
-        lm.addElement("User Login Logfile:");
+        lm.addElement("<html><b>User Login Logfile:<html><b>");
         UserLogin login = new UserLogin();
         String[][] userLog = null;
         try {
@@ -1078,11 +1137,17 @@ public class Admin_User_Menu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblID1;
+    private javax.swing.JLabel lblId;
     private javax.swing.JLabel lblPConfirmPassword;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblRole;
+    private javax.swing.JLabel lblRole1;
+    private javax.swing.JLabel lblUsername;
     private javax.swing.JLabel lblUsername1;
     private javax.swing.JLabel lblUsername2;
+    private javax.swing.JLabel lblUsername3;
+    private javax.swing.JLabel lblrole;
     private javax.swing.JList<String> lstView;
     private javax.swing.JRadioButton rdoAdmin;
     private javax.swing.JRadioButton rdoCust;

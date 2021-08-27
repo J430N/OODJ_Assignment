@@ -15,8 +15,7 @@ import javax.swing.JOptionPane;
 public class Login extends javax.swing.JFrame {
 
     String role = null;
-    User user = new User();
-    
+
     public Login() {
         initComponents();
         setSize(950, 650);//Width and Height
@@ -193,15 +192,12 @@ public class Login extends javax.swing.JFrame {
             //Check user is exist or not
             if (login.verifyLogin(filePath, role, txtUsername.getText(), txtPassword.getText()))
             {
-                //Serialization into logfile
-                String[] searchResult = user.searchUsername(filePath, role, txtUsername.getText());
-                login.getAndWriteLogfile(role, searchResult[1], txtUsername.getText(), txtPassword.getText());
+                login.getAndWriteLogfile();
                 //Login different user menu
                 if (role.equals("Admin"))
                 {
-                    user.setUsername(txtUsername.getText());
                     this.dispose();
-                    Admin_User_Menu adminUserMenu = new Admin_User_Menu();
+                    Admin_User_Menu adminUserMenu = new Admin_User_Menu(login); //Pass login object into next frame
                     adminUserMenu.setVisible(true);
                 }
                 else

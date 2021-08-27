@@ -5,3 +5,4 @@ Beverage:1:Cola:NonFragile:4.10:10:1
 Beverage:2:100_Plus:NonFragile:3.10:10:1
 Beverage:3:Coke:NonFragile:50:15:20
 Seasoning:4:Sugar:Fragile:12:2:0.5
+Beverage:4:Water:Fragile:5:10:100.0

@@ -14,8 +14,6 @@ import javax.swing.JOptionPane;
  */
 public class Register_New_Customer extends javax.swing.JFrame {
 
-    String role = null;
-    
     public Register_New_Customer() {
         initComponents();
         setSize(950, 650);//Width and Height
@@ -40,10 +38,8 @@ public class Register_New_Customer extends javax.swing.JFrame {
         txtPassword = new javax.swing.JTextField();
         txtUsername = new javax.swing.JTextField();
         btnSignUp = new javax.swing.JButton();
-        lblRole = new javax.swing.JLabel();
         txtConfirmPassword = new javax.swing.JTextField();
         lblPConfirmPassword = new javax.swing.JLabel();
-        rdoCust = new javax.swing.JRadioButton();
         btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -55,7 +51,7 @@ public class Register_New_Customer extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        jLabel1.setText("Sign Up");
+        jLabel1.setText("Customer Sign Up");
 
         lblPassword.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblPassword.setText("Password:");
@@ -87,9 +83,6 @@ public class Register_New_Customer extends javax.swing.JFrame {
             }
         });
 
-        lblRole.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblRole.setText("Role:");
-
         txtConfirmPassword.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtConfirmPassword.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         txtConfirmPassword.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -100,15 +93,6 @@ public class Register_New_Customer extends javax.swing.JFrame {
 
         lblPConfirmPassword.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblPConfirmPassword.setText("Confirm Password:");
-
-        buttonGroup1.add(rdoCust);
-        rdoCust.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        rdoCust.setText("Customer");
-        rdoCust.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rdoCustActionPerformed(evt);
-            }
-        });
 
         btnBack.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnBack.setText("Back");
@@ -125,34 +109,33 @@ public class Register_New_Customer extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(381, 381, 381)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(184, 184, 184)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblUsername)
                             .addComponent(lblPassword)
-                            .addComponent(lblPConfirmPassword)
-                            .addComponent(lblRole))
+                            .addComponent(lblPConfirmPassword))
                         .addGap(29, 29, 29)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtConfirmPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(rdoCust)))
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(316, 316, 316)
                         .addComponent(btnSignUp, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(190, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(279, 279, 279))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(117, 117, 117)
+                .addGap(130, 130, 130)
                 .addComponent(jLabel1)
-                .addGap(78, 78, 78)
+                .addGap(65, 65, 65)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblUsername))
@@ -164,11 +147,7 @@ public class Register_New_Customer extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtConfirmPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPConfirmPassword))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblRole)
-                    .addComponent(rdoCust))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSignUp)
                     .addComponent(btnBack))
@@ -194,7 +173,7 @@ public class Register_New_Customer extends javax.swing.JFrame {
         CustomerUser cust = new CustomerUser();
         String filePath = "User.txt";
         try {
-            if (cust.checkUserExist(filePath, role, txtUsername.getText()))
+            if (cust.checkUserExist(filePath, "Customer", txtUsername.getText()))
             {
                 JOptionPane.showMessageDialog(this, "User found! Please try again");
             }
@@ -204,7 +183,7 @@ public class Register_New_Customer extends javax.swing.JFrame {
                 if (txtPassword.getText().equals(txtConfirmPassword.getText()))
                 {
                     cust.setNewPassword(txtPassword.getText());
-                    cust.addNewCustomer(role);
+                    cust.addUser();
                     JOptionPane.showMessageDialog(this, "User successfully added!");
                 }
                 else
@@ -222,11 +201,6 @@ public class Register_New_Customer extends javax.swing.JFrame {
 
         
     }//GEN-LAST:event_btnSignUpActionPerformed
-
-    private void rdoCustActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoCustActionPerformed
-        role = "Customer";
-        btnSignUp.setEnabled(true);
-    }//GEN-LAST:event_rdoCustActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         this.dispose();
@@ -272,6 +246,8 @@ public class Register_New_Customer extends javax.swing.JFrame {
         {
             txtConfirmPassword.setEditable(true);
         }
+        
+        btnSignUp.setEnabled(true);
     }//GEN-LAST:event_txtConfirmPasswordKeyPressed
 
     /**
@@ -318,9 +294,7 @@ public class Register_New_Customer extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblPConfirmPassword;
     private javax.swing.JLabel lblPassword;
-    private javax.swing.JLabel lblRole;
     private javax.swing.JLabel lblUsername;
-    private javax.swing.JRadioButton rdoCust;
     private javax.swing.JTextField txtConfirmPassword;
     private javax.swing.JTextField txtPassword;
     private javax.swing.JTextField txtUsername;

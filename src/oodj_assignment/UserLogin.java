@@ -16,13 +16,43 @@ import java.time.format.DateTimeFormatter;
 public class UserLogin{
 
     private String role;
-    private String id;
+    private String Id;
     private String username;
     private String password;
     private String dateTime;
     
     RWTextFile wrtie = new RWTextFile();
     
+    public String getUsername()
+    {
+        return username;
+    }
+    
+    public void setUsername(String username)
+    {
+        this.username = username;
+    }
+    
+    public String getPassword()
+    {
+        return password;
+    }
+    
+    public void setPassword(String password)
+    {
+        this.password = password;
+    }
+    
+    public String getRole()
+    {
+        return role;
+    }
+    
+    public String getId()
+    {
+        return Id;
+    }
+
     public boolean verifyLogin(String filePath, String role, String username, String password) throws IOException
     {
         boolean match = false;
@@ -45,6 +75,10 @@ public class UserLogin{
                         if(password.equals(multipleData[row][3]))
                         {
                             match = true;
+                            this.role = multipleData[row][0];
+                            this.Id = multipleData[row][1];
+                            this.username = multipleData[row][2];
+                            this.password = multipleData[row][3];
                             break;
                         }
                         else
@@ -65,13 +99,8 @@ public class UserLogin{
         return match;
     }
     
-    public void getAndWriteLogfile(String role, String id, String username, String password)
+    public void getAndWriteLogfile()
     {
-        this.role = role;
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        
         //Date and time
         LocalDateTime now = LocalDateTime.now();  
         DateTimeFormatter formatDT = DateTimeFormatter.ofPattern("dd-MM-yyyy HH.mm.ss");
@@ -85,7 +114,7 @@ public class UserLogin{
             FileWriter writer = new FileWriter("User_Logfile.txt", true); // Write user details into the file 
             BufferedWriter bwr = new BufferedWriter(writer);
             PrintWriter pwr = new PrintWriter(bwr); //Write user into text file and auto print new line
-            pwr.println(role + ":" + id + ":" + username + ":" + password + ":" + dateTime);
+            pwr.println(role + ":" + Id + ":" + username + ":" + password + ":" + dateTime);
             bwr.close();
         } 
         catch (IOException e) 

@@ -16,8 +16,18 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
     String editType = null;
     String viewType = null;
     Product product = new Product();
-    int count = 0;
-    int noc = 0;
+    int newPriceCount = 0;
+    int newPriceDp = 0;
+    int editPriceCount = 0;
+    int editPriceDp = 0;
+    int newWeightCount = 0;
+    int newWeightDp = 0;
+    int editWeightCount = 0;
+    int editWeightDp = 0;
+
+    private Admin_Product_Menu() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     enum Type
     {
@@ -25,11 +35,17 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
         NonFragile
     }
      
+    UserLogin loginProduct = new UserLogin();
+    
     DefaultListModel lm = new DefaultListModel(); //Listbox model(contents)
-    public Admin_Product_Menu() {
+    public Admin_Product_Menu(UserLogin loginUser) {
         initComponents();
         setSize(950, 650);//Width and Height
         setResizable(false);
+        lblRole.setText(loginUser.getRole());
+        lblId.setText(loginUser.getId());
+        lblUsername.setText(loginUser.getUsername());
+        loginProduct = loginUser;
         lm.removeAllElements();
 
         //Control set to false
@@ -74,7 +90,7 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
         cboNewCategory = new javax.swing.JComboBox<>();
         lblPConfirmPassword3 = new javax.swing.JLabel();
         txtNewQuantity = new javax.swing.JTextField();
-        lblRole = new javax.swing.JLabel();
+        lblType = new javax.swing.JLabel();
         rdoNewNonFragile = new javax.swing.JRadioButton();
         rdoNewFragile = new javax.swing.JRadioButton();
         btnAdd = new javax.swing.JButton();
@@ -89,6 +105,12 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
         btnView = new javax.swing.JButton();
         rdoViewNonFragile = new javax.swing.JRadioButton();
         rdoViewFragile = new javax.swing.JRadioButton();
+        lblUsername = new javax.swing.JLabel();
+        lblID1 = new javax.swing.JLabel();
+        lblId = new javax.swing.JLabel();
+        lblRole1 = new javax.swing.JLabel();
+        lblRole = new javax.swing.JLabel();
+        lblUsername3 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         lblUsername1 = new javax.swing.JLabel();
         txtSearchProduct = new javax.swing.JTextField();
@@ -170,8 +192,8 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
             }
         });
 
-        lblRole.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblRole.setText("Types:");
+        lblType.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblType.setText("Types:");
 
         buttonGroup1.add(rdoNewNonFragile);
         rdoNewNonFragile.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -203,9 +225,17 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
 
         txtNewWeight.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtNewWeight.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        txtNewWeight.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNewWeightFocusLost(evt);
+            }
+        });
         txtNewWeight.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtNewWeightKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNewWeightKeyTyped(evt);
             }
         });
 
@@ -276,7 +306,7 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNewPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtNewName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(lblRole)))
+                    .addComponent(lblType)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -295,7 +325,7 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
                         .addComponent(txtNewPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblRole)
+                    .addComponent(lblType)
                     .addComponent(rdoNewFragile)
                     .addComponent(rdoNewNonFragile))
                 .addGap(6, 6, 6)
@@ -315,6 +345,7 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
                 .addGap(29, 29, 29))
         );
 
+        lstView.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jScrollPane1.setViewportView(lstView);
 
         btnView.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -343,6 +374,24 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
             }
         });
 
+        lblUsername.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblUsername.setText("Username");
+
+        lblID1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblID1.setText("Username:");
+
+        lblId.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblId.setText("ID");
+
+        lblRole1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblRole1.setText("ID:");
+
+        lblRole.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblRole.setText("Role");
+
+        lblUsername3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblUsername3.setText("Role:");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -363,13 +412,34 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
                                 .addComponent(rdoViewFragile)
                                 .addGap(18, 18, 18)
                                 .addComponent(rdoViewNonFragile)))
-                        .addGap(104, 104, 104))))
+                        .addGap(104, 104, 104))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(lblUsername3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblRole)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblRole1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblId)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblID1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblUsername)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblUsername3)
+                    .addComponent(lblRole)
+                    .addComponent(lblRole1)
+                    .addComponent(lblId)
+                    .addComponent(lblID1)
+                    .addComponent(lblUsername))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rdoViewFragile)
@@ -436,9 +506,17 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
 
         txtEditPrice.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtEditPrice.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        txtEditPrice.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtEditPriceFocusLost(evt);
+            }
+        });
         txtEditPrice.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtEditPriceKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEditPriceKeyTyped(evt);
             }
         });
 
@@ -470,9 +548,17 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
 
         txtEditWeight.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtEditWeight.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        txtEditWeight.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtEditWeightFocusLost(evt);
+            }
+        });
         txtEditWeight.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtEditWeightKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEditWeightKeyTyped(evt);
             }
         });
 
@@ -756,7 +842,7 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
                     } catch (IOException ex) {
                         Logger.getLogger(Admin_Product_Menu.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    lm.addElement("New Product:");
+                    lm.addElement("<html><b>New Product:<html><b>");
                     for (int i=0; i<title.length;i++)
                     {
                         lm.addElement(title[i] + ": " + searchResult[i]);
@@ -782,7 +868,7 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
         lm.removeAllElements();
-        lm.addElement(viewType);
+        lm.addElement("<html><b>"+viewType+"</b></html>");
         String[] title = {"Category", "ID", "Product Name", "Type", "Price", "Quantity", "Weight"};
         String[][] productList = null;
         try {
@@ -813,7 +899,7 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
 
     private void btnUserMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserMenuActionPerformed
         this.dispose();
-        Admin_User_Menu userMenu = new Admin_User_Menu();
+        Admin_User_Menu userMenu = new Admin_User_Menu(loginProduct);
         userMenu.setVisible(true);
     }//GEN-LAST:event_btnUserMenuActionPerformed
 
@@ -861,8 +947,7 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
 
     private void txtNewPriceKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNewPriceKeyPressed
         char c = evt.getKeyChar();
-        
-        
+
         if (Character.isDigit(c) || Character.isISOControl(c) || c==46)
         {
             txtNewPrice.setEditable(true);
@@ -871,8 +956,6 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
         {
             txtNewPrice.setEditable(false);
         }
-        
-        
     }//GEN-LAST:event_txtNewPriceKeyPressed
 
     private void txtNewQuantityKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNewQuantityKeyPressed
@@ -927,7 +1010,7 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
 
     private void txtNewWeightKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNewWeightKeyPressed
         char c = evt.getKeyChar();
-        
+
         if (Character.isDigit(c) || Character.isISOControl(c) || c==46)
         {
             txtNewWeight.setEditable(true);
@@ -1103,7 +1186,7 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
                 Logger.getLogger(Admin_Product_Menu.class.getName()).log(Level.SEVERE, null, ex);
             }
             lm.addElement("\n");
-            lm.addElement("After Edit:");
+            lm.addElement("<html><b>After Edit:<html><b>");
             if (!rdoEditName.isSelected())
             {
                 try {
@@ -1159,7 +1242,6 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
         String searchResult[] = null;
         lm.removeAllElements();
         String[] title = {"Category", "ID", "Product Name", "Type", "Price", "Quantity", "Weight"};
-
         try {
             searchResult = product.searchProName(txtSearchProduct.getText());
         } catch (IOException ex) {
@@ -1167,13 +1249,13 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
         }
         if (searchResult[2]==null)
         {
-            lm.addElement("Product Not Found!");
+            lm.addElement("<html><b>Product Not Found!<html><b>");
             btnDelete.setEnabled(false);
             txtSearchProduct.setText(null);
         }
         else
         {
-            lm.addElement("Search Result:");
+            lm.addElement("<html><b>Search Result:<html><b>");
             for (int i=0; i<title.length;i++)
             {
                 lm.addElement(title[i] + ": " + searchResult[i]);
@@ -1201,69 +1283,273 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSearchProductKeyPressed
 
     private void rdoEditNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoEditNameActionPerformed
+        if (rdoEditName.isSelected() || rdoEditPrice.isSelected() || rdoEditType.isSelected() || rdoEditQuantity.isSelected() || rdoEditWeight.isSelected())
+        {
+            btnEdit.setEnabled(true);
+        }
+        else
+        {
+            btnEdit.setEnabled(false);
+        }
+        
         if (rdoEditName.isSelected())
         {
-            txtEditName.setEnabled(true);
-            btnEdit.setEnabled(true);
+            txtEditName.setEnabled(true);                
         }
         else
         {
             txtEditName.setEnabled(false);
-            btnEdit.setEnabled(false);
         }
-    }//GEN-LAST:event_rdoEditNameActionPerformed
-
-    private void rdoEditPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoEditPriceActionPerformed
         if (rdoEditPrice.isSelected())
         {
             txtEditPrice.setEnabled(true);
-            btnEdit.setEnabled(true);
         }
         else
         {
             txtEditPrice.setEnabled(false);
-            btnEdit.setEnabled(false);
         }
-    }//GEN-LAST:event_rdoEditPriceActionPerformed
-
-    private void rdoEditTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoEditTypeActionPerformed
-       if (rdoEditType.isSelected())
+        if (rdoEditType.isSelected())
         {
             rdoEditFragile.setEnabled(true);
             rdoEditNonFragile.setEnabled(true);
-            btnEdit.setEnabled(true);
         }
         else
         {
             rdoEditFragile.setEnabled(false);
             rdoEditNonFragile.setEnabled(false);
-            btnEdit.setEnabled(false);
         }
-    }//GEN-LAST:event_rdoEditTypeActionPerformed
-
-    private void rdoEditQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoEditQuantityActionPerformed
         if (rdoEditQuantity.isSelected())
         {
             txtEditQuantity.setEnabled(true);
-            btnEdit.setEnabled(true);
         }
         else
         {
             txtEditQuantity.setEnabled(false);
-            btnEdit.setEnabled(false);
         }
-    }//GEN-LAST:event_rdoEditQuantityActionPerformed
-
-    private void rdoEditWeightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoEditWeightActionPerformed
         if (rdoEditWeight.isSelected())
         {
             txtEditWeight.setEnabled(true);
-            btnEdit.setEnabled(true);
         }
         else
         {
             txtEditWeight.setEnabled(false);
+        }
+
+    }//GEN-LAST:event_rdoEditNameActionPerformed
+
+    private void rdoEditPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoEditPriceActionPerformed
+        if (rdoEditName.isSelected() || rdoEditPrice.isSelected() || rdoEditType.isSelected() || rdoEditQuantity.isSelected() || rdoEditWeight.isSelected())
+        {
+            btnEdit.setEnabled(true);
+        }
+        else
+        {
             btnEdit.setEnabled(false);
+        }
+        
+        if (rdoEditName.isSelected())
+        {
+            txtEditName.setEnabled(true);                
+        }
+        else
+        {
+            txtEditName.setEnabled(false);
+        }
+        if (rdoEditPrice.isSelected())
+        {
+            txtEditPrice.setEnabled(true);
+        }
+        else
+        {
+            txtEditPrice.setEnabled(false);
+        }
+        if (rdoEditType.isSelected())
+        {
+            rdoEditFragile.setEnabled(true);
+            rdoEditNonFragile.setEnabled(true);
+        }
+        else
+        {
+            rdoEditFragile.setEnabled(false);
+            rdoEditNonFragile.setEnabled(false);
+        }
+        if (rdoEditQuantity.isSelected())
+        {
+            txtEditQuantity.setEnabled(true);
+        }
+        else
+        {
+            txtEditQuantity.setEnabled(false);
+        }
+        if (rdoEditWeight.isSelected())
+        {
+            txtEditWeight.setEnabled(true);
+        }
+        else
+        {
+            txtEditWeight.setEnabled(false);
+        }
+    }//GEN-LAST:event_rdoEditPriceActionPerformed
+
+    private void rdoEditTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoEditTypeActionPerformed
+        if (rdoEditName.isSelected() || rdoEditPrice.isSelected() || rdoEditType.isSelected() || rdoEditQuantity.isSelected() || rdoEditWeight.isSelected())
+        {
+            btnEdit.setEnabled(true);
+        }
+        else
+        {
+            btnEdit.setEnabled(false);
+        }
+        
+        if (rdoEditName.isSelected())
+        {
+            txtEditName.setEnabled(true);                
+        }
+        else
+        {
+            txtEditName.setEnabled(false);
+        }
+        if (rdoEditPrice.isSelected())
+        {
+            txtEditPrice.setEnabled(true);
+        }
+        else
+        {
+            txtEditPrice.setEnabled(false);
+        }
+        if (rdoEditType.isSelected())
+        {
+            rdoEditFragile.setEnabled(true);
+            rdoEditNonFragile.setEnabled(true);
+        }
+        else
+        {
+            rdoEditFragile.setEnabled(false);
+            rdoEditNonFragile.setEnabled(false);
+        }
+        if (rdoEditQuantity.isSelected())
+        {
+            txtEditQuantity.setEnabled(true);
+        }
+        else
+        {
+            txtEditQuantity.setEnabled(false);
+        }
+        if (rdoEditWeight.isSelected())
+        {
+            txtEditWeight.setEnabled(true);
+        }
+        else
+        {
+            txtEditWeight.setEnabled(false);
+        }
+    }//GEN-LAST:event_rdoEditTypeActionPerformed
+
+    private void rdoEditQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoEditQuantityActionPerformed
+        if (rdoEditName.isSelected() || rdoEditPrice.isSelected() || rdoEditType.isSelected() || rdoEditQuantity.isSelected() || rdoEditWeight.isSelected())
+        {
+            btnEdit.setEnabled(true);
+        }
+        else
+        {
+            btnEdit.setEnabled(false);
+        }
+        
+        if (rdoEditName.isSelected())
+        {
+            txtEditName.setEnabled(true);                
+        }
+        else
+        {
+            txtEditName.setEnabled(false);
+        }
+        if (rdoEditPrice.isSelected())
+        {
+            txtEditPrice.setEnabled(true);
+        }
+        else
+        {
+            txtEditPrice.setEnabled(false);
+        }
+        if (rdoEditType.isSelected())
+        {
+            rdoEditFragile.setEnabled(true);
+            rdoEditNonFragile.setEnabled(true);
+        }
+        else
+        {
+            rdoEditFragile.setEnabled(false);
+            rdoEditNonFragile.setEnabled(false);
+        }
+        if (rdoEditQuantity.isSelected())
+        {
+            txtEditQuantity.setEnabled(true);
+        }
+        else
+        {
+            txtEditQuantity.setEnabled(false);
+        }
+        if (rdoEditWeight.isSelected())
+        {
+            txtEditWeight.setEnabled(true);
+        }
+        else
+        {
+            txtEditWeight.setEnabled(false);
+        }
+    }//GEN-LAST:event_rdoEditQuantityActionPerformed
+
+    private void rdoEditWeightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoEditWeightActionPerformed
+        if (rdoEditName.isSelected() || rdoEditPrice.isSelected() || rdoEditType.isSelected() || rdoEditQuantity.isSelected() || rdoEditWeight.isSelected())
+        {
+            btnEdit.setEnabled(true);
+        }
+        else
+        {
+            btnEdit.setEnabled(false);
+        }
+        
+        if (rdoEditName.isSelected())
+        {
+            txtEditName.setEnabled(true);                
+        }
+        else
+        {
+            txtEditName.setEnabled(false);
+        }
+        if (rdoEditPrice.isSelected())
+        {
+            txtEditPrice.setEnabled(true);
+        }
+        else
+        {
+            txtEditPrice.setEnabled(false);
+        }
+        if (rdoEditType.isSelected())
+        {
+            rdoEditFragile.setEnabled(true);
+            rdoEditNonFragile.setEnabled(true);
+        }
+        else
+        {
+            rdoEditFragile.setEnabled(false);
+            rdoEditNonFragile.setEnabled(false);
+        }
+        if (rdoEditQuantity.isSelected())
+        {
+            txtEditQuantity.setEnabled(true);
+        }
+        else
+        {
+            txtEditQuantity.setEnabled(false);
+        }
+        if (rdoEditWeight.isSelected())
+        {
+            txtEditWeight.setEnabled(true);
+        }
+        else
+        {
+            txtEditWeight.setEnabled(false);
         }
     }//GEN-LAST:event_rdoEditWeightActionPerformed
 
@@ -1272,13 +1558,30 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
             Double.parseDouble(txtNewPrice.getText()+evt.getKeyChar());
             if (evt.getKeyChar()=='.')
             {
-                count=1;
+                newPriceCount=1;
             }
-            if (count==1)
+            if (Character.isISOControl(evt.getKeyChar()))
             {
-                noc++;
-                if (noc >3)
+                if (txtNewPrice.getText().contains("."))
                 {
+                    newPriceDp=newPriceDp-2;
+                    if (newPriceDp==0)
+                    {
+                        newPriceDp=0;
+                    }
+                }
+                else
+                {
+                    newPriceCount=0;
+                newPriceDp=0;
+                }
+            }
+            if (newPriceCount==1)
+            {
+                newPriceDp++;
+                if (newPriceDp>3) //Adjust this to change the decimal places
+                {
+                    newPriceDp=3;
                     evt.consume();
                 }
             } 
@@ -1290,9 +1593,169 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNewPriceKeyTyped
 
     private void txtNewPriceFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNewPriceFocusLost
-        count = 0;
-        noc = 0;
+        if (txtNewPrice.getText().contains("."))
+            {
+                newPriceCount=1;
+            }
+            else
+            {
+                newPriceCount=0;
+                newPriceDp=0;
+            }
     }//GEN-LAST:event_txtNewPriceFocusLost
+
+    private void txtNewWeightKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNewWeightKeyTyped
+        try{
+            Double.parseDouble(txtNewWeight.getText()+evt.getKeyChar());
+            if (evt.getKeyChar()=='.')
+            {
+                newWeightCount=1;
+            }
+            if (Character.isISOControl(evt.getKeyChar()))
+            {
+                if (txtNewWeight.getText().contains("."))
+                {
+                    newWeightDp=newWeightDp-2;
+                    if (newWeightDp==0)
+                    {
+                        newWeightDp=0;
+                    }
+                }
+                else
+                {
+                    newWeightCount=0;
+                newWeightDp=0;
+                }
+            }
+            if (newWeightCount==1)
+            {
+                newWeightDp++;
+                if (newWeightDp>2) //Adjust this to change the decimal places
+                {
+                    newWeightDp=2;
+                    evt.consume();
+                }
+            } 
+        }
+        catch (NumberFormatException ex)
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNewWeightKeyTyped
+
+    private void txtNewWeightFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNewWeightFocusLost
+        if (txtNewWeight.getText().contains("."))
+            {
+                newWeightCount=1;
+            }
+            else
+            {
+                newWeightCount=0;
+                newWeightDp=0;
+            }
+    }//GEN-LAST:event_txtNewWeightFocusLost
+
+    private void txtEditPriceKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEditPriceKeyTyped
+        try{
+            Double.parseDouble(txtEditPrice.getText()+evt.getKeyChar());
+            if (evt.getKeyChar()=='.')
+            {
+                editPriceCount=1;
+            }
+            if (Character.isISOControl(evt.getKeyChar()))
+            {
+                if (txtEditPrice.getText().contains("."))
+                {
+                    editPriceDp=editPriceDp-2;
+                    if (editPriceDp==0)
+                    {
+                        editPriceDp=0;
+                    }
+                }
+                else
+                {
+                    editPriceCount=0;
+                editPriceDp=0;
+                }
+            }
+            if (editPriceCount==1)
+            {
+                editPriceDp++;
+                if (editPriceDp>3) //Adjust this to change the decimal places
+                {
+                    editPriceDp=3;
+                    evt.consume();
+                }
+            } 
+        }
+        catch (NumberFormatException ex)
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtEditPriceKeyTyped
+
+    private void txtEditPriceFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEditPriceFocusLost
+        if (txtEditPrice.getText().contains("."))
+            {
+                editPriceCount=1;
+            }
+            else
+            {
+                editPriceCount=0;
+                editPriceDp=0;
+            }
+    }//GEN-LAST:event_txtEditPriceFocusLost
+
+    private void txtEditWeightKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEditWeightKeyTyped
+        try{
+            Double.parseDouble(txtEditWeight.getText()+evt.getKeyChar());
+            if (evt.getKeyChar()=='.')
+            {
+                editWeightCount=1;
+            }
+            if (Character.isISOControl(evt.getKeyChar()))
+            {
+                if (txtEditWeight.getText().contains("."))
+                {
+                    editWeightDp=editWeightDp-2;
+                    if (editWeightDp==0)
+                    {
+                        editWeightDp=0;
+                    }
+                }
+                else
+                {
+                    editWeightCount=0;
+                editWeightDp=0;
+                }
+            }
+            if (editWeightCount==1)
+            {
+                editWeightDp++;
+                if (editWeightDp>2) //Adjust this to change the decimal places
+                {
+                    editWeightDp=2;
+                    evt.consume();
+                }
+            } 
+        }
+        catch (NumberFormatException ex)
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtEditWeightKeyTyped
+
+    private void txtEditWeightFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEditWeightFocusLost
+        if (txtEditWeight.getText().contains("."))
+            {
+                editWeightCount=1;
+            }
+            else
+            {
+                editWeightCount=0;
+                editWeightDp=0;
+            }
+    }//GEN-LAST:event_txtEditWeightFocusLost
 
     /**
      * @param args the command line arguments
@@ -1362,13 +1825,19 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblID1;
+    private javax.swing.JLabel lblId;
     private javax.swing.JLabel lblPConfirmPassword;
     private javax.swing.JLabel lblPConfirmPassword1;
     private javax.swing.JLabel lblPConfirmPassword3;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblRole;
+    private javax.swing.JLabel lblRole1;
+    private javax.swing.JLabel lblType;
+    private javax.swing.JLabel lblUsername;
     private javax.swing.JLabel lblUsername1;
     private javax.swing.JLabel lblUsername2;
+    private javax.swing.JLabel lblUsername3;
     private javax.swing.JLabel lblUsername5;
     private javax.swing.JLabel lblUsername6;
     private javax.swing.JList<String> lstView;

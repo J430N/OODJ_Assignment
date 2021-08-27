@@ -43,6 +43,7 @@ public class User
         {
             for(int i=0; i <multipleData.length; i++)
             {
+                System.out.println(multipleData[i][0]);
                 if (role.equals(multipleData[i][0]))
                 {
                     //Take all same role user to compare the id
