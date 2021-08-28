@@ -13,7 +13,9 @@ public class OODJ_Assignment {
         String username = null;
         int id = 0;
         //Call the login page
-        //new Login().setVisible(true);
+        Login mainLogin = new Login();
+        
+        mainLogin.setVisible(true);
         
     }
     

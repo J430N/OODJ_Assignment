@@ -139,7 +139,6 @@ public class UserLogin{
             if(multipleData[row][0]!=null)
             {
                 result[row] = multipleData[row];
-
             }
             else
             {
@@ -148,7 +147,6 @@ public class UserLogin{
             }
             row++;
         }
-        System.out.println(result);
         return result;
     } 
 }
