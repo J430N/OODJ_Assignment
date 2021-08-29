@@ -826,10 +826,10 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
                 }
                 else
                 {
-                    product.setProName(txtNewName.getText());
+                    product.setProductName(txtNewName.getText());
                     product.addProduct(cboNewCategory.getSelectedItem().toString(), txtNewName.getText(), newType, txtNewPrice.getText(), txtNewQuantity.getText(), txtNewWeight.getText());
                     try {
-                        searchResult = product.searchProName(txtNewName.getText());
+                        searchResult = product.searchProductName(txtNewName.getText());
                     } catch (IOException ex) {
                         Logger.getLogger(Admin_Product_Menu.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -1107,7 +1107,7 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
         String[] searchResult = null;
         String[] title = {"Category", "ID", "Product Name", "Type", "Price", "Quantity", "Weight"};
         try {
-            searchResult = product.searchProName(txtSearchProduct.getText());
+            searchResult = product.searchProductName(txtSearchProduct.getText());
         } catch (IOException ex) {
             Logger.getLogger(Admin_Product_Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1172,7 +1172,7 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
         if (print == true)
         {
             try {
-                product.editProductDetails(txtSearchProduct.getText(), editName, editProType, editPrice, editQuantity ,editWeight);
+                product.editProduct(txtSearchProduct.getText(), editName, editProType, editPrice, editQuantity ,editWeight);
             } catch (IOException ex) {
                 Logger.getLogger(Admin_Product_Menu.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -1181,7 +1181,7 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
             if (!rdoEditName.isSelected())
             {
                 try {
-                    searchResult = product.searchProName(txtSearchProduct.getText());
+                    searchResult = product.searchProductName(txtSearchProduct.getText());
                 } catch (IOException ex) {
                     Logger.getLogger(Admin_Product_Menu.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -1193,7 +1193,7 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
             else
             {
                 try {
-                    searchResult = product.searchProName(txtEditName.getText());
+                    searchResult = product.searchProductName(txtEditName.getText());
                 } catch (IOException ex) {
                     Logger.getLogger(Admin_Product_Menu.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -1234,7 +1234,7 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
         lm.removeAllElements();
         String[] title = {"Category", "ID", "Product Name", "Type", "Price", "Quantity", "Weight"};
         try {
-            searchResult = product.searchProName(txtSearchProduct.getText());
+            searchResult = product.searchProductName(txtSearchProduct.getText());
         } catch (IOException ex) {
             Logger.getLogger(Admin_Product_Menu.class.getName()).log(Level.SEVERE, null, ex);
         }

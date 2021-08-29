@@ -71,6 +71,7 @@ public class User
         data.writeTextFile(filePath, role, String.valueOf(id), newUsername, newPassword); 
     }
     
+    //Overloading
     public boolean checkUserExist(String filePath, String role) throws IOException
     {
         //Check for login only
@@ -180,6 +181,7 @@ public class User
         }
     }
     
+    //Overloading
     public void editUserDetails(String filePath, String role, String newUsername, String editUsername, String editPassword) throws IOException
     {
         int row = 0;

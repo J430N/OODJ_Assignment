@@ -13,19 +13,19 @@ import java.io.IOException;
 public class Product 
 {
     private String filePath = "Product.txt";
-    private String proName;
+    private String productName;
     
-    public String getProName()
+    public String getProductName()
     {
-        return proName;
+        return productName;
     }
     
-    public void setProName(String proName)
+    public void setProductName(String productName)
     {
-        this.proName = proName;
+        this.productName = productName;
     }
 
-    public void addProduct(String cat, String proName, String type, String proPrice, String quantity, String weight) throws IOException
+    public void addProduct(String cat, String productName, String type, String productPrice, String quantity, String weight) throws IOException
     {   
         RWTextFile data = new RWTextFile();
         String[][] multipleData = data.readTextFile(filePath).clone();
@@ -61,15 +61,15 @@ public class Product
             
         }
         id++;
-        data.writeTextFile(filePath, cat, String.valueOf(id), proName, type, proPrice, quantity, weight); 
+        data.writeTextFile(filePath, cat, String.valueOf(id), productName, type, productPrice, quantity, weight); 
     }
     
-    public boolean checkProductExist(String newProName) throws IOException
+    public boolean checkProductExist(String newProductName) throws IOException
     {
         //Check for add, edit or delete product
         //Check using newProName
         //return true when product exist
-        if (newProName.equals(searchProName(newProName)[2]))
+        if (newProductName.equals(searchProductName(newProductName)[2]))
         {
             return true;
         }
@@ -79,7 +79,7 @@ public class Product
         }
     }
     
-    public String[] searchProName(String newProName) throws IOException
+    public String[] searchProductName(String newProductName) throws IOException
     {
         //Search product in the textfile
         //Return product details
@@ -94,7 +94,7 @@ public class Product
         {
             if(multipleData[row][0]!=null)
             {
-                if (newProName.equals(multipleData[row][2]))
+                if (newProductName.equals(multipleData[row][2]))
                 {
                     for(int col =0; col<multipleData[0].length; col++)
                     {
@@ -120,7 +120,7 @@ public class Product
         return result;
     }
     
-    public void deleteProduct(String newProName) throws IOException
+    public void deleteProduct(String newProductName) throws IOException
     {   
         int row = 0;
         boolean over = false;
@@ -132,7 +132,7 @@ public class Product
         {
             if(multipleData[row][0]!=null)
             {
-                if (newProName.equals(multipleData[row][2]))
+                if (newProductName.equals(multipleData[row][2]))
                 {
                     //Remove selected product
                 }
@@ -158,7 +158,7 @@ public class Product
         }
     }
     
-    public void editProductDetails(String newProName, String editProName, String editType, String editPrice, String editQuantity ,String editWeight) throws IOException
+    public void editProduct(String newProductName, String editProductName, String editType, String editPrice, String editQuantity ,String editWeight) throws IOException
     {
         int row = 0;
         boolean over = false;
@@ -170,10 +170,10 @@ public class Product
         {
             if(multipleData[row][0]!=null)
             {
-                if (newProName.equals(multipleData[row][2]))
+                if (newProductName.equals(multipleData[row][2]))
                 {
                     //Write back the updated data
-                    data.writeTextFile(filePath, multipleData[row][0], multipleData[row][1], editProName, editType, editPrice, editQuantity ,editWeight);
+                    data.writeTextFile(filePath, multipleData[row][0], multipleData[row][1], editProductName, editType, editPrice, editQuantity ,editWeight);
                 }
                 else
                 {

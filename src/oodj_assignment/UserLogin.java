@@ -21,8 +21,6 @@ public class UserLogin{
     private String password;
     private String dateTime;
     
-    RWTextFile wrtie = new RWTextFile();
-    
     public String getUsername()
     {
         return username;
@@ -132,7 +130,7 @@ public class UserLogin{
         boolean over = false;
         RWTextFile data = new RWTextFile();
         String[][] multipleData = data.readTextFile("User_Logfile.txt").clone();
-        //Check product exist or not
+        //Check user exist or not
         String[][] result = new String[multipleData.length][multipleData[0].length];
         while(!over)
         {
