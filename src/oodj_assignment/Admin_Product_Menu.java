@@ -903,9 +903,10 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnOrderItemMenuActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        loginProduct.getAndWriteLogfile("Logout");
         this.dispose();
-        Login login = new Login();
-        login.setVisible(true);
+        Login mainLogin = new Login();
+        mainLogin.setVisible(true);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnOrderMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderMenuActionPerformed

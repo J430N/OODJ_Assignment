@@ -224,7 +224,7 @@ public class Login extends javax.swing.JFrame {
             //Check user is exist or not
             if (login.verifyLogin(filePath, role, txtUsername.getText(), txtPassword.getText()))
             {
-                login.getAndWriteLogfile();
+                login.getAndWriteLogfile("Login");
                 //Login different user menu
                 if (role.equals("Admin"))
                 {

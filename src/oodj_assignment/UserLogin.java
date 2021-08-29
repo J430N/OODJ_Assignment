@@ -46,11 +46,21 @@ public class UserLogin{
         return role;
     }
     
+    public void setRole(String role)
+    {
+        this.role = role;
+    }
+        
     public String getId()
     {
         return Id;
     }
 
+    public void setId(String Id)
+    {
+        this.Id = Id;
+    }
+        
     public boolean verifyLogin(String filePath, String role, String username, String password) throws IOException
     {
         boolean match = false;
@@ -97,7 +107,7 @@ public class UserLogin{
         return match;
     }
     
-    public void getAndWriteLogfile()
+    public void getAndWriteLogfile(String status)
     {
         //Date and time
         LocalDateTime now = LocalDateTime.now();  
@@ -112,7 +122,7 @@ public class UserLogin{
             FileWriter writer = new FileWriter("User_Logfile.txt", true); // Write user details into the file 
             BufferedWriter bwr = new BufferedWriter(writer);
             PrintWriter pwr = new PrintWriter(bwr); //Write user into text file and auto print new line
-            pwr.println(role + ":" + Id + ":" + username + ":" + password + ":" + dateTime);
+            pwr.println(status + ":" + role + ":" + Id + ":" + username + ":" + password + ":" + dateTime);
             bwr.close();
         } 
         catch (IOException e) 

@@ -23,7 +23,7 @@ public class RWTextFile
     public String[][] readTextFile(String filePath) throws FileNotFoundException, IOException
     {
         //Import file
-        String data[][] = new String[100][7]; //100 Row 7 Column (table)
+        String data[][] = new String[1000][7]; //100 Row 7 Column (table)
         //Put the whole file into memory
         InputStreamReader reader = new InputStreamReader(new FileInputStream(filePath), "UTF-8");
         //Read line by line from file in memory

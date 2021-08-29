@@ -669,9 +669,10 @@ public class Admin_User_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnOrderItemMenuActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        loginUser.getAndWriteLogfile("Logout");
         this.dispose();
-        Login login = new Login();
-        login.setVisible(true);
+        Login mainLogin = new Login();
+        mainLogin.setVisible(true);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnOrderMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderMenuActionPerformed
@@ -956,7 +957,7 @@ public class Admin_User_Menu extends javax.swing.JFrame {
         {
             if (userLog[i][0]!=null)
             {
-                lm.addElement(userLog[i][0] + " : " + userLog[i][1] + " : " + userLog[i][2] + " : " + userLog[i][3] + " : " + userLog[i][4]);
+                lm.addElement(userLog[i][0] + " : " + userLog[i][1] + " : " + userLog[i][2] + " : " + userLog[i][3] + " : " + userLog[i][4] + " : " + userLog[i][5]);
             }
         }
     }//GEN-LAST:event_btnLogfileActionPerformed
