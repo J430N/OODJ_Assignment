@@ -22,22 +22,12 @@ public class AdminUser extends User
     {
         this.login = login;
     }
-    
-    public String getNewUsername()
-    {
-        return newUsername;
-    }
-    
+
     public void setNewUsername(String newUsername)
     {
         this.newUsername = newUsername;
     }
-    
-    public String getNewPassword()
-    {
-        return newPassword;
-    }
-    
+
     public void setNewPassword(String newPassword)
     {
         this.newPassword = newPassword;
