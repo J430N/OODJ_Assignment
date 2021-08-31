@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package oodj_assignment;
+import java.awt.Color;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,30 +19,28 @@ public class Admin_User_Menu extends javax.swing.JFrame {
     String addRole = null;
     String searchRole = null;
     String viewRole = null;
-    AdminUser admin = new AdminUser();
+    AdminUser admin;
     String filePath = "User.txt";
 
     private Admin_User_Menu() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     enum Role
     {
         Admin,
         Customer
     }
-            
-    UserLogin loginUser = new UserLogin();
     
     DefaultListModel lm = new DefaultListModel(); //Listbox model(contents)
-    public Admin_User_Menu(UserLogin login) {
+    public Admin_User_Menu(AdminUser admin) {
         initComponents();
-        setSize(1000, 650);//Width and Height
+        setSize(970, 650);//Width and Height
         setResizable(false);
-        lblRole.setText(login.getRole());
-        lblId.setText(login.getId());
-        lblUsername.setText(login.getUsername());
-        loginUser=login;
+        lblRole.setText(admin.getRole());
+        lblId.setText(admin.getId());
+        lblUsername.setText(admin.getUsername());
+        this.admin = admin;
 
         lm.removeAllElements();
 
@@ -121,7 +120,7 @@ public class Admin_User_Menu extends javax.swing.JFrame {
         btnOrderMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Sign Up");
+        setTitle("User Menu");
         setPreferredSize(new java.awt.Dimension(950, 650));
         setResizable(false);
         setSize(new java.awt.Dimension(0, 0));
@@ -660,7 +659,7 @@ public class Admin_User_Menu extends javax.swing.JFrame {
 
     private void btnProductMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductMenuActionPerformed
         this.dispose();
-        Admin_Product_Menu productMenu = new Admin_Product_Menu(loginUser);
+        Admin_Product_Menu productMenu = new Admin_Product_Menu(admin);
         productMenu.setVisible(true);
     }//GEN-LAST:event_btnProductMenuActionPerformed
 
@@ -669,7 +668,8 @@ public class Admin_User_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnOrderItemMenuActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
-        loginUser.getAndWriteLogfile("Logout");
+        UserLogin logout = new UserLogin();
+        logout.getAndWriteLogfile("Logout", admin.getRole(), admin.getId(), admin.getUsername(), admin.getPassword());
         this.dispose();
         Login mainLogin = new Login();
         mainLogin.setVisible(true);
@@ -945,7 +945,7 @@ public class Admin_User_Menu extends javax.swing.JFrame {
 
     private void btnLogfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogfileActionPerformed
         lm.removeAllElements();
-        lm.addElement("<html><b>User Login Logfile:<html><b>");
+        lm.addElement("<html><b>User Logfile:<html><b>");
         UserLogin login = new UserLogin();
         String[][] userLog = null;
         try {

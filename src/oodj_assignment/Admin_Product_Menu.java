@@ -35,17 +35,17 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
         NonFragile
     }
      
-    UserLogin loginProduct = new UserLogin();
+    AdminUser admin;
     
     DefaultListModel lm = new DefaultListModel(); //Listbox model(contents)
-    public Admin_Product_Menu(UserLogin loginUser) {
+    public Admin_Product_Menu(AdminUser admin) {
         initComponents();
-        setSize(1000, 680);//Width and Height
+        setSize(1020, 680);//Width and Height
         setResizable(false);
-        lblRole.setText(loginUser.getRole());
-        lblId.setText(loginUser.getId());
-        lblUsername.setText(loginUser.getUsername());
-        loginProduct = loginUser;
+        lblRole.setText(admin.getRole());
+        lblId.setText(admin.getId());
+        lblUsername.setText(admin.getUsername());
+        this.admin = admin;
         lm.removeAllElements();
 
         //Control set to false
@@ -140,7 +140,7 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
         btnOrderMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Sign Up");
+        setTitle("Product Menu");
         setResizable(false);
         setSize(new java.awt.Dimension(0, 0));
 
@@ -890,7 +890,7 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
 
     private void btnUserMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserMenuActionPerformed
         this.dispose();
-        Admin_User_Menu userMenu = new Admin_User_Menu(loginProduct);
+        Admin_User_Menu userMenu = new Admin_User_Menu(admin);
         userMenu.setVisible(true);
     }//GEN-LAST:event_btnUserMenuActionPerformed
 
@@ -903,7 +903,8 @@ public class Admin_Product_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnOrderItemMenuActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
-        loginProduct.getAndWriteLogfile("Logout");
+        UserLogin logout = new UserLogin();
+        logout.getAndWriteLogfile("Logout", admin.getRole(), admin.getId(), admin.getUsername(), admin.getPassword());
         this.dispose();
         Login mainLogin = new Login();
         mainLogin.setVisible(true);

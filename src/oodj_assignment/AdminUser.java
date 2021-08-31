@@ -16,7 +16,13 @@ public class AdminUser extends User
     private String filePath = "User.txt"; //Make a static file in user class
     private String newUsername;
     private String newPassword;
+    UserLogin login = new UserLogin();
 
+    public AdminUser(UserLogin login)
+    {
+        this.login = login;
+    }
+    
     public String getNewUsername()
     {
         return newUsername;
@@ -37,6 +43,25 @@ public class AdminUser extends User
         this.newPassword = newPassword;
     }
     
+    public String getUsername()
+    {
+        return login.getUsername();
+    }
+    
+    public String getPassword()
+    {
+        return login.getPassword();
+    }
+
+    public String getRole()
+    {
+        return login.getRole();
+    }
+ 
+    public String getId()
+    {
+        return login.getId();
+    }
     //Each method for each function
     public void addNewUser(String role) throws IOException
     {

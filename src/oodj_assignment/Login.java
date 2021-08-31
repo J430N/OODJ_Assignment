@@ -48,7 +48,7 @@ public class Login extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Sign Up");
+        setTitle("Login");
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
@@ -224,12 +224,13 @@ public class Login extends javax.swing.JFrame {
             //Check user is exist or not
             if (login.verifyLogin(filePath, role, txtUsername.getText(), txtPassword.getText()))
             {
-                login.getAndWriteLogfile("Login");
+                login.getAndWriteLogfile("Login", role, login.getId(), txtUsername.getText(), txtPassword.getText());
                 //Login different user menu
                 if (role.equals("Admin"))
                 {
                     this.dispose();
-                    Admin_User_Menu adminUserMenu = new Admin_User_Menu(login); //Pass login object into next frame
+                    AdminUser admin = new AdminUser(login);
+                    Admin_User_Menu adminUserMenu = new Admin_User_Menu(admin); //Pass login object into next frame
                     adminUserMenu.setVisible(true);
                 }
                 else
