@@ -6,8 +6,7 @@ import java.io.IOException;
 public class Order extends OrderRead
 {
     
-    
-    private String filePath = "C:\\Users\\wongj\\OneDrive - Asia Pacific University\\Desktop\\OODJprojects\\OODJ_Assignment\\Order.txt";
+    private String filePath = "Order.txt";
     private String OrderName;
     User user=new User();
     public String getOrderName()
@@ -154,42 +153,6 @@ public class Order extends OrderRead
         
         return result;
     }
- 
-    /*public String[][] viewOrder(String OrderProName) throws IOException
-    {
-        //Search order in the textfile
-        //Return order details
-        int row = 0;
-        boolean over = false;
-        OrderRead data = new OrderRead();
-        String[][] multipleData = data.readTextFile(filePath).clone();
-        //Check order exist or not
-        String[][] result = new String[multipleData.length][multipleData[0].length];
-        while(!over)
-        {
-            if(multipleData[row][0]!=null)
-            {
-                if (OrderProName.equals(multipleData[row][0]))
-                {
-                        if (multipleData[row] != null)
-                            {
-                                result[row] = multipleData[row];
-                            }
-                            else
-                            {
-                                break;
-                            } 
-                }
-                else
-                {
-                    over = true;
-                    break;
-                }
-                row++;
-            }  
-        }
-        return result;
-    }*/
 }
    
 

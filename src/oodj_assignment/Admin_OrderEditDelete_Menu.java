@@ -34,6 +34,7 @@ public class Admin_OrderEditDelete_Menu extends javax.swing.JFrame {
         setSize(950, 650);//Width and Height
         setResizable(false);
         btnOrderEditDelete.setEnabled(false);
+        btnEditDelete.setEnabled(false);
         
         
         
@@ -299,6 +300,7 @@ public class Admin_OrderEditDelete_Menu extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(Admin_OrderSearchView_Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
+        btnEditDelete.setEnabled(true);
     }//GEN-LAST:event_btnCustOrderActionPerformed
 
     public String[][] readOrderFile(String filePath) throws FileNotFoundException, IOException

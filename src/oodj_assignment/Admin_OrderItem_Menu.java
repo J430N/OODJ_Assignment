@@ -19,6 +19,8 @@ public class Admin_OrderItem_Menu extends javax.swing.JFrame {
     String newType = null;
     String editType = null;
     String viewType = null;
+    String productType = null;
+    double total = 0;
     Object[] row=new Object[3];
     double num=0;
     
@@ -33,23 +35,6 @@ public class Admin_OrderItem_Menu extends javax.swing.JFrame {
         setResizable(false);
         lm.removeAllElements();
         btnAddOrder.setEnabled(false);
-        
-        
-        /*
-        //Control set to false
-        btnProductMenu.setEnabled(false);
-        btnAdd.setEnabled(false);
-        btnView.setEnabled(false);
-        btnEdit.setEnabled(false);
-        btnDelete.setEnabled(false);
-        txtEditName.setEnabled(false);
-        txtEditPrice.setEnabled(false);
-        rdoEditFragile.setEnabled(false);
-        rdoEditNonFragile.setEnabled(false);
-        txtEditQuantity.setEnabled(false);
-        txtEditWeight.setEnabled(false);
-        lstView.setModel(lm); //Attached to the listbox
-        */
     }
     
     Connection con;
@@ -151,7 +136,7 @@ public class Admin_OrderItem_Menu extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Name");
+        jLabel1.setText("Product Name");
 
         jLabel2.setText("Quantity");
 
@@ -214,16 +199,16 @@ public class Admin_OrderItem_Menu extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnSearch)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtOrderName, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGap(4, 4, 4)
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(txtOrderName, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addGap(37, 37, 37)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(spinQuan, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -235,7 +220,7 @@ public class Admin_OrderItem_Menu extends javax.swing.JFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(lblTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -484,12 +469,13 @@ public class Admin_OrderItem_Menu extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
                             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnEditDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnShow)
-                                .addGap(17, 17, 17)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(btnEditDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btnShow))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(27, 27, 27)
@@ -565,13 +551,7 @@ public class Admin_OrderItem_Menu extends javax.swing.JFrame {
         
         try {
             BufferedReader br=new BufferedReader(new FileReader(file));
-            //getting the first line - column name
-            //setting column names as jtable title
-            /*String firstLine=br.readLine().trim();
-            String [] columnsName=firstLine.split(":");
-            DefaultTableModel model = (DefaultTableModel)tblListPro.getModel();
-            model.setColumnIdentifiers(columnsName);
-            */
+
             DefaultTableModel model = (DefaultTableModel)tblListPro.getModel();
             //getting lines from txt file
             Object [] tableLines=br.lines().toArray();
@@ -594,53 +574,11 @@ public class Admin_OrderItem_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnShowActionPerformed
 
     private void tblListProMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblListProMouseClicked
-        /*
-        DefaultTableModel model = (DefaultTableModel)tblListPro.getModel();
-        int selectedRowIndex = tblListPro.getSelectedRow();
         
-        txtName.setText(model.getValueAt(selectedRowIndex, 2).toString());
-        txtQuan.setText(model.getValueAt(selectedRowIndex, 5).toString());
-        */
     }//GEN-LAST:event_tblListProMouseClicked
 
     private void txtOrderNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOrderNameKeyPressed
-        /*if (txtOrderName.equals(EGM))
-        {
-            JOptionPane.showMessageDialog(null,"REquestSuccesfl");
-        }
-        else 
-        {
-            JOptionPane.showMessageDialog(null,"Wrong exmem/clermem");
-        }
-        
-        ArrayList product = new ArrayList();
-         
-        BufferedReader br;
-        try {
-            br = new BufferedReader(new FileReader("C:\\Users\\wongj\\OneDrive - Asia Pacific University\\Desktop\\OODJprojects\\OODJ_Assignment\\Product.txt"));
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Admin_OrderItem_Menu.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        String line;
-        while ((line = br.readLine()) != null) {
-            String[] splited = line.split("\\s");
-            height.add(splited[2]);
-        }
-        br.close();
-        Object i = Collections.max(height);
-         
-        System.out.println("Maximum height: " + i);
-        
-        String filePath = "C:\\Users\\wongj\\OneDrive - Asia Pacific University\\Desktop\\OODJprojects\\OODJ_Assignment\\Product.txt";
-        File file = new File(filePath);
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
-        {
-            String pname=txtOrderName.getText();
-            
-           
-                    
-        }
-        */
+       
     }//GEN-LAST:event_txtOrderNameKeyPressed
 
     private void spinQuanStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spinQuanStateChanged
@@ -651,10 +589,6 @@ public class Admin_OrderItem_Menu extends javax.swing.JFrame {
         double amount=qty*price;
         
         
-        //change to 2 decimal points only
-        //DecimalFormat df = new DecimalFormat();
-        //df.setMaximumFractionDigits(2);
-        //amount=(df.format(amount));
         
         //DecimalFormat df = new DecimalFormat("#.##");
         String num=(String.format("%.2f",amount));
@@ -664,86 +598,25 @@ public class Admin_OrderItem_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_spinQuanStateChanged
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        //btnAdd.setEnabled(false);
-        
+
         DefaultTableModel model=new DefaultTableModel();
         model=(DefaultTableModel)tblOrder.getModel();
         String[] item={txtOrderName.getText(),spinQuan.getValue().toString(),lblOrderPrice.getText(),lblTotal.getText()};
         model.addRow(item);
         
-        //order.setOrderName(txtOrderName.getText());
-        
-        //Object[] row=new Object[4];
-        /*model.addRow(new Object[]
+        num=Double.valueOf(lblTotal.getText());
+        //Abstraction
+        Fragile_Packaging fragilePack = new Fragile_Packaging();
+        NonFragile_Packaging nonFragilePack = new NonFragile_Packaging();
+        if (productType.equals("Fragile"))
         {
-            txtOrderName.getText(),
-            spinQuan.getValue().toString(),
-            lblOrderPrice.getText(),
-            lblAmt.getText(),
-        });*/
-        
-        
-        //order.addOrder(txtOrderName.getText(),spinQuan.getValue().toString(),lblOrderPrice.getText(),lblTotal.getText());
-        /*
-        if (!txtOrderName.getText().isBlank() && !lblOrderPrice.getText().isBlank() && !lblTotal.getText().isBlank())
-        {
-            
-                    order.setOrderName(txtOrderName.getText());
-            try {
-                order.addOrder(txtOrderName.getText(),spinQuan.getValue().toString(),lblOrderPrice.getText(), lblTotal.getText());
-            } catch (IOException ex) {
-                Logger.getLogger(Customer_OrderItem_Menu.class.getName()).log(Level.SEVERE, null, ex);
-            }
-                    JOptionPane.showMessageDialog(this, "Order successfully added!");
-                    txtOrderName.setText(null);
-                    lblOrderPrice.setText(null);
-                    lblTotal.setText(null);
-                    //btnAdd.setEnabled(false);
-                }
-          
+            total = fragilePack.packFee(num);
+        }
         else
         {
-            JOptionPane.showMessageDialog(this, "Invalid input! Please try again");
+            total = nonFragilePack.packFee(num);
         }
-        */
-        
-        
-        /*model.addRow(new Object[]
-        {txtOrderName.getText()});
-        model.addColumn(new Object[]
-        {spinQuan.getValue().toString()}); 
-        model.addColumn(new Object[]
-        {lblOrderPrice.getText()}); 
-        model.addColumn(new Object[]
-        {lblTotal.getText()}); */
-        
-        /*row[0]=txtOrderName.getText();
-        row[1]=spinQuan.getValue().toString();
-        row[2]=lblOrderPrice.getText();
-        row[3]=lblAmt.getText();
-        DefaultTableModel model=(DefaultTableModel)tblOrder.getModel();
-        model.addRow(row);
-        */
-        
-        /*int sum=0;
-            
-        for(int i=0; i<tblOrder.getRowCount(); i++)
-        {
-            sum=sum+Integer.parseInt(tblOrder.getValueAt(i,3).toString());
-        }
-        
-        lblFinalTotal.setText(Integer.toString(sum));
-        txtOrderName.setText("");
-        lblOrderPrice.setText("");
-        lblTotal.setText("");
-        txtOrderName.requestFocus();
-        */
-        
-        
-        num=num+Double.valueOf(lblTotal.getText());
-        String num1=Double.toString(num);
-        lblFinalTotal.setText(num1);
-        System.out.println(num1); 
+        lblFinalTotal.setText(Double.toString(total)); 
         txtOrderName.setText("");
         lblOrderPrice.setText("");
         lblTotal.setText("");
@@ -762,10 +635,9 @@ public class Admin_OrderItem_Menu extends javax.swing.JFrame {
     
     
     public void Balance(){
-       
         double total=Double.parseDouble(lblFinalTotal.getText());
         double pay=Double.parseDouble(txtPay.getText());
-        
+
         double bal=pay-total;
  
         String num=(String.format("%.2f",bal));
@@ -773,9 +645,19 @@ public class Admin_OrderItem_Menu extends javax.swing.JFrame {
     }
     
     public void Receipt(){
+        double fee = 0;
         String total=lblFinalTotal.getText();
         String pay=txtPay.getText();
         String bal=txtBal.getText();
+        
+        if (productType.equals("Fragile"))
+        {
+            fee = 10;
+        }
+        else
+        {
+            fee = 2;
+        }
         
         DefaultTableModel model=new DefaultTableModel();
         model=(DefaultTableModel)tblOrder.getModel();
@@ -797,8 +679,9 @@ public class Admin_OrderItem_Menu extends javax.swing.JFrame {
         }
         
         txtReceipt.setText(txtReceipt.getText()+ "\n");
-        
-        txtReceipt.setText(txtReceipt.getText()+ "\t" + "\t" + "Subtotal: " + total + "\n");
+        txtReceipt.setText(txtReceipt.getText()+ "\t" + "\t" + "Product Subtotal: " + num + "\n");
+        txtReceipt.setText(txtReceipt.getText()+ "\t" + "\t" + "Packaging fee: " + fee + "\n");
+        txtReceipt.setText(txtReceipt.getText()+ "\t" + "\t" + "Order Total: " + total + "\n");
         txtReceipt.setText(txtReceipt.getText()+ "\t" + "\t" + "Pay Amount: " + pay + "\n");
         txtReceipt.setText(txtReceipt.getText()+ "\t" + "\t" + "Balance: " + bal + "\n");
         txtReceipt.setText(txtReceipt.getText()+ "\n");
@@ -837,12 +720,13 @@ public class Admin_OrderItem_Menu extends javax.swing.JFrame {
             if(data[i][0]!=null)
             {
             
-            if(data[i][2].equals(txtOrderName.getText()))
-            {
-                System.out.println(data[i][4]);
-                lblOrderPrice.setText(data[i][4]);
-                break;
-            }
+                if(data[i][2].equals(txtOrderName.getText()))
+                {
+                    System.out.println(data[i][4]);
+                    lblOrderPrice.setText(data[i][4]);
+                    productType = data[i][3];
+                    break;
+                }
             }
             
         }

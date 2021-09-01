@@ -38,7 +38,6 @@ public class CustomerUser extends User
         this.newPassword = newPassword;
     }
     
-    //Override
     public void addUser() throws IOException
     {   
         RWTextFile data = new RWTextFile();
