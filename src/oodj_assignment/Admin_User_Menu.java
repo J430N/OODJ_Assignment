@@ -115,9 +115,10 @@ public class Admin_User_Menu extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         btnUserMenu = new javax.swing.JButton();
         btnProductMenu = new javax.swing.JButton();
-        btnOrderItemMenu = new javax.swing.JButton();
+        btnOrderSearchView = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
-        btnOrderMenu = new javax.swing.JButton();
+        btnOrderEditDelete = new javax.swing.JButton();
+        btnAddOrder = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("User Menu");
@@ -547,11 +548,11 @@ public class Admin_User_Menu extends javax.swing.JFrame {
             }
         });
 
-        btnOrderItemMenu.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnOrderItemMenu.setText("Order Items Menu");
-        btnOrderItemMenu.addActionListener(new java.awt.event.ActionListener() {
+        btnOrderSearchView.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnOrderSearchView.setText("Search/View Order");
+        btnOrderSearchView.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOrderItemMenuActionPerformed(evt);
+                btnOrderSearchViewActionPerformed(evt);
             }
         });
 
@@ -563,11 +564,19 @@ public class Admin_User_Menu extends javax.swing.JFrame {
             }
         });
 
-        btnOrderMenu.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnOrderMenu.setText("Order Menu");
-        btnOrderMenu.addActionListener(new java.awt.event.ActionListener() {
+        btnOrderEditDelete.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnOrderEditDelete.setText("Edit/Delete Order");
+        btnOrderEditDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOrderMenuActionPerformed(evt);
+                btnOrderEditDeleteActionPerformed(evt);
+            }
+        });
+
+        btnAddOrder.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnAddOrder.setText("Add Order");
+        btnAddOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddOrderActionPerformed(evt);
             }
         });
 
@@ -577,15 +586,17 @@ public class Admin_User_Menu extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnUserMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnUserMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnProductMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnProductMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnOrderMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAddOrder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnOrderItemMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnOrderEditDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnOrderSearchView)
+                .addGap(12, 12, 12)
+                .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -595,9 +606,10 @@ public class Admin_User_Menu extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnProductMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnOrderItemMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnOrderMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnUserMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnOrderSearchView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnOrderEditDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnUserMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnAddOrder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -663,9 +675,11 @@ public class Admin_User_Menu extends javax.swing.JFrame {
         productMenu.setVisible(true);
     }//GEN-LAST:event_btnProductMenuActionPerformed
 
-    private void btnOrderItemMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderItemMenuActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnOrderItemMenuActionPerformed
+    private void btnOrderSearchViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderSearchViewActionPerformed
+        this.dispose();
+        Admin_OrderSearchView_Menu searchviewmenu = new Admin_OrderSearchView_Menu(admin);
+        searchviewmenu.setVisible(true);
+    }//GEN-LAST:event_btnOrderSearchViewActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         UserLogin logout = new UserLogin();
@@ -675,9 +689,11 @@ public class Admin_User_Menu extends javax.swing.JFrame {
         mainLogin.setVisible(true);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
-    private void btnOrderMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderMenuActionPerformed
-        
-    }//GEN-LAST:event_btnOrderMenuActionPerformed
+    private void btnOrderEditDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderEditDeleteActionPerformed
+        this.dispose();
+        Admin_OrderEditDelete_Menu menu = new Admin_OrderEditDelete_Menu(admin);
+        menu.setVisible(true);
+    }//GEN-LAST:event_btnOrderEditDeleteActionPerformed
 
     private void txtEditPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEditPasswordKeyPressed
         char c = evt.getKeyChar();
@@ -1105,6 +1121,12 @@ public class Admin_User_Menu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtAddUsernameKeyPressed
 
+    private void btnAddOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddOrderActionPerformed
+        this.dispose();
+        Admin_OrderItem_Menu menu = new Admin_OrderItem_Menu(admin);
+        menu.setVisible(true);
+    }//GEN-LAST:event_btnAddOrderActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1144,12 +1166,13 @@ public class Admin_User_Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddOrder;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnLogfile;
     private javax.swing.JButton btnLogout;
-    private javax.swing.JButton btnOrderItemMenu;
-    private javax.swing.JButton btnOrderMenu;
+    private javax.swing.JButton btnOrderEditDelete;
+    private javax.swing.JButton btnOrderSearchView;
     private javax.swing.JButton btnProductMenu;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnSignUp;

@@ -235,9 +235,9 @@ public class Login extends javax.swing.JFrame {
                 }
                 else
                 {
-                    //this.dispose();
-                    //Customer_Order_Menu custorderMenu = new Customer_Order_Menu();
-                    //custorderMenu.setVisible(true);
+                    this.dispose();
+                    Customer_OrderItem_Menu custorderMenu = new Customer_OrderItem_Menu(login);
+                    custorderMenu.setVisible(true);
                 }
                 
             }

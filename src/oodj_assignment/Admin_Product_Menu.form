@@ -985,15 +985,17 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnUserMenu" min="-2" pref="170" max="-2" attributes="0"/>
+                      <Component id="btnUserMenu" min="-2" pref="143" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="btnProductMenu" min="-2" pref="170" max="-2" attributes="0"/>
+                      <Component id="btnProductMenu" min="-2" pref="161" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                      <Component id="btnAddOrder" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="btnOrderMenu" min="-2" pref="170" max="-2" attributes="0"/>
+                      <Component id="btnOrderEditDelete" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="btnOrderItemMenu" min="-2" pref="170" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnLogout" max="32767" attributes="0"/>
+                      <Component id="btnOrderSearchView" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="btnLogout" min="-2" pref="90" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -1005,9 +1007,10 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btnProductMenu" alignment="3" max="32767" attributes="0"/>
                           <Component id="btnLogout" alignment="3" max="32767" attributes="0"/>
-                          <Component id="btnOrderItemMenu" alignment="3" max="32767" attributes="0"/>
-                          <Component id="btnOrderMenu" alignment="3" max="32767" attributes="0"/>
+                          <Component id="btnOrderSearchView" alignment="3" max="32767" attributes="0"/>
+                          <Component id="btnOrderEditDelete" alignment="3" max="32767" attributes="0"/>
                           <Component id="btnUserMenu" max="32767" attributes="0"/>
+                          <Component id="btnAddOrder" alignment="3" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -1037,15 +1040,15 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnProductMenuActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnOrderItemMenu">
+            <Component class="javax.swing.JButton" name="btnOrderSearchView">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Order Items Menu"/>
+                <Property name="text" type="java.lang.String" value="Search/View Order"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOrderItemMenuActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOrderSearchViewActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnLogout">
@@ -1059,15 +1062,26 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLogoutActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnOrderMenu">
+            <Component class="javax.swing.JButton" name="btnOrderEditDelete">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Order Menu"/>
+                <Property name="text" type="java.lang.String" value="Edit/Delete Order"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOrderMenuActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOrderEditDeleteActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnAddOrder">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="14" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Add Order"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddOrderActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

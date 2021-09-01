@@ -1,0 +1,8 @@
+Jason:Pepsi:3:4.10:12.30:
+Jason:Soy_Sauce:5:10.00:50.00:
+Jane:Pepsi:9:4.10:36.90:
+John:Vineger:3:8.00:24.00:
+Jason:Vineger:2:8.00:16.00:
+Jane:Coca_Cola:3:10:30.00:
+Jane:100_Plus:2:3.10:6.20:
+Jane:Soy_Sauce:2:10.00:20.00:
