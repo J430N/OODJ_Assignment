@@ -58,6 +58,7 @@ public class Admin_OrderSearchView_Menu extends javax.swing.JFrame {
         btnViewOrder = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         lstView = new javax.swing.JTextArea();
+        btnClear = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         lblOrderProduct = new javax.swing.JLabel();
         txtSearchOrder = new javax.swing.JTextField();
@@ -91,12 +92,22 @@ public class Admin_OrderSearchView_Menu extends javax.swing.JFrame {
         lstView.setRows(5);
         jScrollPane2.setViewportView(lstView);
 
+        btnClear.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnClear.setText("Clear List");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnClear)
+                .addGap(59, 59, 59)
                 .addComponent(btnViewOrder)
                 .addGap(128, 128, 128))
             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -110,7 +121,9 @@ public class Admin_OrderSearchView_Menu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnViewOrder)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnViewOrder)
+                    .addComponent(btnClear))
                 .addGap(12, 12, 12))
         );
 
@@ -409,6 +422,10 @@ public class Admin_OrderSearchView_Menu extends javax.swing.JFrame {
         Admin_OrderItem_Menu menu = new Admin_OrderItem_Menu(admin);
         menu.setVisible(true);
     }//GEN-LAST:event_btnAddOrderActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        lstView.setText("");
+    }//GEN-LAST:event_btnClearActionPerformed
     
     public String[][] readOrderFile(String filePath) throws FileNotFoundException, IOException
     {
@@ -543,6 +560,7 @@ public class Admin_OrderSearchView_Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddOrder;
+    private javax.swing.JButton btnClear;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnOrderEditDelete;
     private javax.swing.JButton btnOrderSearchView;

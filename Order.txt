@@ -6,3 +6,9 @@ Jason:Vineger:2:8.00:16.00:
 Jane:Coca_Cola:3:10:30.00:
 Jane:100_Plus:2:3.10:6.20:
 Jane:Soy_Sauce:2:10.00:20.00:
+Sheng:Pepsi:4:4.10:18.4:
+John:100_Plus:2:3.10:6.20:
+John:Coca_Cola:5:10:50.00:
+John:Coca_Cola:3:10:40.0:
+John:Pepsi:8:4.10:34.8:
+Sheng:Coca_Cola:2:10:30.0:

@@ -8,7 +8,7 @@ public class Order extends OrderRead
     
     private String filePath = "Order.txt";
     private String OrderName;
-    User user=new User();
+    
     public String getOrderName()
     {
         return OrderName;
@@ -20,47 +20,7 @@ public class Order extends OrderRead
     }
 
     
-    public String[] searchOrderName(String OrderProName) throws IOException
-    {
-        //Search order in the textfile
-        //Return order details
-        int row = 0;
-        boolean over = false;
-        OrderRead data = new OrderRead();
-        String[][] multipleData = data.readTextFile(filePath).clone();
-        String[] result = new String[multipleData.length];
-        
-        
-        //Check order exist or not
-        while(!over)
-        {
-            if(multipleData[row][0]!=null)
-            {
-                if (OrderProName.equals(multipleData[row][1]))
-                {
-                    for(int col =0; col<multipleData[0].length; col++)
-                    {
-                        if (multipleData[row][col] != null)
-                        {
-                            //Write all order details into result array
-                            result[col] = multipleData[row][col];
-                        }
-                        else
-                        {
-                            break;
-                        }
-                    }
-                }
-            }
-            else
-            {
-                over = true;
-                break;
-            }
-            row++;
-        }
-        return result;
-    }
+    
     
     public String[] searchAllOrderName(String OrderProName) throws IOException
     {
