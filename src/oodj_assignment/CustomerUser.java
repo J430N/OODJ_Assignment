@@ -38,10 +38,11 @@ public class CustomerUser extends User
         this.newPassword = newPassword;
     }
     
-    public void addUser() throws IOException
+    @Override
+    public void addUser(String role, String newUsername, String newPassword) throws IOException
     {   
         RWTextFile data = new RWTextFile();
-        String[][] multipleData = data.readTextFile("User.txt").clone();
+        String[][] multipleData = data.readTextFile(filePath).clone();
         int id = 0;
         boolean over = false;
         Integer[] idFromArray = new Integer[multipleData.length];
@@ -49,7 +50,7 @@ public class CustomerUser extends User
         {
             for(int i=0; i <multipleData.length; i++)
             {
-                if ("Customer".equals(multipleData[i][0]))
+                if (role.equals(multipleData[i][0]))
                 {
                     //Take all same role user to compare the id
                     idFromArray[i] = Integer.parseInt(multipleData[i][1]);// Parsing from string to int
@@ -74,6 +75,6 @@ public class CustomerUser extends User
             
         }
         id++;
-        data.writeTextFile(filePath, "Customer", String.valueOf(id), newUsername, newPassword); 
+        data.writeTextFile(filePath, role, String.valueOf(id), newUsername, newPassword); 
     }
 }

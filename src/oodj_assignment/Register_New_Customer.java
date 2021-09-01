@@ -187,7 +187,7 @@ public class Register_New_Customer extends javax.swing.JFrame {
                 if (txtPassword.getText().equals(txtConfirmPassword.getText()))
                 {
                     cust.setNewPassword(txtPassword.getText());
-                    cust.addUser();
+                    cust.addUser("Customer", txtUsername.getText(), txtPassword.getText());
                     JOptionPane.showMessageDialog(this, "User successfully added!");
                 }
                 else

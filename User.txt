@@ -10,3 +10,5 @@ Customer:5:Alan:Alan
 Admin:7:Tom:Tom2001
 Customer:6:sadf:asdf
 Admin:8:Lim:456
+Admin:9:Jason001:123123
+Customer:7:kok:200

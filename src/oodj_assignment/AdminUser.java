@@ -52,10 +52,45 @@ public class AdminUser extends User
     {
         return login.getId();
     }
-    //Each method for each function
-    public void addNewUser(String role) throws IOException
-    {
-        addUser(filePath, role, newUsername, newPassword);
+    
+    @Override
+    public void addUser(String role, String newUsername, String newPassword) throws IOException
+    {   
+        RWTextFile data = new RWTextFile();
+        String[][] multipleData = data.readTextFile(filePath).clone();
+        int id = 0;
+        boolean over = false;
+        Integer[] idFromArray = new Integer[multipleData.length];
+        while(over == false)
+        {
+            for(int i=0; i <multipleData.length; i++)
+            {
+                if (role.equals(multipleData[i][0]))
+                {
+                    //Take all same role user to compare the id
+                    idFromArray[i] = Integer.parseInt(multipleData[i][1]);// Parsing from string to int
+                }
+            }
+            over = true;
+        }
+        //Create next id value
+        for(int i =0; i<idFromArray.length;i++)
+        {
+            while (idFromArray[i] != null)
+            {
+                if (idFromArray[i] > id) //find the biggest id
+                {
+                    id = idFromArray[i];
+                }
+                else
+                {
+                    break;
+                }
+            }
+            
+        }
+        id++;
+        data.writeTextFile(filePath, role, String.valueOf(id), newUsername, newPassword);
     }
     
     public void deleteOneUser(String role, String targetUsername) throws IOException

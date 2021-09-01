@@ -1035,7 +1035,7 @@ public class Admin_User_Menu extends javax.swing.JFrame {
                     if (txtAddPassword.getText().equals(txtConfirmPassword.getText()))
                     {
                         admin.setNewPassword(txtAddPassword.getText());
-                        admin.addNewUser(addRole);
+                        admin.addUser(addRole, txtAddUsername.getText(), txtAddPassword.getText());
                         try {
                             searchResult = admin.searchOneUser(addRole, txtAddUsername.getText());
                         } catch (IOException ex) {

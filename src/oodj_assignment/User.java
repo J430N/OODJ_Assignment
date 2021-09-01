@@ -32,42 +32,11 @@ public class User
         this.password = password;
     }
 
-    public void addUser(String filePath, String role, String newUsername, String newPassword) throws IOException
+    public void addUser(String role, String newUsername, String newPassword) throws IOException
     {   
         RWTextFile data = new RWTextFile();
-        String[][] multipleData = data.readTextFile(filePath).clone();
+        String filePath = "User.txt";
         int id = 0;
-        boolean over = false;
-        Integer[] idFromArray = new Integer[multipleData.length];
-        while(over == false)
-        {
-            for(int i=0; i <multipleData.length; i++)
-            {
-                if (role.equals(multipleData[i][0]))
-                {
-                    //Take all same role user to compare the id
-                    idFromArray[i] = Integer.parseInt(multipleData[i][1]);// Parsing from string to int
-                }
-            }
-            over = true;
-        }
-        //Create next id value
-        for(int i =0; i<idFromArray.length;i++)
-        {
-            while (idFromArray[i] != null)
-            {
-                if (idFromArray[i] > id) //find the biggest id
-                {
-                    id = idFromArray[i];
-                }
-                else
-                {
-                    break;
-                }
-            }
-            
-        }
-        id++;
         data.writeTextFile(filePath, role, String.valueOf(id), newUsername, newPassword); 
     }
     
