@@ -120,6 +120,7 @@ public class User
         String[][] multipleData = data.readTextFile(filePath).clone();
         //Emtpy the file
         data.clearTextFile(filePath);
+        
         while(!over)
         {
             if(multipleData[row][0]!=null)
@@ -134,6 +135,39 @@ public class User
                     if (multipleData[row][0] != null)
                     {
                         data.writeTextFile(filePath, multipleData[row][0], multipleData[row][1], multipleData[row][2], multipleData[row][3]);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                over = true;
+                break;
+            }
+            row++;
+        }
+        
+        row = 0;
+        over = false;
+        String[][] orderData = data.readTextFile("Order.txt").clone();
+        data.clearTextFile("Order.txt");
+        while(!over)
+        {
+            if(orderData[row][0]!=null)
+            {
+                if (newUsername.equals(orderData[row][0]))
+                {
+                    //Remove selected user order
+                }
+                else
+                {
+                    //Write unaffected line back to the file
+                    if (orderData[row][0] != null)
+                    {
+                        data.writeTextFile("Order.txt", orderData[row][0], orderData[row][1], orderData[row][2], orderData[row][3], orderData[row][4]);
                     }
                     else
                     {

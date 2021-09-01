@@ -93,6 +93,26 @@ public class RWTextFile
         }
     }
     
+    //For delete user order
+    public void writeTextFile(String filePath, String username, String product, String quantity, String price, String totalPrice)
+    {
+        try 
+        {
+            //To avoid empty space in textfile, make sure there is only 1 new line in the textfile
+            //Check the blank line after delete the data
+            FileWriter writer = new FileWriter(filePath, true); // Write user details into the file 
+            BufferedWriter bwr = new BufferedWriter(writer);
+            PrintWriter pwr = new PrintWriter(bwr); //Write user into text file and auto print new line
+            pwr.println(username + ":" + product + ":" + quantity + ":" + price + ":" + totalPrice + ":");
+            bwr.close();
+        } 
+        catch (IOException e) 
+        {
+            System.out.println("Cannot write data into the file");
+            e.printStackTrace();
+        }
+    }
+    
     public void clearTextFile(String filePath) throws FileNotFoundException
     {
         PrintWriter writer = new PrintWriter(filePath);

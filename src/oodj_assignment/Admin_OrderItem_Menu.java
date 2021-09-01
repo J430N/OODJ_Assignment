@@ -599,12 +599,13 @@ public class Admin_OrderItem_Menu extends javax.swing.JFrame {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
 
         double singleItemTotal = 0;
-        //Abstraction
-        Fragile_Packaging fragilePack = new Fragile_Packaging();
-        NonFragile_Packaging nonFragilePack = new NonFragile_Packaging();
 
         DefaultTableModel model=new DefaultTableModel();
         model=(DefaultTableModel)tblOrder.getModel();
+        //Abstraction
+        Fragile_Packaging fragilePack = new Fragile_Packaging();
+        NonFragile_Packaging nonFragilePack = new NonFragile_Packaging();
+        
         if (productType.equals("Fragile"))
         {
             singleItemTotal = fragilePack.packFee(Double.parseDouble(lblTotal.getText()));
