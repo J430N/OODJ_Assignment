@@ -21,7 +21,7 @@ public class Admin_OrderItem_Menu extends javax.swing.JFrame {
     String viewType = null;
     String productType = null;
     double total = 0;
-    double fee = 0;
+    double packFee = 0;
     Object[] row=new Object[3];
     double num=0;
     
@@ -263,7 +263,7 @@ public class Admin_OrderItem_Menu extends javax.swing.JFrame {
         });
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel8.setText("Total (RM):");
+        jLabel8.setText("Total + Pack Fee(RM):");
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel9.setText("Pay Amount (RM):");
@@ -487,7 +487,7 @@ public class Admin_OrderItem_Menu extends javax.swing.JFrame {
                                         .addComponent(btnPrintReceipt)
                                         .addGap(44, 44, 44))
                                     .addComponent(btnPlaceOrder, javax.swing.GroupLayout.Alignment.TRAILING))))))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -532,7 +532,7 @@ public class Admin_OrderItem_Menu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 940, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 968, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -598,34 +598,29 @@ public class Admin_OrderItem_Menu extends javax.swing.JFrame {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
 
-        if (productType.equals("Fragile"))
-        {
-            fee = 10;
-        }
-        else
-        {
-            fee = 2;
-        }
-     
-            
-        DefaultTableModel model=new DefaultTableModel();
-        model=(DefaultTableModel)tblOrder.getModel();
-        double orderTotal = fee+Double.parseDouble(lblTotal.getText());
-        String[] item={txtOrderName.getText(),spinQuan.getValue().toString(),lblOrderPrice.getText(),Double.toString(orderTotal)};
-        model.addRow(item);
-        
-        num=Double.valueOf(lblTotal.getText());
+        double singleItemTotal = 0;
         //Abstraction
         Fragile_Packaging fragilePack = new Fragile_Packaging();
         NonFragile_Packaging nonFragilePack = new NonFragile_Packaging();
+
+        DefaultTableModel model=new DefaultTableModel();
+        model=(DefaultTableModel)tblOrder.getModel();
         if (productType.equals("Fragile"))
         {
-            total = fragilePack.packFee(num);
+            singleItemTotal = fragilePack.packFee(Double.parseDouble(lblTotal.getText()));
+            packFee = packFee + 10;
         }
         else
         {
-            total = nonFragilePack.packFee(num);
+            singleItemTotal = nonFragilePack.packFee(Double.parseDouble(lblTotal.getText()));
+            packFee = packFee + 2;
         }
+        
+        String[] item={txtOrderName.getText(),spinQuan.getValue().toString(),lblOrderPrice.getText(),Double.toString(singleItemTotal)};
+        model.addRow(item);
+        num = num + Double.parseDouble(lblTotal.getText());
+        total = total+singleItemTotal;
+
         lblFinalTotal.setText(Double.toString(total)); 
         txtOrderName.setText("");
         lblOrderPrice.setText("");
@@ -651,15 +646,6 @@ public class Admin_OrderItem_Menu extends javax.swing.JFrame {
         String pay=txtPay.getText();
         String bal=txtBal.getText();
         
-        if (productType.equals("Fragile"))
-        {
-            fee = 10;
-        }
-        else
-        {
-            fee = 2;
-        }
-        
         DefaultTableModel model=new DefaultTableModel();
         model=(DefaultTableModel)tblOrder.getModel();
         
@@ -681,7 +667,7 @@ public class Admin_OrderItem_Menu extends javax.swing.JFrame {
         
         txtReceipt.setText(txtReceipt.getText()+ "\n");
         txtReceipt.setText(txtReceipt.getText()+ "\t" + "\t" + "Product Subtotal: " + num + "\n");
-        txtReceipt.setText(txtReceipt.getText()+ "\t" + "\t" + "Packaging fee: " + fee + "\n");
+        txtReceipt.setText(txtReceipt.getText()+ "\t" + "\t" + "Packaging fee: " + packFee + "\n");
         txtReceipt.setText(txtReceipt.getText()+ "\t" + "\t" + "Order Total: " + total + "\n");
         txtReceipt.setText(txtReceipt.getText()+ "\t" + "\t" + "Pay Amount: " + pay + "\n");
         txtReceipt.setText(txtReceipt.getText()+ "\t" + "\t" + "Balance: " + bal + "\n");
