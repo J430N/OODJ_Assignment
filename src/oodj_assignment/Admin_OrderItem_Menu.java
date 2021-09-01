@@ -21,6 +21,7 @@ public class Admin_OrderItem_Menu extends javax.swing.JFrame {
     String viewType = null;
     String productType = null;
     double total = 0;
+    double fee = 0;
     Object[] row=new Object[3];
     double num=0;
     
@@ -426,7 +427,7 @@ public class Admin_OrderItem_Menu extends javax.swing.JFrame {
                 .addComponent(btnUser)
                 .addGap(18, 18, 18)
                 .addComponent(btnProduct)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnAddOrder)
                 .addGap(26, 26, 26)
                 .addComponent(btnOrderEditDelete)
@@ -465,17 +466,14 @@ public class Admin_OrderItem_Menu extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(btnEditDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(btnShow))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addComponent(btnEditDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnShow)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(27, 27, 27)
@@ -510,8 +508,9 @@ public class Admin_OrderItem_Menu extends javax.swing.JFrame {
                         .addComponent(btnShow, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnPrintReceipt)
@@ -599,9 +598,20 @@ public class Admin_OrderItem_Menu extends javax.swing.JFrame {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
 
+        if (productType.equals("Fragile"))
+        {
+            fee = 10;
+        }
+        else
+        {
+            fee = 2;
+        }
+     
+            
         DefaultTableModel model=new DefaultTableModel();
         model=(DefaultTableModel)tblOrder.getModel();
-        String[] item={txtOrderName.getText(),spinQuan.getValue().toString(),lblOrderPrice.getText(),lblTotal.getText()};
+        double orderTotal = fee+Double.parseDouble(lblTotal.getText());
+        String[] item={txtOrderName.getText(),spinQuan.getValue().toString(),lblOrderPrice.getText(),Double.toString(orderTotal)};
         model.addRow(item);
         
         num=Double.valueOf(lblTotal.getText());
@@ -622,15 +632,6 @@ public class Admin_OrderItem_Menu extends javax.swing.JFrame {
         lblTotal.setText("");
         spinQuan.setValue("");
         txtOrderName.requestFocusInWindow();
-        
-        
-        //System.out.println(Double.toString(num));
-        //Object selected = spinQuan.getValue();
-        //model.remove(selected);
-        //spinQuan.setValue(((SpinnerNumberModel) spinQuan.getModel()).getMinimum());
-        //EventQueue.invokeLater( () -> txtOrderName.requestFocusInWindow() );
-        //txtOrderName.setFocusable(true);
-        //txtOrderName.requestFocusInWindow();
     }//GEN-LAST:event_btnAddActionPerformed
     
     
@@ -645,7 +646,7 @@ public class Admin_OrderItem_Menu extends javax.swing.JFrame {
     }
     
     public void Receipt(){
-        double fee = 0;
+        
         String total=lblFinalTotal.getText();
         String pay=txtPay.getText();
         String bal=txtBal.getText();
@@ -764,29 +765,7 @@ public class Admin_OrderItem_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditDeleteActionPerformed
 
     private void btnPlaceOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlaceOrderActionPerformed
-        //String data=txtReceipt.getText().trim();
-        /*if(!txtReceipt.equals("")&&(!tblOrder.equals("")))
-        {
-            //order.setOrderName(txtOrderName.getText());
-            int selectedRowIndex = tblOrder.getSelectedRow();
-            int selectedColumnIndex = tblOrder.getSelectedColumn();
-            Object selectedObject = (Object) tblOrder.getModel().getValueAt(selectedRowIndex, selectedColumnIndex);
-            try {
-                order.addOrder(txtOrderName.getText(),spinQuan.getValue().toString(),lblOrderPrice.getText(), lblTotal.getText());
-            } catch (IOException ex) {
-                Logger.getLogger(Customer_OrderItem_Menu.class.getName()).log(Level.SEVERE, null, ex);
-            }
-                    JOptionPane.showMessageDialog(this, "Order successfully added!");
-                    //txtOrderName.setText(null);
-                    //lblOrderPrice.setText(null);
-                    //lblTotal.setText(null);
-                    //btnAdd.setEnabled(false);
-        }
-          
-        else
-        {
-            JOptionPane.showMessageDialog(this, "Invalid input! Please try again");
-        }*/
+
         String data[]=new String[100];
         try{
         File file=new File("Order.txt");
@@ -827,7 +806,6 @@ public class Admin_OrderItem_Menu extends javax.swing.JFrame {
         for(int i=0; i<tblOrder.getRowCount(); i++){
             bw.write(admin.getUsername()+":");
             for(int j=0; j<tblOrder.getColumnCount();j++){
-                //order.addOrder((String)tblOrder.getModel().getValueAt(i, j));
                 bw.write((String)tblOrder.getModel().getValueAt(i, j)+":");
             }
             bw.write("\n");
