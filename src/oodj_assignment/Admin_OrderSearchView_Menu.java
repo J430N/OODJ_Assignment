@@ -107,7 +107,7 @@ public class Admin_OrderSearchView_Menu extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnClear)
-                .addGap(59, 59, 59)
+                .addGap(34, 34, 34)
                 .addComponent(btnViewOrder)
                 .addGap(128, 128, 128))
             .addGroup(jPanel3Layout.createSequentialGroup()

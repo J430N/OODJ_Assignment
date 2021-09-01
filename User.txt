@@ -11,4 +11,3 @@ Admin:8:Lim:456
 Admin:9:Jason001:123123
 Customer:7:kok:200
 Admin:10:Jane:123
-Admin:11:Jerry:Jerry2001

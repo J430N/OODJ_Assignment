@@ -37,3 +37,4 @@ Logout:Customer:1:John:Kong:01-09-2021 21.46.30
 Login:Admin:6:Sheng:123:01-09-2021 21.50.15
 Logout:Admin:6:Sheng:123:01-09-2021 21.51.03
 Login:Admin:6:Sheng:123:01-09-2021 21.53.57
+Login:Admin:2:Jason:123:01-09-2021 22.20.00
