@@ -70,7 +70,7 @@ public class Customer_SearchView_Menu extends javax.swing.JFrame {
         btnLogout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Sign Up");
+        setTitle("Search/View");
         setResizable(false);
         setSize(new java.awt.Dimension(0, 0));
 

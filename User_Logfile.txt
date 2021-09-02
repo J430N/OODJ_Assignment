@@ -38,3 +38,14 @@ Login:Admin:6:Sheng:123:01-09-2021 21.50.15
 Logout:Admin:6:Sheng:123:01-09-2021 21.51.03
 Login:Admin:6:Sheng:123:01-09-2021 21.53.57
 Login:Admin:2:Jason:123:01-09-2021 22.20.00
+Login:Admin:2:Jason:123:02-09-2021 21.38.44
+Logout:Admin:2:Jason:123:02-09-2021 21.38.50
+Login:Customer:2:Jason:123:02-09-2021 21.39.02
+Login:Admin:2:Jason:123:02-09-2021 21.44.01
+Login:Admin:2:Jason:123:02-09-2021 21.50.36
+Login:Admin:2:Jason:123:02-09-2021 21.58.52
+Login:Admin:2:Jason:123:02-09-2021 22.00.57
+Login:Admin:2:Jason:123:02-09-2021 22.05.01
+Login:Admin:2:Jason:123:02-09-2021 22.09.25
+Login:Admin:2:Jason:123:02-09-2021 22.12.20
+Login:Admin:2:Jason:123:02-09-2021 22.15.53

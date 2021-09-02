@@ -423,17 +423,17 @@ public class Admin_OrderItem_Menu extends javax.swing.JFrame {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(btnUser)
-                .addGap(18, 18, 18)
-                .addComponent(btnProduct)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnAddOrder)
-                .addGap(26, 26, 26)
-                .addComponent(btnOrderEditDelete)
-                .addGap(66, 66, 66)
-                .addComponent(btnOrderSearchView)
-                .addGap(35, 35, 35)
+                .addContainerGap()
+                .addComponent(btnUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnAddOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnOrderEditDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnOrderSearchView, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -622,7 +622,7 @@ public class Admin_OrderItem_Menu extends javax.swing.JFrame {
         num = num + Double.parseDouble(lblTotal.getText());
         total = total+singleItemTotal;
 
-        lblFinalTotal.setText(Double.toString(total)); 
+        lblFinalTotal.setText(String.format("%.2f", total));  
         txtOrderName.setText("");
         lblOrderPrice.setText("");
         lblTotal.setText("");
@@ -725,17 +725,29 @@ public class Admin_OrderItem_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnEditDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditDeleteActionPerformed
+        Fragile_Packaging fragilePack = new Fragile_Packaging();
+        NonFragile_Packaging nonFragilePack = new NonFragile_Packaging();
+        double singleItemTotal = 0;
         DefaultTableModel model=(DefaultTableModel)tblOrder.getModel();
         int SelectRow=tblOrder.getSelectedRow();
         if (SelectRow>=0)
         {
             //subtract in total amount after deleting a row
             String num11=(String)model.getValueAt(SelectRow,3);
-            double num1= Double.parseDouble(num11);
-            num=num-num1;
-            String num2=Double.toString(num);
-            lblFinalTotal.setText(num2);        
-            System.out.println(num2);
+            
+            if (productType.equals("Fragile"))
+            {
+                packFee = packFee - 10;
+                num = num - Double.parseDouble(num11) + 10;
+            }
+            else
+            {
+                packFee = packFee +- 2;
+                num = num - Double.parseDouble(num11) + 2;
+            }
+            
+            total = total-Double.parseDouble(num11);
+            lblFinalTotal.setText(String.format("%.2f", total));        
             
             model.removeRow(SelectRow);
             lblStatus.setText("Row deleted");

@@ -36,6 +36,7 @@ public class Customer_OrderItem_Menu extends javax.swing.JFrame {
         setSize(950, 650);//Width and Height
         setResizable(false);
         lm.removeAllElements();
+        btnOrderMenu.setEnabled(false);
 
     }
     
@@ -99,7 +100,7 @@ public class Customer_OrderItem_Menu extends javax.swing.JFrame {
         btnPrintReceipt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Sign Up");
+        setTitle("Order");
         setResizable(false);
         setSize(new java.awt.Dimension(0, 0));
 
@@ -609,7 +610,7 @@ public class Customer_OrderItem_Menu extends javax.swing.JFrame {
         num = num + Double.parseDouble(lblTotal.getText());
         total = total+singleItemTotal;
 
-        lblFinalTotal.setText(Double.toString(total)); 
+        lblFinalTotal.setText(String.format("%.2f", total));
         txtOrderName.setText("");
         lblOrderPrice.setText("");
         lblTotal.setText("");
@@ -713,17 +714,29 @@ public class Customer_OrderItem_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnEditDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditDeleteActionPerformed
+        Fragile_Packaging fragilePack = new Fragile_Packaging();
+        NonFragile_Packaging nonFragilePack = new NonFragile_Packaging();
+        double singleItemTotal = 0;
         DefaultTableModel model=(DefaultTableModel)tblOrder.getModel();
         int SelectRow=tblOrder.getSelectedRow();
         if (SelectRow>=0)
         {
             //subtract in total amount after deleting a row
             String num11=(String)model.getValueAt(SelectRow,3);
-            double num1= Double.parseDouble(num11);
-            num=num-num1;
-            String num2=Double.toString(num);
-            lblFinalTotal.setText(num2);        
-            System.out.println(num2);
+            
+            if (productType.equals("Fragile"))
+            {
+                packFee = packFee - 10;
+                num = num - Double.parseDouble(num11) + 10;
+            }
+            else
+            {
+                packFee = packFee +- 2;
+                num = num - Double.parseDouble(num11) + 2;
+            }
+            
+            total = total-Double.parseDouble(num11);
+            lblFinalTotal.setText(String.format("%.2f", total));        
             
             model.removeRow(SelectRow);
             lblStatus.setText("Row deleted");
