@@ -183,7 +183,7 @@ public class Admin_OrderEditDelete_Menu extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Customer Name", "Name", "Quantity", "Price", "Total"
+                "Admin/Customer Name", "Product Name", "Quantity", "Price", "Total"
             }
         ) {
             Class[] types = new Class [] {
