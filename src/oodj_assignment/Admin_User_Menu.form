@@ -785,11 +785,11 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnUserMenu" min="-2" pref="162" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnProductMenu" min="-2" pref="161" max="-2" attributes="0"/>
+                      <Component id="btnProductMenu" min="-2" pref="143" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnAddOrder" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnOrderEditDelete" min="-2" pref="158" max="-2" attributes="0"/>
+                      <Component id="btnOrderEditDelete" min="-2" pref="152" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnOrderSearchView" min="-2" pref="163" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
