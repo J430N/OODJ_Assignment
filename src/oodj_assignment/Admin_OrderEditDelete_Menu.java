@@ -269,7 +269,7 @@ public class Admin_OrderEditDelete_Menu extends javax.swing.JFrame {
         try {
             String customer [][]=readOrderFile("Order.txt");
             String[][] data=new String[50][10];
-            String[] title = {"Customer Name","Name", "Quantity", "Price", "Total"};
+            String[] title = {"Admin/Customer Name","Product Name", "Quantity", "Price", "Total"};
             int count=0;
             for(count = 0;count < customer.length; count++){
                     if(customer[count][0]!=null){

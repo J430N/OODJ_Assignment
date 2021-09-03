@@ -667,8 +667,6 @@ public class Admin_OrderItem_Menu extends javax.swing.JFrame {
         }
         
         txtReceipt.setText(txtReceipt.getText()+ "\n");
-        txtReceipt.setText(txtReceipt.getText()+ "\t" + "\t" + "Product Subtotal: " + num + "\n");
-        txtReceipt.setText(txtReceipt.getText()+ "\t" + "\t" + "Packaging fee: " + packFee + "\n");
         txtReceipt.setText(txtReceipt.getText()+ "\t" + "\t" + "Order Total: " + total + "\n");
         txtReceipt.setText(txtReceipt.getText()+ "\t" + "\t" + "Pay Amount: " + pay + "\n");
         txtReceipt.setText(txtReceipt.getText()+ "\t" + "\t" + "Balance: " + bal + "\n");

@@ -12,3 +12,6 @@ John:Coca_Cola:5:10:50.00:
 John:Coca_Cola:3:10:40.0:
 John:Pepsi:8:4.10:34.8:
 Sheng:Coca_Cola:2:10:30.0:
+Jason:Pepsi:2:4.10:10.2:
+Jason:Coca_Cola:3:10:40.0:
+Jason:Pepsi:2:4.10:10.2:
